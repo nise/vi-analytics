@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Passport-Local Example</title>
+	</head>
+	<body>
+		<% if (!user) { %>
+			<p>
+			<a href="http://176.10.37.68:3000/vi-lab">Home</a> | 
+			<a href="http://176.10.37.68:3000/login">Log In</a>
+			</p>
+		<% } else { %>
+			<p>
+			<a href="http://176.10.37.68:3000/vi-lab">Home</a> | 
+			<a href="http://176.10.37.68:3000/account">Account</a> | 
+			<a href="http://176.10.37.68:3000/logout">Log Out</a>
+			</p>
+		<% } %>
+		<%- body %>
+	</body>
+</html>

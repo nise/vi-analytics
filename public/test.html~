@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Node Cellar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+ <script src="lib/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+ 	<script type="text/javascript">
+ 		jQuery(document).ready(function(){
+ 			/*$.getJSON('http://127.0.0.1:3000/x/videos?callback=?', function(data){
+   			alert(data);
+   		});*/
+   		$.get('http://localhost:3000/wines', function(data){
+   			alert(data);
+   		});
+ 		});
+ 	</script>
+</head>
+
+<body>
+
+<div class="header"></div>
+
+<div class="container">
+
+    <div class="row-fluid">
+        <div id="content" class="span12>">sss</div>
+    </div>
+
+    <footer class="footer">
+       
+    </footer>
+
+</div>
+<!-- /container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="lib/jquery-1.8.2.min.js"></script>
+<script src="lib/underscore-min.js"></script>
+<script src="lib/backbone-min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+
+</body>
+</html>

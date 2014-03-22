@@ -1,0 +1,25 @@
+var request = require('request')
+, cheerio = require('cheerio');
+
+
+var url = 'http://files.opented.org.s3.amazonaws.com/scraped/100120-2011/summary.html';
+// place to store results
+var data = {};
+// do the request using the request library
+request(url, function(err, resp, body){
+  $ = cheerio.load(body);
+
+  data.winnerDetails = $('.txtmark .addr').html();
+
+  $('.mlioccur .txtmark').each(function(i, html) {
+    var spans = $(html).find('span');
+    var span0 = $(spans[0]);
+    if (span0.text() == 'Initial estimated total value of the contract ') {
+      var amount = $(spans[4]).text()
+      data.finalamount = cleanAmount(amount);
+      data.initialamount = cleanAmount($(spans[1]).text());
+      console.log('hallo');
+    }
+  });
+});
+

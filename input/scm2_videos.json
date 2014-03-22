@@ -1,0 +1,3130 @@
+[
+  {
+    "id": "313",
+    "metadata": [
+      {
+        "author": "",
+        "institution": "",
+        "title": "",
+        "category": "Z",
+        "abstract": "",
+        "length": "xxx",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/.webm",
+    "thumbnail": "img/video-icons/.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000099"
+  },
+  {
+    "id": "408",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Issues in Location of Facilities",
+        "category": "N",
+        "abstract": "",
+        "length": "57:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_facilities.webm",
+    "thumbnail": "img/video-icons/scm_location_facilities.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a1"
+  },
+  {
+    "id": "409",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Layout Planing",
+        "category": "N",
+        "abstract": "",
+        "length": "52:50:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_planing.webm",
+    "thumbnail": "img/video-icons/scm_layout_planing.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a2"
+  },
+  {
+    "id": "413",
+    "metadata": [
+      {
+        "author": "",
+        "institution": "",
+        "title": "",
+        "category": "Z",
+        "abstract": "",
+        "length": "xxx",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/.webm",
+    "thumbnail": "img/video-icons/.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a6"
+  },
+  {
+    "id": "10",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Product Layouts and Assambly Line Balancing",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_product_layouts.webm",
+    "thumbnail": "img/video-icons/scm_product_layouts.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400007b"
+  },
+  {
+    "id": "11",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Mathematical Models for Facility Location",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_facility_location.webm",
+    "thumbnail": "img/video-icons/scm_facility_location.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400007c"
+  },
+  {
+    "id": "12",
+    "metadata": [
+      {
+        "author": "Colin Hegarty",
+        "institution": "",
+        "title": "Traveling Salesperson Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "40:28:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_traveling_salesman_problem.webm",
+    "thumbnail": "img/video-icons/scm_traveling_salesman_problem.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400007d"
+  },
+  {
+    "id": "13",
+    "metadata": [
+      {
+        "author": "",
+        "institution": "",
+        "title": "",
+        "category": "Z",
+        "abstract": "",
+        "length": "xxx",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/.webm",
+    "thumbnail": "img/video-icons/.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400007e"
+  },
+  {
+    "id": "104",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Location Decision",
+        "category": "Z",
+        "abstract": "",
+        "length": "42:52:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-10-locationdecisions/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_decision.webm",
+    "thumbnail": "img/video-icons/scm_location_decision.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400007f"
+  },
+  {
+    "id": "202",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 2",
+        "category": "N",
+        "abstract": "",
+        "length": "60:15:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions02/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions2.webm",
+    "thumbnail": "img/video-icons/scm_layout_decisions2.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000081"
+  },
+  {
+    "id": "203",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 1",
+        "category": "N",
+        "abstract": "",
+        "length": "61:13:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions01/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions1.webm",
+    "thumbnail": "img/video-icons/scm_layout_decisions1.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000082"
+  },
+  {
+    "id": "204",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Location Decision",
+        "category": "Z",
+        "abstract": "",
+        "length": "42:52:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-10-locationdecisions/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_decision.webm",
+    "thumbnail": "img/video-icons/scm_location_decision.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000083"
+  },
+  {
+    "id": "205",
+    "metadata": [
+      {
+        "author": "Moritz Roidl",
+        "institution": "TU Dortmund",
+        "title": "Warehouse Managment Systeme ",
+        "category": "Z",
+        "abstract": "",
+        "length": "59:37:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://www.youtube.com/watch?v=XpEHJEkQ490&list=PLFY8NM79glQtudN84-t6U97ZkX2oBGYp4"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_warehousemanagement.webm",
+    "thumbnail": "img/video-icons/scm_warehousemanagement.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000084"
+  },
+  {
+    "id": "208",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Issues in Location of Facilities",
+        "category": "N",
+        "abstract": "",
+        "length": "57:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_facilities.webm",
+    "thumbnail": "img/video-icons/scm_location_facilities.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000087"
+  },
+  {
+    "id": "209",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Layout Planing",
+        "category": "N",
+        "abstract": "",
+        "length": "52:50:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_planing.webm",
+    "thumbnail": "img/video-icons/scm_layout_planing.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000088"
+  },
+  {
+    "id": "210",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Product Layouts and Assambly Line Balancing",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_product_layouts.webm",
+    "thumbnail": "img/video-icons/scm_product_layouts.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000089"
+  },
+  {
+    "id": "211",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Mathematical Models for Facility Location",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_facility_location.webm",
+    "thumbnail": "img/video-icons/scm_facility_location.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400008a"
+  },
+  {
+    "id": "212",
+    "metadata": [
+      {
+        "author": "Colin Hegarty",
+        "institution": "",
+        "title": "Traveling Salesperson Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "40:28:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_traveling_salesman_problem.webm",
+    "thumbnail": "img/video-icons/scm_traveling_salesman_problem.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400008b"
+  },
+  {
+    "id": "213",
+    "metadata": [
+      {
+        "author": "",
+        "institution": "",
+        "title": "",
+        "category": "Z",
+        "abstract": "",
+        "length": "xxx",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/.webm",
+    "thumbnail": "img/video-icons/.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400008c"
+  },
+  {
+    "id": "303",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 1",
+        "category": "N",
+        "abstract": "",
+        "length": "61:13:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions01/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions1.webm",
+    "thumbnail": "img/video-icons/scm_layout_decisions1.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400008f"
+  },
+  {
+    "id": "305",
+    "metadata": [
+      {
+        "author": "Moritz Roidl",
+        "institution": "TU Dortmund",
+        "title": "Warehouse Managment Systeme ",
+        "category": "Z",
+        "abstract": "",
+        "length": "59:37:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://www.youtube.com/watch?v=XpEHJEkQ490&list=PLFY8NM79glQtudN84-t6U97ZkX2oBGYp4"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_warehousemanagement.webm",
+    "thumbnail": "img/video-icons/scm_warehousemanagement.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000091"
+  },
+  {
+    "id": "306",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Lee Hale",
+        "institution": "Georgia Tech",
+        "title": "Warehouse/Distribution Center Layout",
+        "category": "N",
+        "abstract": "",
+        "length": "50:11:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "www.youtube.com/watch?v=UaKgiexU1Qk‎"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_dist_layout.webm",
+    "thumbnail": "img/video-icons/scm_dist_layout.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000092"
+  },
+  {
+    "id": "307",
+    "metadata": [
+      {
+        "author": "Prof. G. Srinivasan",
+        "institution": "IIT Madras",
+        "title": "Chinese Postman Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "58:22:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_chinese_postman_problem.webm",
+    "thumbnail": "img/video-icons/scm_chinese_postman_problem.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000093"
+  },
+  {
+    "id": "308",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Issues in Location of Facilities",
+        "category": "N",
+        "abstract": "",
+        "length": "57:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_facilities.webm",
+    "thumbnail": "img/video-icons/scm_location_facilities.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000094"
+  },
+  {
+    "id": "309",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Layout Planing",
+        "category": "N",
+        "abstract": "",
+        "length": "52:50:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_planing.webm",
+    "thumbnail": "img/video-icons/scm_layout_planing.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000095"
+  },
+  {
+    "id": "310",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Product Layouts and Assambly Line Balancing",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_product_layouts.webm",
+    "thumbnail": "img/video-icons/scm_product_layouts.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000096"
+  },
+  {
+    "id": "311",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Mathematical Models for Facility Location",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_facility_location.webm",
+    "thumbnail": "img/video-icons/scm_facility_location.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000097"
+  },
+  {
+    "id": "312",
+    "metadata": [
+      {
+        "author": "Colin Hegarty",
+        "institution": "",
+        "title": "Traveling Salesperson Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "40:28:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_traveling_salesman_problem.webm",
+    "thumbnail": "img/video-icons/scm_traveling_salesman_problem.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f24000098"
+  },
+  {
+    "id": "403",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 1",
+        "category": "N",
+        "abstract": "",
+        "length": "61:13:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions01/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions1.webm",
+    "thumbnail": "img/video-icons/scm_layout_decisions1.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400009c"
+  },
+  {
+    "id": "404",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Location Decision",
+        "category": "Z",
+        "abstract": "",
+        "length": "42:52:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-10-locationdecisions/STREAM"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_decision.webm",
+    "thumbnail": "img/video-icons/scm_location_decision.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400009d"
+  },
+  {
+    "id": "405",
+    "metadata": [
+      {
+        "author": "Moritz Roidl",
+        "institution": "TU Dortmund",
+        "title": "Warehouse Managment Systeme ",
+        "category": "Z",
+        "abstract": "",
+        "length": "59:37:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://www.youtube.com/watch?v=XpEHJEkQ490&list=PLFY8NM79glQtudN84-t6U97ZkX2oBGYp4"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_warehousemanagement.webm",
+    "thumbnail": "img/video-icons/scm_warehousemanagement.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400009e"
+  },
+  {
+    "id": "406",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Lee Hale",
+        "institution": "Georgia Tech",
+        "title": "Warehouse/Distribution Center Layout",
+        "category": "N",
+        "abstract": "",
+        "length": "50:11:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "www.youtube.com/watch?v=UaKgiexU1Qk‎"
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_dist_layout.webm",
+    "thumbnail": "img/video-icons/scm_dist_layout.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f2400009f"
+  },
+  {
+    "id": "407",
+    "metadata": [
+      {
+        "author": "Prof. G. Srinivasan",
+        "institution": "IIT Madras",
+        "title": "Chinese Postman Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "58:22:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_chinese_postman_problem.webm",
+    "thumbnail": "img/video-icons/scm_chinese_postman_problem.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a0"
+  },
+  {
+    "id": "410",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Product Layouts and Assambly Line Balancing",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_product_layouts.webm",
+    "thumbnail": "img/video-icons/scm_product_layouts.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a3"
+  },
+  {
+    "id": "411",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Mathematical Models for Facility Location",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_facility_location.webm",
+    "thumbnail": "img/video-icons/scm_facility_location.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a4"
+  },
+  {
+    "id": "412",
+    "metadata": [
+      {
+        "author": "Colin Hegarty",
+        "institution": "",
+        "title": "Traveling Salesperson Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "40:28:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_traveling_salesman_problem.webm",
+    "thumbnail": "img/video-icons/scm_traveling_salesman_problem.png",
+    "tags": [],
+    "comments": [],
+    "assessment": [],
+    "toc": [],
+    "links": [],
+    "_id": "52a13d2e2aa9d35f240000a5"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f2400009b",
+    "assessment": [],
+    "comments": [],
+    "id": "402",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 2",
+        "category": "N",
+        "abstract": "",
+        "length": "60:15:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions02/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_layout_decisions2.png",
+    "toc": [
+      {
+        "label": "hallo",
+        "start": "0",
+        "author": "81",
+        "date": "1386300201775"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions2.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000085",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Typische%20Ans%C3%A4tze%20in%20der%20Layoutplanung%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ23%22%2C%22answ%22%3A%221.)%20Plain%20Instinct%5Cn2.)%20Get%20one%20like%20Joe%60s%5Cn3.)%20Keep%20exeryone%20happy%5Cn4.)%20Flow%20of%20materials%5Cn5.)%20Systematic%20Methodology%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "362.375355",
+        "author": "19",
+        "date": "1386342582203"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Grundlagen%20in%20der%20Lyoutplanung%20(Fundamentals)%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ23%22%2C%22answ%22%3A%221.)%20Wo%20m%C3%BCssen%20die%20einzelne%20Fabrikbausteine%20stehen%2C%20in%20welchen%20Beziehungen%20stehen%20diese%20zueinander%5Cn2.)%20Welchen%20Raum%20ben%C3%B6tigt%20welche%20EInheit%5Cn3.)%20Wie%20k%C3%B6nnen%20diese%20sinnvoll%20angeordnet%20werden%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "440.308166",
+        "author": "19",
+        "date": "1386342749354"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Auf%20welches%20Hilfsmittel%20greift%20man%20bei%20der%20Layout%20Planung%20zur%C3%BCck%2C%20um%20die%20Beziehungen%20zwischen%20den%20einzelnen%20Produktionseinheiten%20aufzuzeigen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ23%22%2C%22answ%22%3A%22Homart-Activity-Relationship%20Diagram%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "601.177011",
+        "author": "19",
+        "date": "1386343098162"
+      },
+      {
+        "title": "%7B%22question%22%3A%22In%20wieviele%20Phasen%20teilt%20sich%20die%20systematische%20Layoutplanung%20ein%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ40%22%2C%22answ%22%3A%223%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ94%22%2C%22answ%22%3A%224%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ48%22%2C%22answ%22%3A%225%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ11%22%2C%22answ%22%3A%2213%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1228.394628",
+        "author": "19",
+        "date": "1386344355669"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Ordnen%20Sie%20die%20Phasen%20der%20systematischen%20Layoutplanung%20in%20der%20richtigen%20Reihenfolge%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ40%22%2C%22answ%22%3A%22Location%2C%20Overall%20Layout%2C%20Installation%2C%20Detail%20layout%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ94%22%2C%22answ%22%3A%22Location%2C%20Overall%20Layout%2C%20Detail%20Layout%2C%20Installation%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ48%22%2C%22answ%22%3A%22Overall%20Layout%2C%20Location%2C%20Detail%20Layout%2C%20Installation%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1299.342049",
+        "author": "19",
+        "date": "1386344539336"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Geben%20Sie%20Ziele%20der%20Layoutplanung%20an%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ53%22%2C%22answ%22%3A%22Direkte%20und%20kurze%20Wege%2C%20geringe%20Materialumschlagsmengen%2C%20geringere%20Kosten%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1643.367889",
+        "author": "19",
+        "date": "1386344820061"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Geben%20Sie%20die%20Formel%20f%C3%BCr%20die%20Transportarbeit%20an.%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ53%22%2C%22answ%22%3A%22Transportwork%20%3D%20Instensity%20*%20Distance%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2097.11404",
+        "author": "19",
+        "date": "1386345104792"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Nenne%20Sie%20einige%20Vorteile%20und%20Nachteile%20der%20Layoutplanung.%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ53%22%2C%22answ%22%3A%22Vorteile%3A%20kurze%20Durchlaufzeiten%2C%20Kostenreduktion%2C%20Wirtschaftlichkeit%2C%20optimale%20Fl%C3%A4chennutzung%20%5CnNachteile%3A%20geringe%20Flexibilit%C3%A4t%2C%20Aufbrechen%20traditioneller%20Verkn%C3%BCpfungen%2C%20aufw%C3%A4ndige%20Planung%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2711.038186",
+        "author": "19",
+        "date": "1386345366080"
+      }
+    ],
+    "comments": [],
+    "id": "206",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Lee Hale",
+        "institution": "Georgia Tech",
+        "title": "Warehouse/Distribution Center Layout",
+        "category": "N",
+        "abstract": "",
+        "length": "50:11:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "www.youtube.com/watch?v=UaKgiexU1Qk‎"
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_dist_layout.png",
+    "toc": [],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_dist_layout.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000074",
+    "assessment": [],
+    "comments": [
+      {
+        "comment": "Was%20ist%20unter%20Layout%20zu%20verstehen%3F%20%0A-%20Die%20Summe%20aller%20physischen%20Gegebenheiten%20im%20Rahmen%20eines%20Produktionsprozesses%20(Anordnung%20von%20Maschinen%2C%20Gestalltung%20von%20R%C3%A4umen).%20",
+        "start": "39.540272",
+        "author": "14",
+        "date": "1386435281665"
+      },
+      {
+        "comment": "Welche%20Artten%20von%20Layout%20gibt%20es%3F%20%0A-%20Office%20Layout%0A-%20Retaillayout%0A-%20Warehousing%20and%20Storagelayouts%0A-%20Fixed-Position%20Layout%20%0A-%20Process-oriented%20Layout%0A-%20Workcells%0A-%20Repetitiv%20Layout%20and%20Product-Oriented%20Layout",
+        "start": "169.476893",
+        "author": "14",
+        "date": "1386436234161"
+      },
+      {
+        "comment": "Welche%20der%20Innovationen%20von%20Mc%20Donalds%20war%20keine%20Layout%20Entscheidung%3F%20%0A-%20Einf%C3%BChrung%20des%20Fr%C3%BChst%C3%BCcks.%20",
+        "start": "445.910136",
+        "author": "14",
+        "date": "1386436597866"
+      },
+      {
+        "comment": "Was%20bewirkt%20ein%20gutes%20Layout%3F%0A-%20Bessere%20Raum-%20und%20Ressourcen%20Nutzung%20%0A-%20Verbesseerung%20des%20Informationsflussses%0A-%20Steigerung%20der%20Arbeitsmoral%20und%20Arbeitssicherheit%20%0A-%20Verbesserung%20der%20Kundenbeziehung%20%0A-%20mehr%20Flexibilit%C3%A4t",
+        "start": "687.341224",
+        "author": "14",
+        "date": "1386437399242"
+      },
+      {
+        "comment": "Layouttypen%20in%20eigenen%20Worten%20erkl%C3%A4ren.%20",
+        "start": "1172.938117",
+        "author": "14",
+        "date": "1386438223323"
+      },
+      {
+        "comment": "Was%20macht%20ein%20gutes%20Layout%20aus%3F%20%0A-%20gutes%20Material-%20Handling%0A-%20Effiziente%20Nutzung%20von%20Kapazit%C3%A4ten%20und%20Raum%20%0A-%20Gew%C3%A4hrleistung%20von%20Informationsfluss%0A-%20Ber%C3%BCcksichtigung%20von%20Transportkosten",
+        "start": "1528.111655",
+        "author": "14",
+        "date": "1386438948396"
+      },
+      {
+        "comment": "Was%20z%C3%A4hlt%20zu%20den%20Material%20Handling-Kosten%3F%20%0A-%20Hereinkommender%20Transport%0A-%20Lagerung%0A-%20Suchen%20und%20Finden%20von%20Materialien%0A-%20Herausgehender%20TRansport%0A-%20ben%C3%B6tigte%20Maschinen%20und%20Mitarbeiter",
+        "start": "2683.311519",
+        "author": "14",
+        "date": "1386442142291"
+      },
+      {
+        "comment": "Was%20versteht%20man%20unter%20Cross-Docking%3F",
+        "start": "2918.880839",
+        "author": "14",
+        "date": "1386443692505"
+      },
+      {
+        "comment": "Unterschied%20zwischen%20Chaotischer%20Lagerhaltung%20und%20Zufallslagerhaltung%3F",
+        "start": "2977.873174",
+        "author": "14",
+        "date": "1386443956616"
+      },
+      {
+        "comment": "Was%20ist%20Customizing%3F",
+        "start": "3198.278367",
+        "author": "14",
+        "date": "1386444315010"
+      }
+    ],
+    "id": "3",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 1",
+        "category": "N",
+        "abstract": "",
+        "length": "61:13:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions01/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "Layout",
+        "occ": [
+          "78.836145"
+        ]
+      },
+      {
+        "tagname": "Standortfragen%2C%20Standortentscheidungen",
+        "occ": [
+          "80.842154"
+        ]
+      },
+      {
+        "tagname": "Layout%20Entscheidungen%20",
+        "occ": [
+          "527.312471"
+        ]
+      },
+      {
+        "tagname": "Mc%20Donalds%20",
+        "occ": [
+          "529.506598"
+        ]
+      },
+      {
+        "tagname": "Layouttypen",
+        "occ": [
+          "699.341791"
+        ]
+      },
+      {
+        "tagname": "Office%20Layout",
+        "occ": [
+          "995.279863",
+          "1534.972494"
+        ]
+      },
+      {
+        "tagname": "Retail%20Layout",
+        "occ": [
+          "1008.512403"
+        ]
+      },
+      {
+        "tagname": "Warehouse%20Layout",
+        "occ": [
+          "1015.235986",
+          "3272.678548"
+        ]
+      },
+      {
+        "tagname": "Fixed-position%20Layout",
+        "occ": [
+          "1062.846371"
+        ]
+      },
+      {
+        "tagname": "Process-oriented%20Layout",
+        "occ": [
+          "1067.876666"
+        ]
+      },
+      {
+        "tagname": "Work%20cell%20Layout",
+        "occ": [
+          "1112.081269"
+        ]
+      },
+      {
+        "tagname": "Product-oriented%20Layout",
+        "occ": [
+          "1114.170068"
+        ]
+      },
+      {
+        "tagname": "Relationship%20Chart",
+        "occ": [
+          "1627.501768"
+        ]
+      },
+      {
+        "tagname": "Supermarkt%20Layout",
+        "occ": [
+          "1851.46916"
+        ]
+      },
+      {
+        "tagname": "Lagerhaus%20Layout",
+        "occ": [
+          "2605.407029"
+        ]
+      },
+      {
+        "tagname": "ASRSs",
+        "occ": [
+          "2820.177619"
+        ]
+      },
+      {
+        "tagname": "Cross-Docking",
+        "occ": [
+          "2889.51043"
+        ]
+      },
+      {
+        "tagname": "Random%20Stocking",
+        "occ": [
+          "2993.402108"
+        ]
+      },
+      {
+        "tagname": "Zufallslagerhaltung",
+        "occ": [
+          "2976.703197"
+        ]
+      },
+      {
+        "tagname": "Customizing",
+        "occ": [
+          "3181.976326"
+        ]
+      },
+      {
+        "tagname": "Cross-Docking%20Layout",
+        "occ": [
+          "3428.667573"
+        ]
+      },
+      {
+        "tagname": "Fixed-Position%20Layout",
+        "occ": [
+          "3430.30077"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_layout_decisions1.png",
+    "toc": [
+      {
+        "label": "Layouttypen",
+        "start": "710.014104",
+        "author": "14",
+        "date": "1386437446250"
+      },
+      {
+        "label": "Layoutstrategien",
+        "start": "1178.547528",
+        "author": "14",
+        "date": "1386438239587"
+      },
+      {
+        "label": "Office%20Layout",
+        "start": "1533.143446",
+        "author": "14",
+        "date": "1386438961339"
+      },
+      {
+        "label": "Lagerhaus%20Layout",
+        "start": "2601.2",
+        "author": "14",
+        "date": "1386441822611"
+      },
+      {
+        "label": "Cross-Docking",
+        "start": "2888.643786",
+        "author": "14",
+        "date": "1386443637424"
+      },
+      {
+        "label": "Random%20Stocking",
+        "start": "2965.908163",
+        "author": "14",
+        "date": "1386443896752"
+      },
+      {
+        "label": "Customizing",
+        "start": "3180.675374",
+        "author": "14",
+        "date": "1386444276208"
+      },
+      {
+        "label": "Warehouse%20Traditional%20Layout",
+        "start": "3287.27873",
+        "author": "14",
+        "date": "1386444435184"
+      },
+      {
+        "label": "Cross-Docking%20Layout",
+        "start": "3416.045487",
+        "author": "14",
+        "date": "1386444574872"
+      },
+      {
+        "label": "Fixed%20Position%20Layout",
+        "start": "3431.6",
+        "author": "14",
+        "date": "1386444629698"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions1.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000073",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Arbeitsplatzanordnung%20ist%20in%20Arbeitszellen%20von%20Vorteil%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ49%22%2C%22answ%22%3A%22Anordnung%20in%20einer%20Linie%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ3%22%2C%22answ%22%3A%22Anordnung%20in%20kleinen%20geschlossenen%20Bereichen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ2%22%2C%22answ%22%3A%22U-f%C3%B6rmige%20Anordnung%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ42%22%2C%22answ%22%3A%22X-f%C3%B6rmige%20Anordnung%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1961.067006",
+        "author": "11",
+        "date": "1386486687648"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Vorteile%20ergeben%20sich%20aus%20dieser%20Arbeitsplatzanordnung%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ99%22%2C%22answ%22%3A%22-Weniger%20Laufwege%20f%C3%BCr%20die%20Mitarbeiter%5Cn-%20Es%20wird%20weniger%20Platz%20ben%C3%B6tigt%5Cn-%20Die%20Kommunikation%20der%20Arbeitszellenmitarbeiter%20wird%20verbessert%5Cn-%20Weniger%20Inspektionen%20der%20Anlagen%20notwendig%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1994.967006",
+        "author": "11",
+        "date": "1386488066372"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Nennen%20Sie%20drei%20heuristische%20Regeln%2C%20die%20beim%20Ausbalancierungsprozess%20angewendet%20werden%20k%C3%B6nnen%3A%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ99%22%2C%22answ%22%3A%22-%20l%C3%A4ngste%20Bearbeitungszeit%5Cn-%20k%C3%BCrzeste%20Bearbeitungszeit%5Cn-%20meiste%20andere%20Aufgaben%2C%20die%20folgen%5Cn-%20wenigste%20andere%20Aufgaben%2C%20die%20folgen%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3323.233015",
+        "author": "11",
+        "date": "1386488578536"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20wird%20bei%20der%20prozessorientierten%20Layoutplanung%20berechnet%3F%20Erkl%C3%A4ren%20Sie%20die%20Bestandteile%20der%20Formel.%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ20%22%2C%22answ%22%3A%22Kosten%20werden%20berechnet.%5CnKosten%20%3D%20Summe%20der%20Kosten%20pro%20Arbeitsgang%20*%20Anzahl%20der%20Arbeitsg%C3%A4nge%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1062.833038",
+        "author": "11",
+        "date": "1386489473401"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Nennen%20Sie%20drei%20Vorteile%20des%20produktorientierten%20Layouts%3A%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ20%22%2C%22answ%22%3A%22-%20geringe%20variable%20Kosten%20pro%20Einheit%5Cn-%20geringe%20Materialtransportkosten%5Cn-%20schnelle%20Durchlaufzeiten%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2758.100044",
+        "author": "11",
+        "date": "1386489701545"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20versteht%20man%20unter%20Disassembly%20line%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ53%22%2C%22answ%22%3A%22Neuverwendung%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ63%22%2C%22answ%22%3A%22Erstverwendung%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ2%22%2C%22answ%22%3A%22Wiederverwertung%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2847.533038",
+        "author": "11",
+        "date": "1386489985846"
+      }
+    ],
+    "comments": [],
+    "id": "2",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 2",
+        "category": "N",
+        "abstract": "",
+        "length": "60:15:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions02/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "Mathematisches%20Modell",
+        "occ": [
+          "362.470725",
+          "2038.946349"
+        ]
+      },
+      {
+        "tagname": "Konkretes%20Anwendungsbeispiel",
+        "occ": [
+          "718.279705"
+        ]
+      },
+      {
+        "tagname": "Quadratisches%20Zuordnungsproblem",
+        "occ": [
+          "1236.680634"
+        ]
+      },
+      {
+        "tagname": "Softwarel%C3%B6sung",
+        "occ": [
+          "1269.043718"
+        ]
+      },
+      {
+        "tagname": "Beispiel%20mit%20CRAFT%20(Software)",
+        "occ": [
+          "1603.471065"
+        ]
+      },
+      {
+        "tagname": "U-f%C3%B6rmige%20Anordnung",
+        "occ": [
+          "1950.142675"
+        ]
+      },
+      {
+        "tagname": "Mathematisches%20Modell%20Arbeitszelle",
+        "occ": [
+          "2050.705804"
+        ]
+      },
+      {
+        "tagname": "Anwendungsbeispiel%20Arbeitszelle",
+        "occ": [
+          "2088.035532"
+        ]
+      },
+      {
+        "tagname": "Fabrik-%20%26%20Zusammenbaulinie",
+        "occ": [
+          "2643.412517"
+        ]
+      },
+      {
+        "tagname": "Vorteile%20Produktlayout",
+        "occ": [
+          "2755.067233"
+        ]
+      },
+      {
+        "tagname": "Dissasambly%20line",
+        "occ": [
+          "2850.446077"
+        ]
+      },
+      {
+        "tagname": "Beispiel%20Ausbalancierungsprozess",
+        "occ": [
+          "2931.640453"
+        ]
+      },
+      {
+        "tagname": "Heuristische%20Regeln",
+        "occ": [
+          "3234.47229"
+        ]
+      },
+      {
+        "tagname": "Effizienzma%C3%9Fbestimmung%20Ausbalancierung",
+        "occ": [
+          "3566.468299"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_layout_decisions2.png",
+    "toc": [
+      {
+        "label": "Prozessorientiertes%20Layout",
+        "start": "10.934353",
+        "author": "11",
+        "date": "1386429639151"
+      },
+      {
+        "label": "Arbeitszellen%20Layout",
+        "start": "1692.012448",
+        "author": "11",
+        "date": "1386431944866"
+      },
+      {
+        "label": "Wiederholendes-%20und%20produktorientiertes%20Layout",
+        "start": "2517.780975",
+        "author": "11",
+        "date": "1386433005591"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions2.webm"
+  },
+  {
+    "id": "110",
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Product Layouts and Assambly Line Balancing",
+        "category": "N",
+        "abstract": "",
+        "length": "60:00:00",
+        "date": "2013/12/04",
+        "weight": "0",
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_product_layouts.webm",
+    "thumbnail": "img/video-icons/scm_product_layouts.png",
+    "tags": "",
+    "comments": "",
+    "assessment": "",
+    "toc": "",
+    "links": "",
+    "_id": "52a454f3fe63ef554b000073"
+  },
+  {
+    "_id": "52a454f2fe63ef554b000072",
+    "assessment": "",
+    "comments": [
+      {
+        "comment": "Highlight%3A%20Rosenverk%C3%A4uferverschnitt%20wischt%20eine%203%20weg%2C%20um%20sie%20daraufhin%20wieder%20hinzuschreiben.",
+        "start": "858.547497",
+        "author": "56",
+        "date": "1386512498452"
+      },
+      {
+        "comment": "Highilght%3A%20Gandhi%20kommt%20aus%20dem%20Konzept",
+        "start": "1019.645082",
+        "author": "56",
+        "date": "1386515749699"
+      }
+    ],
+    "id": "107",
+    "links": "",
+    "metadata": [
+      {
+        "author": "Prof. G. Srinivasan",
+        "institution": "IIT Madras",
+        "title": "Chinese Postman Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "58:22:00",
+        "date": "2013/12/04",
+        "weight": "0",
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "TSP-L%C3%B6sung",
+        "occ": [
+          "94.246235"
+        ]
+      },
+      {
+        "tagname": "Eulerian-L%C3%B6sung%20(Kantenbasiert)",
+        "occ": [
+          "142.662514"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_chinese_postman_problem.png",
+    "toc": [
+      {
+        "label": "EInleitung%20anhand%20eines%20Graphen%20mit%20eulerschem%20Graphen%20",
+        "start": "46.680768",
+        "author": "56",
+        "date": "1386511854532"
+      },
+      {
+        "label": "Chinese%20Postman%20Problem",
+        "start": "442.933358",
+        "author": "56",
+        "date": "1386511832333"
+      },
+      {
+        "label": "Probleml%C3%B6sungsans%C3%A4tze%20zur%20Schaffung%20eines%20Eulerschen%20Graphen",
+        "start": "748.531832",
+        "author": "56",
+        "date": "1386512296863"
+      },
+      {
+        "label": "L%C3%B6sungsansatz%20zur%20Niedrighaltung%20der%20Extradistanz",
+        "start": "1253.559106",
+        "author": "56",
+        "date": "1386513059234"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_chinese_postman_problem.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f2400007a",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Layout-Typen%20gibt%20es%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "259.651655",
+        "author": "9",
+        "date": "1386664663517"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20sind%20die%20Merkmale%20eines%20Produkt-Layouts%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ66%22%2C%22answ%22%3A%22glatte%20und%20logische%20Stromlinien%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ53%22%2C%22answ%22%3A%22geringe%20Lagerbest%C3%A4nde%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ97%22%2C%22answ%22%3A%22geringe%20Gesamtproduktionszeit%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ74%22%2C%22answ%22%3A%22reduziertes%20Materialhandling%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22leicht%20ausf%C3%BChrbare%20T%C3%A4tigkeiten%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ88%22%2C%22answ%22%3A%22einfache%20Produktionsplanung%20und%20Kontrolle%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ80%22%2C%22answ%22%3A%22reduzierung%20von%20Transport-%20und%20Lagerfl%C3%A4chen%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "753.805895",
+        "author": "9",
+        "date": "1386665892042"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20sind%20die%20Merkmale%20eines%20Prozess-Layouts%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ66%22%2C%22answ%22%3A%22bessere%20Auslastung%20von%20Maschinen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ2%22%2C%22answ%22%3A%22hohes%20Ma%C3%9F%20an%20flexibilit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ22%22%2C%22answ%22%3A%22verh%C3%A4ltnism%C3%A4%C3%9Fig%20geringes%20Anlagenkapital%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ71%22%2C%22answ%22%3A%22mehr%20Zufriedenheit%20am%20Arbeitsplatz%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ42%22%2C%22answ%22%3A%22fachaufsicht%20ist%20m%C3%B6glich%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "834.360022",
+        "author": "9",
+        "date": "1386666279912"
+      }
+    ],
+    "comments": "",
+    "id": "9",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Layout Planing",
+        "category": "N",
+        "abstract": "",
+        "length": "52:50:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_layout_planing.png",
+    "toc": [
+      {
+        "label": "Verbindungen%20zwischen%20Produkt-%2C%20Prozess-%2C%20Termin-und%20Layout-Design",
+        "start": "621.772222",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Merkmale%20des%20Produkt-Layouts",
+        "start": "732.642222",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Merkmale%20des%20Prozess-Layouts",
+        "start": "815.002993",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Produkt-Menge%20Tabelle",
+        "start": "1124.089659",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "systematische%20Layout%20Planung",
+        "start": "1283.760839",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "systematische%20Layout%20Planung%20%2F%20Beispiel%201",
+        "start": "1573.325396",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Analyse%20des%20Materialflusses",
+        "start": "1918.650272",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Gesamtbewegung%20zwischen%20den%20Abteilungen",
+        "start": "1973.010294",
+        "author": "undefined",
+        "date": "undefined"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_planing.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000078",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20die%20Bedingung%20f%C3%BCr%20einen%20Euler-Graphen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ45%22%2C%22answ%22%3A%22Die%20Bedingung%20ist%20eine%20gerade%20Anzahl%20an%20Kanten%20an%20den%20jeweiligen%20Knotenpunkten.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "274.600022",
+        "author": "43",
+        "date": "1386784335070"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Zu%20welchem%20L%C3%B6sungsansatz%20soll%20das%20Chinese%20Postman%20Problem%20f%C3%BChren%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ66%22%2C%22answ%22%3A%22Es%20soll%20den%20k%C3%BCrzesten%20Weg%20aufzeigen%2C%20den%20ein%20Brieftr%C3%A4ger%20zu%20erledigen%20hat.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "577.133015",
+        "author": "43",
+        "date": "1386784683793"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wie%20macht%20man%20aus%20einem%20einfachen%20Graphen%20einen%20Euler-Graph%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ99%22%2C%22answ%22%3A%22EIn%20einfacher%20Graph%20kann%20durch%20doppelte%20Begehung%20der%20Kanten%20zu%20einem%20Euler%20Graph%20werden.%20Durch%20die%20doppelte%20Begehung%20erhalten%20die%20Kanten%20an%20den%20Knotenpunkten%20eine%20gerade%20Anzahl.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "936.96704",
+        "author": "43",
+        "date": "1386784691410"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Auswirkung%20hat%20die%20Umwandlung%20in%20einen%20Euler-Graphen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ58%22%2C%22answ%22%3A%22In%20der%20Regel%20f%C3%BChrt%20die%20Umstellung%20zu%20einer%20l%C3%A4ngeren%20Gesamtdistanz.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1241.8",
+        "author": "43",
+        "date": "1386784320403"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Worin%20liegt%20der%20Sinn%20der%20%5C%22negativen%5C%22%20Touren-Einteilung%20und%20wie%20wird%20diese%20durchgef%C3%BChrt%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1811.500096",
+        "author": "43",
+        "date": "1386784327981"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wann%20liegt%20ein%20Vehicle%20Routing%20Problem%20vor%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ74%22%2C%22answ%22%3A%22Ein%20VRP%20liegt%20vor%2C%20wenn%20die%20Tour%20von%20mindestens%202%20Autos%20durchgef%C3%BChrt%20wird.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3002.433312",
+        "author": "43",
+        "date": "1386784134204"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wann%20liegt%20ein%20Vehicle%20Routing%20Problem%20vor%3F%20Was%20sind%20die%20Merkmale%20des%20Vehicle%20Routing%20Problems%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3002.633017",
+        "author": "43",
+        "date": "1386667987723"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Probleme%20k%C3%B6nnen%20mit%20den%20Fahrzeugen%20auftreten%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ77%22%2C%22answ%22%3A%22Beschr%C3%A4nkte%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ41%22%2C%22answ%22%3A%22Es%20sollen%20alle%20Fahrzeuge%20genutzt%20werden%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ3%22%2C%22answ%22%3A%22Es%20sollen%20so%20wenig%20Fahrzeuge%20wie%20m%C3%B6glich%20genzutzt%20werden%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3389.733184",
+        "author": "43",
+        "date": "1386668449653"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20erfolgt%20mit%20der%20L%C3%B6sung%20des%20minimum%20weighted%20matching%20problem%3F%5CnBsp.%20Die%20Strecken%201-2%3B%205-6%3B%203-8%20ergeben%20addiert%20den%20k%C3%BCrzesten%20Weg%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ48%22%2C%22answ%22%3A%22Die%20Strecken%201-2%3B5-6%3B3-8%20m%C3%BCssen%20jeweils%20mit%20einem%20negativen%20Vorzeichen%20versehen%20werden%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ10%22%2C%22answ%22%3A%22DIe%20Strecken%201-2%3B5-6%3B3-8%20m%C3%BCssen%20jeweils%20verdoppelt%20werden%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2675.740158",
+        "author": "44",
+        "date": "1386786547886"
+      }
+    ],
+    "comments": [],
+    "id": "7",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. G. Srinivasan",
+        "institution": "IIT Madras",
+        "title": "Chinese Postman Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "58:22:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "Unterscheidung%20Euler-Graph%2FTSP",
+        "occ": [
+          "12.800022"
+        ]
+      },
+      {
+        "tagname": "Chinese%20Postman%20Problem",
+        "occ": [
+          "442.533015"
+        ]
+      },
+      {
+        "tagname": "Netzwerk%20mit%208%20Knotenpunkten",
+        "occ": [
+          "757.000158"
+        ]
+      },
+      {
+        "tagname": "Umwandlung%20eines%20Graphen%20in%20einen%20Euler-Graph",
+        "occ": [
+          "1038.1"
+        ]
+      },
+      {
+        "tagname": "Optimierung%20des%20Euler-Graphen",
+        "occ": [
+          "1357.96704"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_chinese_postman_problem.png",
+    "toc": [
+      {
+        "label": "Optimierung%20des%20Euler-Graphen",
+        "start": "1328.833856",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Vehicle%20Routing%20Problem",
+        "start": "2939.1",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Einf%C3%BChrung%20%20-Chinese%20Postman%20Problem",
+        "start": "22.500022",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Einf%C3%BChrung%20%20-%20Unterscheidung%20Chinese%20Postman%20Problem%20%2F%20Travelling%20Salesman%20Problem",
+        "start": "36.633332",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Umwandlung%20eines%20Graphen%20mit%208%20Knotenpunkten%20in%20einen%20Euler-Graph",
+        "start": "1004.467006",
+        "author": "43",
+        "date": "1386668820726"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_chinese_postman_problem.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f2400008e",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Mit%20welchen%20Faktoren%20wird%20die%20Anzahl%20der%20Arbeiter%20bestimmt%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Stillstandszeit%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22Gesamte%20Arbeitszeit%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ1%22%2C%22answ%22%3A%22Taktzeit%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ9%22%2C%22answ%22%3A%22Anlieferzeit%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2244.467052",
+        "author": "23",
+        "date": "1386669183595"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wo%20wird%20das%20produktorientierte%20Layout%20eingeordnet%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Low%20Volume%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22High%20Volume%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2555.2",
+        "author": "23",
+        "date": "1386669825707"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wie%20sollten%20die%20Produkte%20sein%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22standardisiert%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22nicht%20standardisiert%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2644.167006",
+        "author": "23",
+        "date": "1386670165761"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Von%20was%20h%C3%A4ngt%20das%20Ausbalancieren%20ab%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Zykluszeit%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22R%C3%BCstzeit%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3131.867006",
+        "author": "23",
+        "date": "1386670827662"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wie%20viele%20heuristische%20Regeln%20k%C3%B6nnen%20ber%C3%BCcksichtigt%20werden%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%221%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%222%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ86%22%2C%22answ%22%3A%223%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ85%22%2C%22answ%22%3A%224%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ98%22%2C%22answ%22%3A%225%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3370.867029",
+        "author": "23",
+        "date": "1386671071923"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Durc%20was%20kann%20das%20Ausbalancieren%20beurteilt%20werden%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Effektivit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22Effizienz%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3612.199433",
+        "author": "23",
+        "date": "1386671299547"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Ist%20ein%20prozessorientiertes%20Layout%20f%C3%BCr%20alle%20Beteiligten%20gleicherma%C3%9Fen%20gut%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Ja%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22Nein%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "214.633197",
+        "author": "23",
+        "date": "1386671443263"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Von%20wie%20vielen%20Kostenfaktoren%20ist%20das%20Modell%20abh%C3%A4ngig%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%221%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%222%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "542.400136",
+        "author": "23",
+        "date": "1386671521196"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wie%20wird%20dei%20MAtrix%20auch%20genannt%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Kostenmatrix%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22Qualit%C3%A4tsmatrix%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ40%22%2C%22answ%22%3A%22Zeitmatrix%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1257.666938",
+        "author": "23",
+        "date": "1386671613931"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Kann%20eine%20Abteilung%20mit%20sich%20selber%20in%20Beziehung%20stehen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Ja%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22Nein%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1255.267029",
+        "author": "23",
+        "date": "1386671687864"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20muss%20bei%20einem%20arbeitszellenbasierenden%20Layout%20arrangiert%20werden%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22Menschen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ62%22%2C%22answ%22%3A%22Fahrzeuge%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ90%22%2C%22answ%22%3A%22Maschinen%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1829.933015",
+        "author": "23",
+        "date": "1386671833628"
+      }
+    ],
+    "comments": [],
+    "id": "302",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 2",
+        "category": "N",
+        "abstract": "",
+        "length": "60:15:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions02/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "low%20Volume",
+        "occ": [
+          "24.300022"
+        ]
+      },
+      {
+        "tagname": "hohe%20Variabilit%C3%A4t",
+        "occ": [
+          "30.933401"
+        ]
+      },
+      {
+        "tagname": "Werkstattfertigung",
+        "occ": [
+          "39.167052"
+        ]
+      },
+      {
+        "tagname": "Ablaufplanung",
+        "occ": [
+          "136.633038"
+        ]
+      },
+      {
+        "tagname": "Flexibilit%C3%A4t",
+        "occ": [
+          "151.833015",
+          "2307.833582"
+        ]
+      },
+      {
+        "tagname": "Kostenmatrix",
+        "occ": [
+          "661.567029"
+        ]
+      },
+      {
+        "tagname": "Flow%20Graph",
+        "occ": [
+          "890.867029"
+        ]
+      },
+      {
+        "tagname": "gleichartige%20Produkte",
+        "occ": [
+          "1768.067823"
+        ]
+      },
+      {
+        "tagname": "Group%20technology",
+        "occ": [
+          "1780.733741"
+        ]
+      },
+      {
+        "tagname": "U-f%C3%B6rmig",
+        "occ": [
+          "1947.500634"
+        ]
+      },
+      {
+        "tagname": "Taktzeit",
+        "occ": [
+          "2043.300022",
+          "2180.433061"
+        ]
+      },
+      {
+        "tagname": "operation%20time",
+        "occ": [
+          "2074.233219",
+          "2186.633061"
+        ]
+      },
+      {
+        "tagname": "Anzahl%20Arbeiter",
+        "occ": [
+          "2079.667006",
+          "2175.933038"
+        ]
+      },
+      {
+        "tagname": "bottleneck%20problem",
+        "occ": [
+          "2302.533061"
+        ]
+      },
+      {
+        "tagname": "Focused%20Work%20Center",
+        "occ": [
+          "2376.333061"
+        ]
+      },
+      {
+        "tagname": "Focused%20Factory",
+        "occ": [
+          "2381.500612"
+        ]
+      },
+      {
+        "tagname": "high%20Volume",
+        "occ": [
+          "2522.7"
+        ]
+      },
+      {
+        "tagname": "niedrige%20Variabilit%C3%A4t",
+        "occ": [
+          "2527.733038"
+        ]
+      },
+      {
+        "tagname": "Standard",
+        "occ": [
+          "2573.867029"
+        ]
+      },
+      {
+        "tagname": "Montagelinien",
+        "occ": [
+          "2694.367029"
+        ]
+      },
+      {
+        "tagname": "Fabrikationslinien",
+        "occ": [
+          "2643.833061"
+        ]
+      },
+      {
+        "tagname": "Demontagelinien",
+        "occ": [
+          "2858.867006"
+        ]
+      },
+      {
+        "tagname": "Zykluszeit",
+        "occ": [
+          "3160.333015"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_layout_decisions2.png",
+    "toc": [
+      {
+        "label": "prozessorientiertes%20Layout%20-%20mathematisches%20Modell",
+        "start": "343.26712",
+        "author": "23",
+        "date": "1386668369082"
+      },
+      {
+        "label": "prozessorientiertes%20Layout%20-%20Beispiel",
+        "start": "543.733582",
+        "author": "23",
+        "date": "1386668417764"
+      },
+      {
+        "label": "prozessorientiertes%20Layout%20-%20Einf%C3%BChrung",
+        "start": "3.367006",
+        "author": "23",
+        "date": "1386668469291"
+      },
+      {
+        "label": "prozessorientiertes%20Layout%20-%20Software",
+        "start": "1257.400045",
+        "author": "23",
+        "date": "1386668552239"
+      },
+      {
+        "label": "arbeitszellenbasierendes%20Layout%20-%20Zeitberechnungen",
+        "start": "2009.533038",
+        "author": "23",
+        "date": "1386668778109"
+      },
+      {
+        "label": "arbeitszellenbasierendes%20Layout%20-%20Beispiel",
+        "start": "2081.133378",
+        "author": "23",
+        "date": "1386668877661"
+      },
+      {
+        "label": "arbeitszellenbasierendes%20Layout%20-%20Einf%C3%BChrung",
+        "start": "1741.067029",
+        "author": "23",
+        "date": "1386668956893"
+      },
+      {
+        "label": "arbeitszellenbasierendes%20Layout%20-%20Work%20Balance%20Charts",
+        "start": "2245.3",
+        "author": "23",
+        "date": "1386669278199"
+      },
+      {
+        "label": "arbeitszellenbasierendes%20Layout%20-%20Focused%20Work%20Center%20und%20Focused%20Factory",
+        "start": "2330.767006",
+        "author": "23",
+        "date": "1386669566088"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Einf%C3%BChrung",
+        "start": "2512.067052",
+        "author": "23",
+        "date": "1386669717093"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Vorteile%20%2F%20Nachteile",
+        "start": "2747.700045",
+        "author": "23",
+        "date": "1386670341667"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Beispiel",
+        "start": "2794.768299",
+        "author": "23",
+        "date": "1386670372630"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Demontagelinien",
+        "start": "2822.333083",
+        "author": "23",
+        "date": "1386670474277"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Montagelinien%20ausbalancieren",
+        "start": "2895.4",
+        "author": "23",
+        "date": "1386670572463"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Beispiel",
+        "start": "2929.068367",
+        "author": "23",
+        "date": "1386670616859"
+      },
+      {
+        "label": "produktorientiertes%20Layout%20-%20Beispiel%20Berechnung",
+        "start": "3131.567006",
+        "author": "23",
+        "date": "1386670859727"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions2.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000079",
+    "assessment": [],
+    "comments": [],
+    "id": "8",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Arun Kanda",
+        "institution": "IIT Delhi",
+        "title": "Issues in Location of Facilities",
+        "category": "N",
+        "abstract": "",
+        "length": "57:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_location_facilities.png",
+    "toc": [
+      {
+        "label": "Anfang",
+        "start": "10.3786",
+        "author": "5",
+        "date": "1386680663327"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_facilities.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000072",
+    "assessment": [],
+    "comments": [],
+    "id": "1",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Capacity Planning",
+        "category": "Z",
+        "abstract": "",
+        "length": "65:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-09-capacityplanning/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": "",
+    "thumbnail": "img/video-icons/scm_capacity_planing.png",
+    "toc": [
+      {
+        "label": "Thema%3A%20Kapazit%C3%A4tsplanung",
+        "start": "2.345532",
+        "author": "49",
+        "date": "1386700136137"
+      },
+      {
+        "label": "Einf%C3%BChrung%2FAllgemeine%20Einleitung",
+        "start": "130.828004",
+        "author": "49",
+        "date": "1386700234136"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_capacity_planing.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000086",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Wie%20viel%20Kanten%20muss%20man%20verdoppeln%2C%20um%20die%20minimale%20gesamte%20Entfernung%20265%20km%20zu%20erreichen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ86%22%2C%22answ%22%3A%221%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ44%22%2C%22answ%22%3A%222%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ51%22%2C%22answ%22%3A%223%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ15%22%2C%22answ%22%3A%226%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1986.833061",
+        "author": "61",
+        "date": "1386709980951"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Warum%20ist%20der%20Graph%20Euler%20geworden%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ57%22%2C%22answ%22%3A%22Weil%20jeder%20Knoten%20einen%20geraden%20Knotengrad%20erworben%20hat.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1215.967369",
+        "author": "61",
+        "date": "1386826341336"
+      }
+    ],
+    "comments": [],
+    "id": "207",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. G. Srinivasan",
+        "institution": "IIT Madras",
+        "title": "Chinese Postman Problem",
+        "category": "Z",
+        "abstract": "",
+        "length": "58:22:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": ""
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_chinese_postman_problem.png",
+    "toc": [
+      {
+        "label": "Chinese%20Postman%20Problem",
+        "start": "33.832274",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Nicht-Euler-Graph",
+        "start": "153.496215",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Euler-Graph",
+        "start": "102.26599",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Nicht-Euler-Graph%20mit%208%20Knoten",
+        "start": "755.510131",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Minimierung%20der%20Entfernung",
+        "start": "1216.267006",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Vehicle%20Routeing%20Problem",
+        "start": "2918.767006",
+        "author": "61",
+        "date": "1386827312576"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_chinese_postman_problem.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000080",
+    "assessment": [],
+    "comments": [],
+    "id": "201",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Capacity Planning",
+        "category": "Z",
+        "abstract": "",
+        "length": "65:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-09-capacityplanning/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_capacity_planing.png",
+    "toc": "",
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_capacity_planing.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000090",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Womit%20sollte%20man%20bei%20der%20Arbeitsproduktivit%C3%A4t%20rechnen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ31%22%2C%22answ%22%3A%22-%20Geh%C3%A4lter%20sind%20nicht%20die%20einzig%20richtigen%20Kosten%2C%5Cn-%20niedrigere%20Arbeitsproduktivit%C3%A4t%20kann%20die%20gesamten%20Kosten%20erh%C3%B6hen%20%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "845.968658",
+        "author": "68",
+        "date": "1386787507049"
+      }
+    ],
+    "comments": [],
+    "id": "304",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Location Decision",
+        "category": "Z",
+        "abstract": "",
+        "length": "42:52:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-10-locationdecisions/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_location_decision.png",
+    "toc": [],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_decision.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000076",
+    "assessment": "",
+    "comments": [],
+    "id": "5",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Moritz Roidl",
+        "institution": "TU Dortmund",
+        "title": "Warehouse Managment Systeme ",
+        "category": "Z",
+        "abstract": "",
+        "length": "59:37:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://www.youtube.com/watch?v=XpEHJEkQ490&list=PLFY8NM79glQtudN84-t6U97ZkX2oBGYp4"
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_warehousemanagement.png",
+    "toc": [
+      {
+        "label": "Der%20Begriff%20%22Betriebliche%20Optimierung%22",
+        "start": "207.538",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Die%20Optimierungsfunktion%20des%20Warenhousemanagementsystems",
+        "start": "312.020333",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Die%20Bezeichnung%20des%20Begriffs%20%22Optimal%22%20und%20%22Optimierung%22",
+        "start": "472.286333",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Betriebliche%20Optimierungsaufgaben%20im%20Lager",
+        "start": "1377.729333",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Transportplanung",
+        "start": "1759.926",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Kommissionierungsplanung",
+        "start": "2307.540999",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "Routenplanung",
+        "start": "2451.398",
+        "author": "34",
+        "date": "1386803085557"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_warehousemanagement.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f2400009a",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Eine%20Frage%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ78%22%2C%22answ%22%3A%22Antwort%20a%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ32%22%2C%22answ%22%3A%22Antwort%20b%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ43%22%2C%22answ%22%3A%22Antwort%20c%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ43%22%5D%7D",
+        "start": "2.679799",
+        "author": "82",
+        "date": "1386505607283"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Noch%20eine%20Frage%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ4%22%2C%22answ%22%3A%22richtig%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ22%22%2C%22answ%22%3A%22falsch%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1692.648322",
+        "author": "82",
+        "date": "1386929193066"
+      }
+    ],
+    "comments": [
+      {
+        "comment": "Kommentar",
+        "start": "1038.77128",
+        "author": "82",
+        "date": "1386929175174"
+      }
+    ],
+    "id": "401",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Capacity Planning",
+        "category": "Z",
+        "abstract": "",
+        "length": "65:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-09-capacityplanning/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "test",
+        "occ": [
+          "1959.08016",
+          "3980.169903"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_capacity_planing.png",
+    "toc": [
+      {
+        "label": "Numer%201",
+        "start": "1961.158095",
+        "author": "82",
+        "date": "1386929142139"
+      },
+      {
+        "label": "Numer%202",
+        "start": "3356.602038",
+        "author": "82",
+        "date": "1386929147782"
+      },
+      {
+        "label": "Nahe%20am%20Ende",
+        "start": "3975.832433",
+        "author": "82",
+        "date": "1386929159394"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_capacity_planing.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000077",
+    "assessment": [],
+    "comments": [],
+    "id": "6",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Lee Hale",
+        "institution": "Georgia Tech",
+        "title": "Warehouse/Distribution Center Layout",
+        "category": "N",
+        "abstract": "",
+        "length": "50:11:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "www.youtube.com/watch?v=UaKgiexU1Qk‎"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "Framework%20of%20phases",
+        "occ": [
+          "1171.837006"
+        ]
+      },
+      {
+        "tagname": "Movement%20summary",
+        "occ": [
+          "1669.701451"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_dist_layout.png",
+    "toc": [
+      {
+        "label": "Typische%20Herangehensweisen%20der%20Layoutplanung",
+        "start": "248.782018",
+        "author": "37",
+        "date": "1388159986659"
+      },
+      {
+        "label": "Layoutplanug%3A%20Grundpfeiler",
+        "start": "371.805102",
+        "author": "37",
+        "date": "1388160303197"
+      },
+      {
+        "label": "Layoutplanug%3A%20Ablauf%20(vereinfachte%20Darstellung)",
+        "start": "475.809002",
+        "author": "37",
+        "date": "1388160331241"
+      },
+      {
+        "label": "Ablauf%20am%20Beispiel%20von%20Homart%20Direct",
+        "start": "542.009342",
+        "author": "37",
+        "date": "1388160816737"
+      },
+      {
+        "label": "Die%20Phasen%20der%20systematischen%20Layoutplanung",
+        "start": "1197.029183",
+        "author": "37",
+        "date": "1388161936099"
+      },
+      {
+        "label": "Schl%C3%BCsselelemente%20(P-Q-R-S-T)",
+        "start": "1353.219024",
+        "author": "37",
+        "date": "1388162430708"
+      },
+      {
+        "label": "M%C3%B6glichkeiten%20des%20Stauraums",
+        "start": "1487.653038",
+        "author": "37",
+        "date": "1388162894982"
+      },
+      {
+        "label": "Faktoren%20der%20Materialgruppierung",
+        "start": "1535.601814",
+        "author": "37",
+        "date": "1388162958041"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_dist_layout.webm"
+  },
+  {
+    "_id": "52a454f2fe63ef554b000071",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Nenne%20mindestens%20drei%20Layout-Arten.%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ4%22%2C%22answ%22%3A%22prozessorientiertes%20Layout%2C%20%5CnArbeitszellen-Layout%2C%5Cnproduktorientiertes%20Layout%5Cn%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3615.397",
+        "author": "37",
+        "date": "1386685520874"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20das%20allgemeine%20Ziel%20des%20prozessorientierten%20Layouts%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ59%22%2C%22answ%22%3A%22Kostenminimierung%20in%20Bezug%20auf%20Handlingskosten%20%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ12%22%2C%22answ%22%3A%22Kostenmaximierung%20in%20Bezug%20auf%20Handlingskosten%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ59%22%5D%7D",
+        "start": "383.573417",
+        "author": "38",
+        "date": "1386706659468"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Software%20gibt%20es%20f%C3%BCr%20das%20prozessorientierte%20Layout%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ47%22%2C%22answ%22%3A%22LINDO%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ29%22%2C%22answ%22%3A%22CRAFT%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ78%22%2C%22answ%22%3A%223D-Software%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ29%22%2C%22answ78%22%5D%7D",
+        "start": "1265.962764",
+        "author": "38",
+        "date": "1386706132457"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20das%20Ziel%20des%20prozessorientierten%20Layouts%20am%20Beispiel%20des%20%5C%22Arnold%20Palmer%20Hospital%20of%20Children%5C%22%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ23%22%2C%22answ%22%3A%22t%C3%A4gliche%20Arbeitsschritte%20planen%20%20(Patientent%C3%A4tigkeiten%20der%20Reihenfolge%20nach%20und%20zeitlich%20einplanen%20auf%20Basis%20h%C3%B6chster%20Flexibilit%C3%A4t)%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "40.307551",
+        "author": "38",
+        "date": "1386706879057"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Arbeitszelle%3A%20%5CnWelche%20Vorteile%20bietet%20die%20u-f%C3%B6rmige%20gegen%C3%BCber%20einer%20geraden%20Arbeitszellenanordnung%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ46%22%2C%22answ%22%3A%22Beispiele%3A%5Cn-%20weniger%20Personal%20n%C3%B6tig%5Cn-%20weniger%20Platz%20n%C3%B6tig%5Cn-%20bessere%20Kommunikation%20zwischen%20den%20Mitarbeitern%5Cn-%20k%C3%BCrzere%20Wege%2Fbesserer%20Zugang%5Cn-%20Kontrolle%20wird%20vereinfacht%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2388.100022",
+        "author": "37",
+        "date": "1386777983168"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Arbeitszelle%3A%20%5CnWie%20berechnet%20man%20die%20Anzahl%20an%20ben%C3%B6tigten%20Arbeitern%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ86%22%2C%22answ%22%3A%22-%20zun%C3%A4chst%20wird%20Taktzeit%20ermittelt%20(Gesamtarbeitszeit%2FAnzahl%20an%20Einheiten%20(Kundenw%C3%BCnsche)%5Cn-%20um%20die%20ben%C3%B6tigte%20Anzahl%20der%20Arbeiter%20zu%20ermitteln%2C%20nun%20die%20ben%C3%B6tigte%20Zeit%20f%C3%BCr%20eine%20Einheit%20(alle%20Subprozesse%20addieren)%2FTaktzeit%5Cn-%20%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2392.667028",
+        "author": "37",
+        "date": "1386778195902"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Arbeitszelle%3A%20%5CnZeige%20kurz%20die%20Unterschiede%20zwischen%20work%20cell%2C%20focused%20work%20center%20und%20focused%20factory%20auf.%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ86%22%2C%22answ%22%3A%22work%20cell%3A%20zeitweilige%20produktorientierte%20Anordnung%20von%20Maschine(n)%20und%20Mitarbeitern%5Cnfocused%20work%20center%3A%20permanente%20Anordnung%20...%5Cnfocused%20factory%3A%20eigene%2C%20permanente%20Fabrik%20(z.B.%20eigene%20Zulieferproduktion%20auf%20Betriebsgel%C3%A4nde)%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2402.000838",
+        "author": "37",
+        "date": "1386778396686"
+      }
+    ],
+    "comments": [
+      {
+        "comment": "Bsp%3A%20Brauerei%20",
+        "start": "2597.367006",
+        "author": "37",
+        "date": "1386683034339"
+      },
+      {
+        "comment": "siehe%20Aktivit%C3%A4ts-Knoten-Plan%20%C3%9Cbungsblatt%201%20Prof.%20Claus",
+        "start": "3011.667006",
+        "author": "37",
+        "date": "1386684467762"
+      }
+    ],
+    "id": "102",
+    "links": "",
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Layout Decisions Teil 2",
+        "category": "N",
+        "abstract": "",
+        "length": "60:15:00",
+        "date": "2013/12/04",
+        "weight": "0",
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-12-layoutdecisions02/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "mathematisches%20Modell",
+        "occ": [
+          "467.90009"
+        ]
+      },
+      {
+        "tagname": "Beispiel%20f%C3%BCr%20ein%20Prozesslayout",
+        "occ": [
+          "563.633038"
+        ]
+      },
+      {
+        "tagname": "Mathematisches%20Modell%20",
+        "occ": [
+          "409.533015"
+        ]
+      },
+      {
+        "tagname": "Standorttr%C3%A4ger",
+        "occ": [
+          "775.935328"
+        ]
+      },
+      {
+        "tagname": "Interdepartmental%20flow%20graph",
+        "occ": [
+          "871.267006"
+        ]
+      },
+      {
+        "tagname": "Kostenfunktion",
+        "occ": [
+          "1009.9"
+        ]
+      },
+      {
+        "tagname": "Kostenoptimierung",
+        "occ": [
+          "1086.033151"
+        ]
+      },
+      {
+        "tagname": "Craft%20Software",
+        "occ": [
+          "1601.867006"
+        ]
+      },
+      {
+        "tagname": "3D-Software",
+        "occ": [
+          "1644.833038"
+        ]
+      },
+      {
+        "tagname": "Arbeitszelle%2Fwork%20cell",
+        "occ": [
+          "1756.733038"
+        ]
+      },
+      {
+        "tagname": "Group%20technology",
+        "occ": [
+          "1781.267052"
+        ]
+      },
+      {
+        "tagname": "Taktzeit",
+        "occ": [
+          "2040.633061"
+        ]
+      },
+      {
+        "tagname": "Focused%20Work%20Center",
+        "occ": [
+          "2385.1"
+        ]
+      },
+      {
+        "tagname": "Focused%20Factory",
+        "occ": [
+          "2438.700181"
+        ]
+      },
+      {
+        "tagname": "Flie%C3%9Fbandarten",
+        "occ": [
+          "2656.467006"
+        ]
+      },
+      {
+        "tagname": "Disassemblisierungs-Linien",
+        "occ": [
+          "2828.467029"
+        ]
+      },
+      {
+        "tagname": "Montagebandoptimierung",
+        "occ": [
+          "2902.467006"
+        ]
+      },
+      {
+        "tagname": "Ausbalancierungsheuristiken",
+        "occ": [
+          "3228.900045"
+        ]
+      },
+      {
+        "tagname": "Effizienzgrad",
+        "occ": [
+          "3563.833015"
+        ]
+      },
+      {
+        "tagname": "poka-yoke",
+        "occ": [
+          "1932.2"
+        ]
+      },
+      {
+        "tagname": "work%20cell",
+        "occ": [
+          "2359.7"
+        ]
+      },
+      {
+        "tagname": "work%20balance%20chart",
+        "occ": [
+          "2248.001269"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_layout_decisions2.png",
+    "toc": [
+      {
+        "label": "1.%20Prozessorientiertes%20Layout",
+        "start": "8.167006",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "1.2%20Prozesslayout%20am%20Praxisbeispiel%20%22Arnold%20Palmer%20Hospital%20for%20Children%22",
+        "start": "52.567029",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "1.3%20Schritte%20zum%20Prozesslayout%20",
+        "start": "542.267006",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "1.4%20Software",
+        "start": "1266.533356",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "2.%20Arbeitszellen%20Layout",
+        "start": "1746.333265",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "2.1%20Vorteile",
+        "start": "1825.533401",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "2.2%20Voraussetzungen%20",
+        "start": "1900.10009",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "3.%20Produktorientierter%20%26%20sich%20wiederholender%20Produktionsprozess%20",
+        "start": "2514.467029",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "3.%201%20Vor-%20%26%20Nachteile",
+        "start": "2742.733015",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "3.2%20Beispiel%20%22Mc%20Donald's%22",
+        "start": "2797.967029",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "3.4%20Beispiel%20%22Tragfl%C3%A4chen%22",
+        "start": "2928.867006",
+        "author": "undefined",
+        "date": "undefined"
+      },
+      {
+        "label": "2.3%20Berechnung%20der%20Arbeiterzahl%20f%C3%BCr%20eine%20Arbeitszelle",
+        "start": "2009.767006",
+        "author": "37",
+        "date": "1386778506731"
+      },
+      {
+        "label": "2.4%20%C3%9Cbersicht%20work%20cell%2C%20focused%20work%20center%2C%20focused%20factory",
+        "start": "2358.800022",
+        "author": "37",
+        "date": "1386777562903"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_layout_decisions2.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f24000075",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Was%20bedeutet%20Zentral-Hub-Konzept%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ11%22%2C%22answ%22%3A%22An%20mehreren%20strategischen%20Punkten%20dieser%20Welt%2C%20insgesamt%20sind%20es%205%20Hubs%20dementsprechende%20Verteilungstationen%20zu%20errichten.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "6.44882",
+        "author": "45",
+        "date": "1386784417728"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Faktoren%20beeinflussen%20Standortentscheidungen%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "43.694278",
+        "author": "46",
+        "date": "1386784707595"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20eine%20gute%20Standosrtstrategie%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "329.726539",
+        "author": "46",
+        "date": "1386784868542"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20bedeutet%20die%20Schwerpunktmethode%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ11%22%2C%22answ%22%3A%22Ich%20gewichte%20jede%20Koordinate%2C%20die%20X-Koordinate%20genauso%20gut%20wie%20die%20Y-Koordinate%2C%20mit%20dem%20dementsprechenden%20Gewicht%2C%20hier%20als%20Qi%20bezeichnet%2C%20und%20dividiere%20durch%20das%20Gesamtgewicht.%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "330.034021",
+        "author": "45",
+        "date": "1386785648080"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20sind%20die%20Key%20Succes%20Factors%20im%20Rahmen%20eines%20Landes%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "593.737145",
+        "author": "46",
+        "date": "1386784994317"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wie%20viel%20Methoden%20werden%20in%20Pr%C3%A4sentation%20behandelt%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ50%22%2C%22answ%22%3A%225%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ74%22%2C%22answ%22%3A%224%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ81%22%2C%22answ%22%3A%223%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "330.724044",
+        "author": "45",
+        "date": "1386785016784"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Key%20Succes%20Factors%20sind%20im%20Rahmen%20eines%20Regions%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "692.874526",
+        "author": "46",
+        "date": "1386785051465"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20bedeutet%20Break-Even%20Analysis%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "1695.047526",
+        "author": "46",
+        "date": "1386785138862"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20versteht%20man%20unter%20den%20greifbaren%20und%20nicht%20greifbaren%20Kosten%3F%22%2C%22answ%22%3A%5B%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "984.78821",
+        "author": "46",
+        "date": "1386786243592"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welcher%20Typ%20von%20Unternehmen%20ist%20FedEx%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22postzustellunternehmen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ86%22%2C%22answ%22%3A%22Postundstellunternehmen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ34%22%2C%22answ%22%3A%22Postellunternehmen%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "176.483015",
+        "author": "45",
+        "date": "1386788732169"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Charakterisieren%20Sie%20die%20Standortentscheidungen%3A%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ39%22%2C%22answ%22%3A%22longterm%20decisions%2C%20selten%20gemacht%2C%20in%20gro%C3%9Fem%20Ausma%C3%9F%20beeinflussen%20die%20variable%20und%20fixe%20Kosten%2C%20irreversible%20oder%20schwer%20umkehrbare%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "582.000317",
+        "author": "45",
+        "date": "1386789500621"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Womit%20sollte%20man%20bei%20der%20Arbeitsproduktivit%C3%A4t%20rechnen%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ64%22%2C%22answ%22%3A%22-%20Geh%C3%A4lter%20(L%C3%B6hne)%20sind%20nicht%20die%20einzig%20richtigen%20Kosten%2C%20-%20niedrigere%20Arbeitsproduktivit%C3%A4t%20kann%20die%20gesamten%20Kosten%20erh%C3%B6hen%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "820.793423",
+        "author": "45",
+        "date": "1386790258662"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20k%C3%B6nnen%20die%20Mitbewerber%20zusammenschaffen%2C%20die%20sich%20in%20der%20N%C3%A4he%20voneinander%20befinden%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ2%22%2C%22answ%22%3A%22Clusters%20von%20Firmen%22%2C%22questiontype%22%3A%22fill-in%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "900.103015",
+        "author": "45",
+        "date": "1386790871333"
+      }
+    ],
+    "comments": [],
+    "id": "4",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Location Decision",
+        "category": "Z",
+        "abstract": "",
+        "length": "42:52:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-10-locationdecisions/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [
+      {
+        "tagname": "Standortentscheidung",
+        "occ": [
+          "7"
+        ]
+      },
+      {
+        "tagname": "Methode",
+        "occ": [
+          "8.724716"
+        ]
+      },
+      {
+        "tagname": "Analyse",
+        "occ": [
+          "10.172018"
+        ]
+      },
+      {
+        "tagname": "strategisch",
+        "occ": [
+          "11.206893"
+        ]
+      },
+      {
+        "tagname": "Faktoren",
+        "occ": [
+          "19.070113"
+        ]
+      },
+      {
+        "tagname": "Standort",
+        "occ": [
+          "20.241337"
+        ]
+      },
+      {
+        "tagname": "Entscheidung",
+        "occ": [
+          "26.655578"
+        ]
+      },
+      {
+        "tagname": "Kosten",
+        "occ": [
+          "27.793015"
+        ]
+      }
+    ],
+    "thumbnail": "img/video-icons/scm_location_decision.png",
+    "toc": [
+      {
+        "label": "1.%20FedEx%20%E2%80%93%20Profil%0A2.%20Strategische%20Wichtigkeit%20einer%20Standortentscheidung%0A3.%20Faktoren%2C%20die%20Standortentscheidungen%20beeinflussen%0A4.%20Analysen-Tools%20und%20Methoden%0A",
+        "start": "6.483015",
+        "author": "45",
+        "date": "1386791760031"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_location_decision.webm"
+  },
+  {
+    "_id": "52a13d2e2aa9d35f2400008d",
+    "assessment": [
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20Kapazit%C3%A4t%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ55%22%2C%22answ%22%3A%22Durchsatz%20in%20einem%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ21%22%2C%22answ%22%3A%22Ausschuss%20im%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ23%22%2C%22answ%22%3A%22Aufnahmef%C3%A4higkeit%20eines%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ55%22%5D%7D",
+        "start": "271.655011",
+        "author": "24",
+        "date": "1386796521285"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Welche%20Planungszeitr%C3%A4ume%20f%C3%BCr%20Kapazit%C3%A4t%20sind%20m%C3%B6glich%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ55%22%2C%22answ%22%3A%22Langgfristig%2C%20Mittelfristig%2C%20Operativ%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ27%22%2C%22answ%22%3A%22Langfristig%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ98%22%2C%22answ%22%3A%22Mittelfristig%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ32%22%2C%22answ%22%3A%22Operativ%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ55%22%5D%7D",
+        "start": "517.690612",
+        "author": "24",
+        "date": "1386796527946"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20Design%20Kapazit%C3%A4t%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22sch%C3%B6nste%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22effektive%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22max.%20theoretische%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22tats%C3%A4chliche%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "862.621065",
+        "author": "24",
+        "date": "1386795283589"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20die%20Effizienz%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22Output%2Fdesign%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22Output%2Feffektive%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Input%2Feffektive%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22Input%2Fdesign%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "923.103015",
+        "author": "24",
+        "date": "1386795571049"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wovon%20h%C3%A4ngen%20Kapazit%C3%A4tsentscheidungen%20ab%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22Qualit%C3%A4t%20der%20Vorhersagen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22Einfluss%20des%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Optimales%20Arbeitslevel%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22M%C3%B6glichkeit%20der%20Ver%C3%A4nderung%20von%20Kapazit%C3%A4ten%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ69%22%2C%22answ73%22%2C%22answ16%22%2C%22answ95%22%5D%7D",
+        "start": "1357.276009",
+        "author": "24",
+        "date": "1386796393408"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Wann%20liegt%20eine%20unter%20Kapazit%C3%A4t%20vor%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22Nachfrage%20%3C%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22Nachfrage%20%3E%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Nachfrage%20%3D%20Kapazit%C3%A4t%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22%C3%9Cberschussnachfrage%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%22answ73%22%2C%22answ95%22%5D%7D",
+        "start": "1688.483015",
+        "author": "24",
+        "date": "1386796401364"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20%20ist%20die%20%5C%22process%20time%20of%20a%20station%5C%22%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22l%C3%A4ngste%20Durchlaufzeit%20des%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22k%C3%BCrzeste%20Durchlaufzeit%20des%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Gesamtzeit%20des%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22Zeit%20einer%20Station%20im%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2342.414013",
+        "author": "24",
+        "date": "1386796989555"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20%20ist%20die%20%5C%22process%20time%20of%20a%20system%5C%22%3F%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22l%C3%A4ngste%20Zeit%20einer%20Station%20im%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22k%C3%BCrzeste%20Durchlaufzeit%20des%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Gesamtzeit%20des%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22Zeit%20einer%20Station%20im%20Produktionsprozess%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "2390.483015",
+        "author": "24",
+        "date": "1386797185723"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20der%20Break%20Even%20Point%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22Kosten%20%3D%20Nutzen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22Kosten%20%3E%20Erl%C3%B6se%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Kosten%20%3C%20Erl%C3%B6se%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22Kosten%20%3D%20Erl%C3%B6se%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "3576.379002",
+        "author": "24",
+        "date": "1386797973537"
+      },
+      {
+        "title": "%7B%22question%22%3A%22Was%20ist%20der%20Break%20Even%20Point%22%2C%22answ%22%3A%5B%7B%22id%22%3A%22answ69%22%2C%22answ%22%3A%22Kosten%20%3D%20Nutzen%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ73%22%2C%22answ%22%3A%22Kosten%20%3E%20Erl%C3%B6se%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ16%22%2C%22answ%22%3A%22Kosten%20%3C%20Erl%C3%B6se%22%2C%22questiontype%22%3A%22mc%22%7D%2C%7B%22id%22%3A%22answ95%22%2C%22answ%22%3A%22Kosten%20%3D%20Erl%C3%B6se%22%2C%22questiontype%22%3A%22mc%22%7D%5D%2C%22correct%22%3A%5B%5D%7D",
+        "start": "4551.045",
+        "author": "24",
+        "date": "1386798895850"
+      }
+    ],
+    "comments": "",
+    "id": "301",
+    "links": [],
+    "metadata": [
+      {
+        "author": "Prof. Dr. Peter Greistorfer",
+        "institution": "Universität Graz",
+        "title": "Capacity Planning",
+        "category": "Z",
+        "abstract": "",
+        "length": "65:51:00",
+        "date": "2013/12/04",
+        "weight": 0,
+        "source": "http://gams.uni-graz.at/fedora/get/o:pug-lv-11s-prodlog-09-capacityplanning/STREAM"
+      }
+    ],
+    "progress": "",
+    "tags": [],
+    "thumbnail": "img/video-icons/scm_capacity_planing.png",
+    "toc": [
+      {
+        "label": "Kapazit%C3%A4t%20allgemein",
+        "start": "104.138004",
+        "author": "24",
+        "date": "1386798308745"
+      },
+      {
+        "label": "Design%20und%20Effektive%20Kapazit%C3%A4t",
+        "start": "790.517006",
+        "author": "24",
+        "date": "1386798468584"
+      },
+      {
+        "label": "Kapazit%C3%A4tsbetrachtung",
+        "start": "1242.759365",
+        "author": "24",
+        "date": "1386798571385"
+      },
+      {
+        "label": "Kapazit%C3%A4t%20und%20Nachfrage",
+        "start": "1666.483015",
+        "author": "24",
+        "date": "1386798643368"
+      },
+      {
+        "label": "Engpassanalyse",
+        "start": "2190.310612",
+        "author": "24",
+        "date": "1386798722119"
+      },
+      {
+        "label": "Break-Evem%20Analyse",
+        "start": "3528.448004",
+        "author": "24",
+        "date": "1386798751519"
+      }
+    ],
+    "video": "http://141.46.8.101/beta/scm-lab2/videos/scm_capacity_planing.webm"
+  }
+]

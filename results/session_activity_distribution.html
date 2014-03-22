@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+</style>
+<body>
+<select id="json_sources" name="json_sources">
+    <option value ="user" selected>User</option>
+    <option value ="tool">Tools</option>
+    <option value ="date">Date</option>
+</select>​
+<div id="viz"></div>
+<script src="js/d3.min.js"></script>
+<script>
+
+var dropdown = d3.select("#json_sources");
+	var user = 'xxx';
+	var data = {};
+
+d3.tsv("data/session-activity-distribution.tsv", function(error, dataa) {//_distribution
+	dataa.forEach(function(d) {
+		if(d.activities > 10){	
+			d.amount = +d.amount;
+			d.activities = +d.activities;
+			user = d.user;
+		}
+	});
+	data = dataa;
+	
+	dropdown.on("change", change)
+	change(); //trigger json on load
+});
+
+
+var	change = function () { 
+		var source = dropdown.node().options[dropdown.node().selectedIndex].value;
+	
+		// clear screen
+		var svg = d3.selectAll("svg").remove();
+	
+		// set margins and axis
+		var margin = {top: 20, right: 150, bottom: 30, left: 140},
+		  width = 700 - margin.left - margin.right,
+		  height = 400 - margin.top - margin.bottom;
+
+		var x = d3.scale.linear()
+				.range([0, width]);
+
+		var y = d3.scale.linear()
+				.range([height, 0]);
+
+		var color = d3.scale.category10();
+
+		var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("bottom");
+
+		var yAxis = d3.svg.axis()
+				.scale(y)
+				.orient("left");
+		  
+	
+
+
+		var svg = d3.select("#viz").append("svg:svg")
+		  .attr("width", width + margin.left + margin.right)
+		  .attr("height", height + margin.top + margin.bottom)
+			.append("g")
+		  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+		x.domain(d3.extent(data, function(d) { return d.activities; })).nice();
+		y.domain(d3.extent(data, function(d) { return d.amount; })).nice();
+
+		svg.append("g")
+		    .attr("class", "x axis")
+		    .attr("transform", "translate(0," + height + ")")
+		    .call(xAxis)
+		  .append("text")
+		    .attr("class", "label")
+		    .attr("x", width)
+		    .attr("y", -6)
+		    .style("text-anchor", "end")
+		    .text("activities");
+
+		svg.append("g")
+		    .attr("class", "y axis")
+		    .call(yAxis)
+		  .append("text")
+		    .attr("class", "label")
+		    .attr("transform", "rotate(-90)")
+		    .attr("y", 6)
+		    .attr("dy", ".71em")
+		    .style("text-anchor", "end")
+		    .text("amount")
+
+		svg.selectAll(".dot")
+		    .data(data)
+		  .enter().append("circle")
+		    .attr("class", "dot")
+		    .attr("r", function(d){  return 2;})
+		    .attr("cx", function(d) { return x(d.activities); })
+		    .attr("cy", function(d) { return y(d.amount); })
+		    .style("fill", function(d) { return color(d[source]); }); //d.user d.tool // d.date
+
+		var legend = svg.selectAll(".legend")
+		    .data(color.domain())
+		  	.enter().append("g")
+		    .attr("class", "legend")
+		    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+		legend.append("rect")
+		    .attr("x", width + 18)
+		    .attr("width", 18)
+		    .attr("height", 18)
+		    .style("fill", color);
+
+		legend.append("text")
+		    .attr("x", width + 40)
+		    .attr("y", 9)
+		    .attr("dy", ".35em")
+		    .style("text-anchor", "start")
+		    .text(function(d) { return d; });
+		    
+		 // hedline
+		 var text = svg.append("text")
+		     .attr("x", width + 16)
+		     .attr("y", -5)
+		     .text( 'User: '+ user.length)
+		     .attr("font-family", "Arial")
+		     .attr("font-size", "14px")
+		     .attr("fill", "#333");   
+
+	
+} // dropdown end
+
+
+
+</script>

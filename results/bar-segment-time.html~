@@ -1,0 +1,173 @@
+<meta charset="utf-8">
+     <style>
+    .d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.axis text, .bar text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+    </style>
+
+</head>
+<div id="tooltip" class="hidden">
+        <p><span id="value"></p>
+</div>
+<script src="js/d3.v3.min.js"></script>
+
+
+<div id="chart" ></div>
+
+<script type="text/javascript">
+
+Array.prototype.getUnique = function(){
+   var u = {}, a = [];
+   for(var i = 0, l = this.length; i < l; ++i){
+      if(u.hasOwnProperty(this[i])) {
+         continue;
+      }
+      a.push(this[i]);
+      u[this[i]] = 1;
+   }
+   return a;
+}
+
+var margin = {top: 20, right: 40, bottom: 10, left: 100},
+    width = 960 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
+
+
+d3.json("data/path-time.json", function(data) {
+
+	var datar = [
+	[{"t":3000, "name":1}, {"t":3900, "name":1}, {"t":9000, "name":4}, {"t":9000, "name":8}],
+	[{"t":4000, "name":2}, {"t":3500, "name":1}, {"t":1000, "name":2}, {"t":4000, "name":1}],
+	[{"t":5000, "name":3}, {"t":5000, "name":2}, {"t":0, "name":2}, {"t":0, "name":1}]
+	];
+
+	var n = 2, // number of layers
+		  m = data.length, // number of samples per layer
+		  stack = d3.layout.stack(),
+		  labels = data.map(function(d) { return d.key;});
+		  
+		  //go through each layer (pop1, pop2 etc, that's the range(n) part)
+		  //then go through each object in data and pull out that objects's population data
+		  //and put it into an array where x is the index and y is the number
+		  var lab = [];
+		  layers = stack(d3.range(20).map(function(d) { 
+				var a = [];
+				//for (var i = 0; i < data.length; ++i) { //alert(d)
+					// select a single session
+					//if(i == 100){
+					var i = 9;
+					//if(data[i].length > 9) alert(i)
+					a[0] = {x: 0, y: data[i][d].t/1000/60, layer:d+1, label:data[i][d].name};
+			    lab.push(data[i][d].name);  
+			    //}
+				//}
+				return a;
+			}));
+			lab = lab.getUnique();
+		  
+		//the largest single layer
+		  yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
+		  //the largest stack
+		  yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
+	 
+	var margin = {top: 40, right: 10, bottom: 20, left: 50},
+		  width = 677 - margin.left - margin.right,
+		  height = 1733 - margin.top - margin.bottom;
+	 
+	var y = d3.scale.ordinal()
+		  .domain(d3.range(m))
+		  .rangeRoundBands([2, height], .08);
+
+	var x = d3.scale.linear()
+		  .domain([0, yStackMax])
+		  .range([0, width]);
+		  
+
+	var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("top");	  
+
+	var color = d3.scale.linear()
+		  .domain([0, 45])
+		  .range(["#111", "#556"]);
+		  
+
+	colors = ['#005824','#1A693B','#347B53','#4F8D6B','#699F83','#83B09B','#9EC2B3','#B8D4CB','#D2E6E3','#EDF8FB','#FFFFFF','#F1EEF6','#E6D3E1','#DBB9CD','#D19EB9','#C684A4','#BB6990','#B14F7C','#A63467','#9B1A53','#91003F'];
+		
+		  var colorScale = d3.scale.category20b();
+
+	var svg = d3.select("body").append('svg')
+		  .attr("width", width + margin.left + margin.right)
+		  .attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	var layer = svg.selectAll(".layer")
+		  .data(layers)
+		.enter().append("g")
+		  .attr("class", "layer")
+		  ;
+
+	layer.selectAll("rect")
+		  .data(function(d) { return d; })
+			.enter().append("rect")
+		  .attr("y", function(d) { return y(d.x); })
+		.attr("x", function(d) { return Math.abs(x(d.y0)); })
+		  .attr("height", 30)
+		  .attr("width", function(d) { return x(Math.abs(d.y)); })
+		  .style("fill", function(d, i) { return colorScale(d.label); })
+	 	//.on('mouseover', tip.show)
+			//.on('mouseout', tip.hide)
+			;
+
+
+	svg.append("g")
+		  .attr("class", "x axis")
+		  .call(xAxis);
+		  
+/* A static sort function
+    var t = svg.transition().duration(3000);
+    t.selectAll(".cell")
+      .attr("x", function(d) { return hccol.indexOf(d.col) * cellSize; })
+      .attr("y", function(d) { return hcrow.indexOf(d.row) * cellSize; })
+      ;
+*/
+	//svg.call(tip);
+}	);
+</script>
