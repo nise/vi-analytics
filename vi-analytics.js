@@ -52,8 +52,30 @@ var
 		app.set("jsonp callback", true); // ?????
 	});
 	
+	console.log('............................................................................\n\n');
 	
-	analytics.init();
+	
+	/*
+	Scan modules folder to register modules	
+	**/
+	var dir = './modules';
+	var files = fs.readdirSync(dir);
+	for(var i in files){
+		  if (!files.hasOwnProperty(i)) continue;
+		  var name = dir+'/'+files[i];
+		  if (fs.statSync(name).isDirectory()){
+		      //getFiles(name);
+		  }else{
+		  		if(name.slice(-1) === '~'){ break;}
+		      console.log('Running module: '+ files[i])
+		      var mod = require(name);
+		      mod.init();
+		  }
+	}
+
+	
+	
+	//analytics.init();
 	app.get('/analytics', analytics.init);
 	
 

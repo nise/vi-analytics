@@ -480,15 +480,16 @@ function effektiveInteractions(){
 		group_user_clicks_elsewhere = [],
 		group_user_contributions_elsewhere = [],
 		perception_per_user = [],
+		// xxx this needs to be make flexible
 		action_filter = [0,'save','deleteannotation','saveannotation','loadvideo','videoplayed','videopaused','videoended','assessmentdisplaybegin','submitassessmenttask','[call','assessmentcorrect','clicktocfromlist','clicktagfromlist','clickcommentfromlist','clickassessmentfromlist','seek_start','seek_end'],
 		user_annotations = []	
 		;
 				
 	var matrix = new gauss.Collection(cleanlog);	
 	//analyse logfile
-	for(var i in cleanlog) {
+	for(var i = 0; i < cleanlog.length; i++) {
 		 if(cleanlog[i] == undefined){
-		 	console.log('break::: '+i); 
+		 	console.log('bad entry at index '+i); 
 		 }else{
 			// retrieve actions name as long that data is not pre-processed during convertion from csv to json
 			if(cleanlog[i].hasOwnProperty('action_details')){
@@ -498,7 +499,9 @@ function effektiveInteractions(){
 			phase = cleanlog[i].phase;
 			user = cleanlog[i].user;
 			if(userData[cleanlog[i].user] != undefined){ 
-				group = userData[cleanlog[i].user]['GruppeP1'];
+				group = userData[cleanlog[i].user]['GruppeP1']; 
+			}else{
+				console.log('undefined group '+i)
 			}	 
 			// get initial video of group
 			video = getVideoOfGroup(group);
@@ -574,24 +577,25 @@ function effektiveInteractions(){
 		}
 	// effective group interactions
 	var 
-		out = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n",
-		groups = getGroupIds();//["1","2","3","5","7","9","11","13","17","19","21","23","25","27","29","28"],	
+		out = '',
+		groups = getGroupIds();	
 		perVideoInteractions = []
 			; 
 	// filter some groups
-	var t = new gauss.Collection({persons:3},{persons:4},{persons:-1});
 	var tt = new gauss.Collection(groupData);
-//	console.log('___'+ t.find({persons: 3}).map(function(thing) { return thing.persons; }).toVector());
-//	console.log(tt.find(function(e) { return e.persons < 4 }));
-
-  // get group constellation of the first phase
-  groups = tt.find(function(e) { return e.persons < 4 }).map(function(thing) { return thing.id; }, undefined).toVector();  	
-
+  // get experimental group only, constellation of the first phase
+  groups = tt.find(function(e) { return e.persons < 4 }).map(function(thing) { return thing.id; }).toVector();  	
+	// get control groups only
+	groups = tt.find(function(e) { return e.persons === 18 }).map(function(thing) { return thing.id; }).toVector();  	
+	// get control and experimental group
+	groups = tt.find(function(e) { return e.persons === 18 || e.persons < 4 }).map(function(thing) { return thing.id; }).toVector();  	
+	
 	//	
-	for(var i in groups){
+	for(var i in groups){ 
 		if(groups.hasOwnProperty(i)){
 			var
 				group = groups[i],
+				group_size = tt.find(function(e) { return e.persons === 18 || e.persons < 4 }).map(function(thing) { return thing.persons; }).toVector()[i];
 				participation = 0,
 				annotations = 0,
 				foreign_clicks = 0,
@@ -626,13 +630,21 @@ function effektiveInteractions(){
 				//echo "user :: num\n";
 			//}
 			//console.log(group+' '+Object.size(group_user_clicks[group]))
-			participation = Object.size(group_user_clicks[group])  > 0 ? ( participation / Object.size(group_user_clicks[group]) ).toFixed(2) : 0; // calculate mean participation
-			annotation  = Object.size(group_user_clicks[group]) > 0 ? ( annotations / Object.size(group_user_clicks[group]) ).toFixed(2) : 0; // oder this->util->sd(annotations) ????
+			
+			participation = Object.size(group_user_clicks[group])  > 0 ? ( participation / group_size ).toFixed(2) : 0; // calculate mean participation
+			
+			annotation  = Object.size(group_user_clicks[group]) > 0 ? ( annotations / group_size ).toFixed(2) : 0; // oder this->util->sd(annotations) ????
+	 		
 	 		equal = Object.size(equal) > 0 ? new gauss.Vector(equal).stdev().toFixed(2) : 0; 
+	 		
 	 		role_fullfillment = Object.size(role_fullfillment) > 0 && new gauss.Vector(role_fullfillment).sum() > 0 ? ( new gauss.Vector(role_fullfillment).sum() / Object.size(role_fullfillment) ).toFixed(2) : 0; 
-			foreign_clicks = Object.size(clicks_elsewhere) > 0 ? ( new gauss.Vector(clicks_elsewhere).sum() / Object.size(clicks_elsewhere) ).toFixed(2) : 0;
+			
+			foreign_clicks = Object.size(clicks_elsewhere) > 0 ? ( new gauss.Vector(clicks_elsewhere).sum() / group_size ).toFixed(2) : 0;
+			
 			rhythm = Object.size(actions_per_day[group]);
-			foreign_contributions = Object.size(contributions_elsewhere) > 0 ? ( new gauss.Vector(contributions_elsewhere).sum() / Object.size(contributions_elsewhere) ).toFixed(2) : 0;
+			
+			foreign_contributions = Object.size(contributions_elsewhere) > 0 ? ( new gauss.Vector(contributions_elsewhere).sum() / group_size ).toFixed(2) : 0;
+			
 			// per group output
 			out +=  String(group) +'\t'+ participation +'\t'+ annotation +'\t'+ equal +'\t'+ (role_fullfillment)  +'\t'+ foreign_clicks +'\t'+ rhythm +'\t'+ foreign_contributions +'\n';	
 			// collect data to calc mean and max
@@ -651,21 +663,43 @@ function effektiveInteractions(){
 			}
 		}	
 	}
+	// prio calculus for mean and mx
 	var rows = out.split('\n');
 	var x = [];
-	for(var i=1; i < rows.length; i++){
+	for(var i=0; i < rows.length; i++){
 		var row = String(rows[i]).split('\t');
 		for(var j = 1; j < row.length; j++){
-			if(j in x == false ){ x[j-1] = [];}
-			//if(typeof row[j] != 'number'){ console.log(typeof row[j])}
-			x[j-1][i-1] = Number(row[j]);
+			if(j in x == false ){ x[j] = [];}
+			x[j][i] = Number(row[j]);
 		}
-	}
-	console.log(x[5])	
-	out += 'mean'+'\t'+ new gauss.Vector(x[1]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[2]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[3]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[4]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[5]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[6]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[7]).mean().toFixed(2) +'\n';	
+	} 
+	s = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n"
+	s += 'max'+'\t'+ new gauss.Vector(x[1]).max() +'\t'+ new gauss.Vector(x[2]).max() +'\t'+ new gauss.Vector(x[3]).max() +'\t'+ new gauss.Vector(x[4]).max() +'\t'+ new gauss.Vector(x[5]).max() +'\t'+ new gauss.Vector(x[6]).max() +'\t'+ new gauss.Vector(x[7]).max() +'\n';	
+	s += 'mean'+'\t'+ new gauss.Vector(x[1]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[2]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[3]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[4]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[5]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[6]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[7]).mean().toFixed(2) +'\n';	
+	out = s + out;
 	console.log(out)			
 		// write output
-		write2file('effective-group-interactions.tsv', out);
+	write2file('effective-group-interactions.tsv', out);
+	
+	// calc effectiv groups
+	var mmean = out.split('\n')[2].split('\t');  console.log(mmean+'\n\n');
+	var rows = out.split('\n');
+	rows.shift();
+	rows.shift();
+	rows.shift();
+	
+	var x = {};
+	for(var i=0; i < rows.length; i++){
+		var col = String(rows[i]).split('\t');
+		x[col[0]] = 0;
+		for(var j = 1; j < col.length; j++){
+			//console.log(col[j]+'      '+Number(mmean[j]))
+			if(Number(col[j]) >= Number(mmean[j])){
+				x[col[0]]++;
+			}
+		}
+	} 
+console.log(x);
 	
 	/*
 		out = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n";
@@ -684,19 +718,6 @@ function effektiveInteractions(){
 
 
 
-Array.prototype.sd = function() { 
-	return 0;
-}
-
-Array.prototype.sum = function() {
-		var sum = 0;
-		for (var i = 0, l = this.length; i < l; ++i) {
-			if(typeof this[i] == 'number'){
-				sum += this[i];
-			}
-		}
-    return this;
-};
 
 Array.prototype.search = function(val) {
     for (var i=0; i < this.length; i++){

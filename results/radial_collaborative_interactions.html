@@ -37,7 +37,7 @@ svg {
 </style>
 <script src="js/d3.min.js"></script>
 <script>
-var series,
+var series = [],
 		data,
 		dimensions, 
 		lgroups,
@@ -71,84 +71,52 @@ var loadViz = function(){
 };
 
 var loadData = function(data){
-    series = [];
-    dimensions = ["Participation", "Contribution", "Equal Participation", "Equal Role Fullfillment", "Activity Rhythm", "Reciprocal Perception",  "Reciprocal Contribution"];
-    var i = 0,
-    part_max = 0, part_mean = 0,
-    anno_max = 0, anno_mean = 0,
-    equa_max = 0, equa_mean = 0;
-    role_max = 0, role_mean = 0;
-    foreign_max = 0, foreign_mean = 0;
-    rhyt_max = 0, rhyt_mean = 0;
-    dept_max = 0, dept_mean = 0;
-    lgroups = data;
-    data.forEach(function(d) {
-    	
-			series[i] = [ parseInt(d.participation), parseInt(d.annotations), parseInt(d.equal), parseInt(d.role), parseInt(d.rhythm), parseInt(d.foreign), parseInt(d.foreigncontributions) ];
-			// max
-			part_max = parseInt(d.participation) > part_max ? parseInt(d.participation) : part_max;
-			anno_max = parseInt(d.annotations) > anno_max ? parseInt(d.annotations) : anno_max;
-			equa_max = parseInt(d.equal) > equa_max ? parseInt(d.equal) : equa_max;
-			role_max = parseInt(d.role) > role_max ? parseInt(d.role) : role_max;
-			foreign_max = parseInt(d.foreign) > foreign_max ? parseInt(d.foreign) : foreign_max;
-			rhyt_max = parseInt(d.rhythm) > rhyt_max ? parseInt(d.rhythm) : rhyt_max; // 14; 
-			dept_max = parseInt(d.foreigncontributions) > dept_max ? parseInt(d.foreigncontributions) : dept_max;
-			// mean
-			part_mean += parseInt(d.participation);
-			anno_mean += parseInt(d.annotations);
-			equa_mean += parseInt(d.equal);
-			role_mean += parseInt(d.role);
-			foreign_mean += parseInt(d.foreign);
-			rhyt_mean += parseInt(d.rhythm);
-			dept_mean += parseInt(d.foreigncontributions);
-			i++;
+    dimensions = [
+    	"Participation", 
+    	"Contribution", 
+    	"Equal Participation", 
+    	"Equal Role Fullfillment", 
+    	"Activity Rhythm", 
+    	"Reciprocal Perception",  
+    	"Reciprocal Contribution"];
+ 
+    var lgroups = data;
+    data.forEach(function(d, i) {
+			series[i] = [ 
+				parseInt(d.participation), 
+				parseInt(d.annotations), 
+				parseInt(d.equal), 
+				parseInt(d.role), 
+				parseInt(d.rhythm), 
+				parseInt(d.foreign), 
+				parseInt(d.foreigncontributions) 
+			];
 		});
-		part_mean = part_mean / 16;
-		anno_mean = anno_mean / 16;
-		equa_mean = equa_mean / 16;
-		role_mean = role_mean / 16;
-		foreign_mean = parseInt(foreign_mean) / 16;
-		rhyt_mean = rhyt_mean / 16; 
-		dept_mean = dept_mean / 16;
-		var mean = [part_mean, anno_mean, equa_mean, role_mean, rhyt_mean, foreign_mean, dept_mean];
-		var series2 = [];
-		
-		series2.push(series[2]);
-		series2.push(series[0]);
-		series2.push(series[3]);
-		//series = series2;
-		// add element to the beginning
-		series.unshift(mean);
 		// normalize values
-		//var s = '';
-		for(i=0; i < series.length; i++){
-			series[i][0] = (series[i][0] / part_max) * 100;
-			series[i][1] = (series[i][1] / anno_max) * 100;
-			series[i][2] = 100 - (series[i][2] / equa_max) * 100; // inverted
-			series[i][3] = 100 - (series[i][3] / role_max) * 100; // inverted
-			series[i][4] = (series[i][4] / rhyt_max) * 100;
-			series[i][5] = (series[i][5] / foreign_max) * 100;
-			series[i][6] = (series[i][6] / dept_max) * 100;
+		var MAX = series[0]; 
+		series.splice(0,1); 
+		for(var i=0; i < series.length; i++){
+			series[i][0] = (series[i][0] / MAX[0]) * 100;
+			series[i][1] = (series[i][1] / MAX[1]) * 100;
+			series[i][2] = 100 - (series[i][2] / MAX[2]) * 100; // inverted
+			series[i][3] = 100 - (series[i][3] / MAX[3]) * 100; // inverted
+			series[i][4] = (series[i][4] / MAX[4]) * 100;
+			series[i][5] = (series[i][5] / MAX[5]) * 100;
+			series[i][6] = (series[i][6] / MAX[6]) * 100; // mean
 			//to complete the radial lines
 			series[i].push(series[i][0]); 
-			//s += " & "+ Math.round(series[i][3]*100);
 		}
-		//alert(s)
-		//alert(JSON.stringify(series));
+		// adjust the number of radial lines
     hours = [];
-    for (i = 0; i < 7; i += 1) {
+    for (i = 0; i < 7; i++) {
         hours[i] = i; //in case we want to do different formatting
     }
-    mergedArr = series[0].concat(series[1]);
     minVal = 0; //d3.min(mergedArr);
     maxVal = 100;//d3.max(mergedArr);
-    //give 25% of range as buffer to top
+    //give 5% of range as buffer to top
     maxVal = maxVal + ((maxVal - minVal) * 0.05);
-    minVal = 0;
-    
-    
-  
 
+    
 };
 
 var buildBase = function(){
@@ -322,40 +290,42 @@ var draw = function () {
       .radius(function (d) {
           return radius(d);
       })
-      .angle(function (d, i) {  //alert(i+"  "+(i / hours.length) * 2 * Math.PI*365);
+      .angle(function (d, i) {  
           if (i === hours.length) { 
               i = 0;  
           } //close the line
           return (i / hours.length) * 2 * Math.PI;
       }))
       .style("stroke", function(d,i){ 
-      	return '#777';
       	if(i===0){ 
-      		return "#000";//color(10); 
-      	}else if(i==4){ // effectiv: 4
-      		return "#aaa";
-      	}else if(i==2 || i==3 || i==7 || i==11 || i==14){ //over all effectiv:  2, 3, 7, 11, 14 
+      		return "#000";// mean 
+      	}else if(i==18 || i == 17){ // conreol group
+      		return "red";
+      	}
+      	//else if(i==2 || i==3 || i==7 || i==11 || i==14){ //over all effectiv:  2, 3, 7, 11, 14 
       		return "#777";
-      	} 
+      	//} 
       	
       	// emphasize mean value
       	return "#555"//color(i); 
       })
       .style("stroke-dasharray", function(d,i){
-      	return 4; 
+      	 
       	if (i==0){ 
       		return 0;
-      	}else if(i==4){ // effectiv: 4
+      	} 
+      	return 4;
+      	if(i==4){ // effectiv: 4
       		return 0;
       	}else if(i==2 || i==3 || i==7 || i==11 || i==14){ //over all effectiv:  2, 3, 7, 11, 14 
       		return 0;
       	} 
-      	return 4;
+      	
       })
       .style("stroke-width", function(d,i){
-      	return 1; 
+      	
       	if(i===0 ){ return 5; } // emphasize mean value
-      	return 1; 
+      	return 2; 
       })
       .style("fill", "none");
  
