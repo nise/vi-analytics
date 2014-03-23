@@ -22,7 +22,6 @@ var
 //	userMgmt = require('./routes/userMgmt'),
 	flash = require('connect-flash'),
 	server = require('http').createServer(app),
-	io = require('socket.io').listen(server),
 	fs = require('node-fs'),
 	analytics = require('./core')
 	;
@@ -59,24 +58,6 @@ var
 	
 
 
-/* setup sockets **/
-	io.sockets.on('connection', function (socket) {
-		/*
-		socket.emit('news', { hello: 'world' });
-		socket.on('my other event', function (data) {
-		  console.log(data);
-		});
-		socket.broadcast.emit('user connected');
-		*/
-		socket.on('registered user', function(data) {
-			socket.broadcast.emit('broadcast-user-online',data); 
-		});
-		
-		socket.on('updated video', function (data) {
-			console.log('update info eingegangen '+data.videoid);
-		  socket.broadcast.emit('broadcast',{hello:'world2'}); 
-		});
-	});
 
 
 

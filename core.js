@@ -33,7 +33,9 @@ file:///home/abb/Documents/www2/scm2-node/public/vi-lab/analysis/cordtra-video-s
 
 var
 	fs = require('node-fs'),
-	csv = require('csv')
+	csv = require('csv'),
+	gauss = require('gauss'),
+	Collection = gauss.Collection
 	;
 
 
@@ -45,34 +47,60 @@ Loads logfile and converts and cleans it into a json file that is saved loacaly
 **/
 convertLog = function(req, res){
 	var geoip = require('geoip-lite');	
-	var log = fs.createWriteStream(__dirname+'/'+req.type+'.json', {'flags': 'a'}); 
+	var log = fs.createWriteStream(__dirname+'/input/'+req.type+'.json', {'flags': 'a'}); 
 	var cleanLog = [];
-	fs.readFile(__dirname+'/'+req.filename, 'utf8', function read(err, data) { 
+	fs.readFile(__dirname+'/input/'+req.filename, 'utf8', function read(err, data) { 
 		if (err) throw err;
   	console.log('Read file ' + req.filename);
   	data = data.toString().split('\n');
-  	var phase = 0;
-  	var location = {};
-  	var j = 0;
+  	var phase = 0, 
+  			location = {},
+  			action = {},
+  			j = 0,
+  			el = [],
+  			x = [],
+  			a_tmp = []
+  			;
   	for(var i = 0; i < data.length; i++){ //if(i == 10) break;
   		if(data[i] != undefined ){
-				var el = data[i].toString().split(', ');
+				el = data[i].toString().split(', ');
 				// distinguish different log-types for cleanup and preparation	 
-				if(req.type == 'scm'){
+				if(req.type == 'scm2'){
 					// filter test user
 					if(el[6] < 78){
+						// pre-process
 						phase = getPhaseByDate(el[1]);
+						
+						a_tmp = el[7].split(':');
+						switch(a_tmp[0]){
+							case 'loadvideo' : action = {command:a_tmp[0], value:el[7].replace('loadvideo:','')}; break;
+							case 'videoplayed' : action = {command:a_tmp[0], value:el[7].replace('videoplayed:','')}; break;
+							case 'videopaused' : action = {command:a_tmp[0], value:el[7].replace('videopaused:','')}; break;
+							case 'videoended' : action = {command:a_tmp[0], value:el[7].replace('videoended:','')}; break;
+							case 'assessmentdisplaybegin' : action = {command:a_tmp[0], value:''}; break;
+							case 'submitassessmenttask' : action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case '[call' : action = { command: a_tmp[1].replace(']',''), value:''}; break;
+							case 'assessmentcorrect' : action = {command:a_tmp[0], value:''}; break;
+							case 'clicktocfromlist' : action = {command:a_tmp[0], value:el[7].replace('clicktocfromlist:')}; break;
+							case 'clicktagfromlist' : action = {command:a_tmp[0], value:el[7].replace('clicktagfromlist:')}; break;
+							case 'clickcommentfromlist' : action = {command:a_tmp[0], value:el[7].replace('clickcommentfromlist:')}; break;
+							case 'clickassessmentfromlist' : action = {command:a_tmp[0], value:el[7].replace('clickassessmentfromlist:')}; break;
+							case 'save' : action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case 'deleteannotation' : action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case 'saveannotation' : x = a_tmp[1].split(' '); action = {command:a_tmp[0]+' '+x[0], value:x[1]}; break;
+							default : x = el[7].split(' '); action = {command:x[1], value:Number(x[2])}; 
+						} 
+						// fill data modell
 						cleanLog[j] = {
-							utc: el[0], 
-							phase: phase, 
+							utc: Number(el[0]), 
+							phase: Number(phase), 
 							date: el[1], 
 							time: el[2], 
-							video: el[3], 
-							group: el[5], 
+							video: Number(el[3]), 
+							group: Number(el[5]), 
 							user: Number(el[6]), 
 							action: el[7], 
-							actioncommand: '', // xxx
-							action vale: '',
+							action_details: action, //{command:, value:'',}, // xxx
 							user_agent: el[8]};
 					}
 				}else if(req.type == 'iwrm'){
@@ -90,12 +118,24 @@ convertLog = function(req, res){
 						if(re.test(el[4])){
 							video = el[4].replace('lecture:','').split(' ')[0].replace('.webm','').replace('videos/iwrm_','');
 						}else{	
-							video = 'MAIN PAGE'
+							video = 'MAIN PAGE';
 						}
 					}
 					location = geoip.lookup(el[3]) == null  ? false : geoip.lookup(el[3]);
 					// 
-					cleanLog[j] = {flag: false, utc: el[0], phase: 0, date: el[1], time: el[2], ip: el[3], location: location, video: video, group: 0, user: 0, action: el[4], user_agent: el[5]};
+					cleanLog[j] = {
+						flag: false, 
+						utc: el[0], 
+						phase: 0, 
+						date: el[1], 
+						time: el[2], 
+						ip: el[3], 
+						location: location, 
+						video: video, 
+						group: 0, 
+						user: 0, 
+						action: el[4], 
+						user_agent: el[5]};
 				}
 				//
 				j++;	
@@ -103,11 +143,11 @@ convertLog = function(req, res){
   	} 
   	//console.log(cleanLog);
   	var fs = require('fs');
-		fs.writeFile(__dirname+'/'+req.type+'.json', JSON.stringify(cleanLog,null,"\t"), function(err) {
+		fs.writeFile(__dirname+'/input/'+req.type+'.json', JSON.stringify(cleanLog,undefined,"\t"), function(err) {
 		  if(err) {
 		      console.log('Error: '+err);
 		  } else {
-		      console.log('The file was saved to '+__dirname+'/'+req.type+'.json');
+		      console.log('The file was saved to '+__dirname+'/input/'+req.type+'.json');
 		  }
 		});
 	});
@@ -120,27 +160,25 @@ convertLog = function(req, res){
 exports.init = function(req, result){
 
 // PREPARE DATA	
-	//convertLog({filename:'scm2.debug', type:'scm'}); 
+	//convertLog({filename:'scm2.debug', type:'scm2'}); 
 	//getUserData({filename:'scm2_user.csv'});
+	//getGroupData({filename:'scm2_groups.csv'});
 	//return;
 	//convertLog({filename:'iwrm-clean.csv', type:'iwrm'}); return;
 
 // INPUT DATA SCM
-	cleanlog = require('./scm2.json');
-	videoMetaData = require('./scm2_videos.json');
-	userData = require('./scm2-users.json');
+	cleanlog = require('./input/scm2.json');
+	videoMetaData = require('./input/scm2_videos.json');
+	userData = require('./input/scm2-users.json');
+	groupData = require('./input/scm2-groups.json');
 // PRE CALC
 	
-	//
-	//console.log('BINGGG '+userData);
-	// video daten
-
 // VISUALIZATION	
-	
+effektiveInteractions();	
 //phaseActivity(userData);
 
 // done:
- cordtra();
+// cordtra();
 //annotations(userData, videoMetaData);		
 	
 
@@ -175,11 +213,11 @@ return;
   result.jsonp({done:'yes'});
 };	
 
-/***/
-
+/*
+**/
 getUserData = function(req){
 	var dataset = [];
-	fs.readFile(__dirname+'/'+req.filename, function read(err, data) {
+	fs.readFile(__dirname+'/input/'+req.filename, function read(err, data) {
 			csv().from.string(data, {comment: '#'} )
 				.to.array( function(data){ 
 					for(var i = 1; i < data.length; i++){ 
@@ -187,11 +225,11 @@ getUserData = function(req){
 						//console.log(userData[i]);				
 					}// end for
 					var fs = require('fs');
-					fs.writeFile(__dirname+'/scm2-users.json', JSON.stringify(dataset, null, "\t"), function(err) {
+					fs.writeFile(__dirname+'/input/scm2-users.json', JSON.stringify(dataset, null, "\t"), function(err) {
 						if(err) {
 								console.log('Error: '+err);
 						} else {
-								console.log('The file was saved to '+__dirname+'/'+req.type+'.json');
+								console.log('The file was saved to '+__dirname+'/input/scm2-users.json');
 						}
 					});
 			});// end csv
@@ -200,13 +238,41 @@ getUserData = function(req){
 
 
 /*
+**/
+getGroupData = function(req){
+	var dataset = [];
+	fs.readFile(__dirname+'/input/'+req.filename, function read(err, data) {
+			csv().from.string(data, {comment: '#'} )
+				.to.array( function(data){ 
+					for(var i = 1; i < data.length; i++){ // id,beschreibung,Personenzahl,hs, videos
+						dataset[i] = {
+							id: data[i][0],
+							description:data[i][1],
+							persons: Number(data[i][2]),
+							university:data[i][3],
+							videos: data[i][4]}; 
+						//console.log(userData[i]);				
+					}// end for
+					var fs = require('fs');
+					fs.writeFile(__dirname+'/input/scm2-groups.json', JSON.stringify(dataset, null, "\t"), function(err) {
+						if(err) {
+								console.log('Error: '+err);
+						} else {
+								console.log('The file was saved to '+__dirname+'/input/scm2-groups.json');
+						}
+					});
+			});// end csv
+		});// end fs
+}
+
+/*
 toDo: implement a regEx that removes strings of a given array
 **/
 getVideoURL = function (id){
 	var res = '';
 	for(video in videoMetaData){
 		if(videoMetaData[video].id == id){
-			res = (videoMetaData[video].video).toString().replace('http://141.46.8.101/beta/scm-lab2/videos/','').replace('scm_','').replace('.webm','');
+			res = (videoMetaData[video].video).toString().replace('scm_','').replace('.webm','').replace('http://141.46.8.101/beta/scm-lab2/videos/','');
 		}
 	}
 	return res;
@@ -337,29 +403,29 @@ CORDTRA DATA SET
 function cordtra(){
 	
 	var 	datasetPerGroup = "time\tgroup\taction\n",
-				datasetPerVideo = "time\tgroup\taction\n"
+				datasetPerVideo = "time\tgroup\taction\n",
 				datasetPerVideoSource = "time\tgroup\taction\n"
 				;
 	for(var i = 0; i < cleanlog.length; i++){
 		try{
 			//console.log(cleanlog[i].user)
+			if(userData[cleanlog[i].user]['GruppeP1'] == undefined)
+				console.log(cleanlog[i].user)
 			cleanlog[i].group = userData[cleanlog[i].user]['GruppeP1'];
 			//console.log(cleanlog[i].group);
 			
 			if(cleanlog[i].utc <= 1386919016738 && cleanlog[i]['group'] != undefined && cleanlog[i]['utc'] != undefined && cleanlog[i]['action'] != undefined){
 				//console.log(2222+cleanlog[i]['group']+cleanlog[i]['utc']);
 				cleanlog[i].group = cleanlog[i].group.replace(' ','');
-				cleanlog[i].action = cleanlog[i].action.replace(' ','');
-				cleanlog[i].action = cleanlog[i].action.replace('http://141.46.8.101/beta/scm-lab2/videos/','seek:'); 
 				if(cleanlog[i].group.toString().length == 1){ cleanlog[i].group = '00'+cleanlog[i].group; }
   			if(cleanlog[i].group.toString().length == 2 && cleanlog[i].group != 'k1' && cleanlog[i].group != 'k2' && cleanlog[i].group != 'e1' && cleanlog[i].group != 'e2'){ cleanlog[i].group = '0'+cleanlog[i].group; }
 				
-				datasetPerGroup += cleanlog[i].utc+'\t'+cleanlog[i].group+'\t'+cleanlog[i].action.toString().split(':')[0]+'\n'; // .split(':')[0]
-				datasetPerVideo += cleanlog[i].utc+'\t'+cleanlog[i].video+'\t'+cleanlog[i].action.toString().split(':')[0]+'\n';
-				datasetPerVideoSource += cleanlog[i].utc+'\t' + getVideoURL(cleanlog[i].video) + '\t'+cleanlog[i].action.toString().split(':')[0]+'\n';
+				datasetPerGroup += cleanlog[i].utc+'\t'+cleanlog[i].group+'\t'+cleanlog[i].cleanlog[i].action_details.command+'\n'; // .split(':')[0]
+				datasetPerVideo += cleanlog[i].utc+'\t'+cleanlog[i].video+'\t'+cleanlog[i].cleanlog[i].action_details.command+'\n';
+				datasetPerVideoSource += cleanlog[i].utc+'\t' + getVideoURL(cleanlog[i].video) + '\t'+cleanlog[i].cleanlog[i].action_details.command+'\n';
 		}
 		} catch(e){
-			console.log('Error '+cleanlog[i] + '_' +i);
+			console.log(e+' Error '+cleanlog[i] + '_' +i);
 		}	
 	}
 	// write output
@@ -380,126 +446,175 @@ function cordtra(){
 
 	
 
-	/*========= GROUP COLLABORATION ========================================*/
-	/*
-	@description Calculates variables of Calvani et al. (2010) model of effectiv interaction in group collaboration
-	* #1: Grad der Partizipation %Extent of participation amonut of active participation of group members (video reception, contributions)
-	* #2: Proposing attitude: amount of proposing contributions/annotations (toc, tags, comments, assessment)
-	* #3: Gleichmäßige Partizipation %Equal participation: relation between  
-	* #4: Ausmaß der Rollenausübung (je Phase) %Extent of roles/phases: variety of roles / participation in each phase of the script
-	* #6: Gegenseitige Wahrnehmung%Reciprocal reception: amount of perception of contents that belong to the other groups incl. answering their questions 
-	* #7: Rhythmus: Anzahl der Tage, an denen min. ein Mitglied der Gruppe aktiv war
-	* #8: Tiefe: Anzahl an Annotation von Videos anderer Gruppen. 
-	* #9 (not implemented) ?Reactivity to proposals: 
-	* #10 ?Conclusiveness: zu einem ende kommen
-	* 
-	* @param
-	* @returns {file} interactions.tsv 
-	* @return interactions_per_video.tsv
-	*/
-	
-	var gauss = require('gauss');
-	
-	function effektiveInteractions(){
-		// data preparation
-		var
-			actions = [],
-			actions_per_user = [],
-			actions_per_group = [],
-			actions_per_day = [],
-			annotations_per_user = [],
-			cordtra = [],
-			intra_group_comparison = [],
-			group_user_clicks = [],
-			group_user_annotations = [],
-			group_user_clicks_elsewhere = [],
-			group_user_contributions_elsewhere = [],
-			perception_per_user = [],
-			user_annotations = []
-			;
-			
-		var matrix = new gauss.Collection(cleanlog);	
-		//analyse logfile
-		for(i = 0; i < cleanlog.length; i++) { 
-			// get actions
-			a = cleanlog[i].action;  
+/*========= GROUP COLLABORATION ========================================*/
+/*
+@description Calculates variables of Calvani et al. (2010) model of effectiv interaction in group collaboration
+* #1: Grad der Partizipation %Extent of participation amonut of active participation of group members (video reception, contributions)
+* #2: Proposing attitude: amount of proposing contributions/annotations (toc, tags, comments, assessment)
+* #3: Gleichmäßige Partizipation %Equal participation: relation between  
+* #4: Ausmaß der Rollenausübung (je Phase) %Extent of roles/phases: variety of roles / participation in each phase of the script
+* #6: Gegenseitige Wahrnehmung%Reciprocal reception: amount of perception of contents that belong to the other groups incl. answering their questions 
+* #7: Rhythmus: Anzahl der Tage, an denen min. ein Mitglied der Gruppe aktiv war
+* #8: Tiefe: Anzahl an Annotation von Videos anderer Gruppen. 
+* #9 	(not implemented) ?Reactivity to proposals: 
+* #10 (not implemented) ?Conclusiveness: zu einem ende kommen
+* 
+* @param
+* @returns {file} interactions.tsv 
+* @return interactions_per_video.tsv
+*/
+
+
+function effektiveInteractions(){
+	// data preparation
+	var
+		actions = [],
+		actions_per_user = [],
+		actions_per_group = [],
+		actions_per_day = [],
+		annotations_per_user = [],
+		cordtra = [],
+		intra_group_comparison = [],
+		group_user_clicks = [],
+		group_user_annotations = [],
+		group_user_clicks_elsewhere = [],
+		group_user_contributions_elsewhere = [],
+		perception_per_user = [],
+		action_filter = [0,'save','deleteannotation','saveannotation','loadvideo','videoplayed','videopaused','videoended','assessmentdisplaybegin','submitassessmenttask','[call','assessmentcorrect','clicktocfromlist','clicktagfromlist','clickcommentfromlist','clickassessmentfromlist','seek_start','seek_end'],
+		user_annotations = []	
+		;
+				
+	var matrix = new gauss.Collection(cleanlog);	
+	//analyse logfile
+	for(var i in cleanlog) {
+		 if(cleanlog[i] == undefined){
+		 	console.log('break::: '+i); 
+		 }else{
+			// retrieve actions name as long that data is not pre-processed during convertion from csv to json
+			if(cleanlog[i].hasOwnProperty('action_details')){
+				action = cleanlog[i].action_details.command;
+			} 
+			  
 			phase = cleanlog[i].phase;
 			user = cleanlog[i].user;
-			// get group of user 
-			group = cleanlog[i].group;
+			if(userData[cleanlog[i].user] != undefined){ 
+				group = userData[cleanlog[i].user]['GruppeP1'];
+			}	 
 			// get initial video of group
-			video = scriptData->getVideoOfGroup(group);
+			video = getVideoOfGroup(group);
 			// get video in use
-			if(substr(a[1], 0, 7) === "videos/"){
-				video_use = scriptData->getTitleOfVideo(str_replace("videos/", "", a[1])); 	
-			}
-		
+			video_use = cleanlog[i].video; 	
+			
 			// destilate value actions
-			if(array_search(substr(a[1], 0, 11), action_filter) > 0 ){
+			if(action_filter.search(action) > 0 ){
 				// total annotations per user and group
-				user_annotations[group][user]++;
+				if (group in user_annotations == false){ user_annotations[group] = {}; }
+				if (user in user_annotations[group] == false){ user_annotations[group][user] = 0; }
+				user_annotations[''+group][user]++;
 				//
+				if (user in annotations_per_user == false){ annotations_per_user[user] = 0; }
 				annotations_per_user[user]++; 
+				
 				// total annotation (value actions) per group and user
+				if (group in group_user_annotations == false){ group_user_annotations[group] = {}; }
+				if (user in group_user_annotations[group] == false){ group_user_annotations[group][user] = 0; }
 				group_user_annotations[group][user]++; 		
+				
 				// cordtra // tool, time, group >> value actions // xxxx need to get exact actions
-				array_push(cordtra, array(array_search(substr(a[1], 0, 11), action_filter), cleanlog[i][0], group));
-				// compare group members 
+				cordtra.push([ action_filter.search(action), cleanlog[i][0], group ]);
+				
+				// compare group members
+				if (group in intra_group_comparison == false){ intra_group_comparison[group] = {}; }
+				if (user in intra_group_comparison[group] == false){ intra_group_comparison[group][user] = 0; } 
 				intra_group_comparison[group][user]++;
+				
 				// total actions per group and script phase
+				if (group in actions_per_group == false){ actions_per_group[group] = {}; }
+				if (phase in actions_per_group[group] == false){ actions_per_group[group][phase] = 0; }
 				actions_per_group[group][phase]++;
+				
 				// contributions at other groups video
-				if(video_use !== "" && video !== "" && video !== video_use && array_search(substr(a[1], 0, 11), action_filter) == 4){
+				if(video_use !== "" && video !== "" && video !== video_use && action_filter.search(action) < 4){
+					if (group in group_user_contributions_elsewhere == false){ group_user_contributions_elsewhere[group] = {}; }
+					if (user in group_user_contributions_elsewhere[group] == false){ group_user_contributions_elsewhere[group][user] = 0; }
 					group_user_contributions_elsewhere[group][user]++; 
 				}
 			}
 		
 			// total actions per group, user and day
-			actions_per_day[group][cleanlog[i][1]] = 1; 
+			if (group in actions_per_day == false){ actions_per_day[group] = {}; }
+			if (cleanlog[i].date in actions_per_day[group] == false){ actions_per_day[group][cleanlog[i].date] = 1; }
+			actions_per_day[group][cleanlog[i].date] = 1; 
+			
 			// total actions per user and script phase
+			if (user in actions_per_user == false){ actions_per_user[user] = {}; }
+			if (phase in actions_per_user[user] == false){ actions_per_user[user][phase] = 0; }
 			actions_per_user[user][phase]++;
+			
 			// total actions
+			if (phase in actions == false){ actions[phase] = 0; }
 			actions[phase]++;
+			
 			// total actions per group and user
-			group_user_clicks[group][user]++;
+			if (group in group_user_clicks == false){ group_user_clicks[group] = {}; }
+			if(user in group_user_clicks[group] == false){ group_user_clicks[group][user] = 0; }
+			group_user_clicks[group][user]++; 
+			
 			// total actions in other videos
 			if(video_use !== "" && video !== "" && video !== video_use){
+				if (group in group_user_clicks_elsewhere == false){ group_user_clicks_elsewhere[group] = {}; }
+				if (user in group_user_clicks_elsewhere[group] == false){ group_user_clicks_elsewhere[group][user] = 0; }
 				group_user_clicks_elsewhere[group][user]++; 
 			}
 			// Perception
-			perception_per_user[user] .= cleanlog[i][0].',';		
+			if (user in perception_per_user == false){ perception_per_user[user] = ''; }
+			perception_per_user[user] += cleanlog[i][0]+',';		
 		
 		}	
-		
-		// effective group interactions
-		var 
-			out = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n",
-			groups = ["1a","1b","2a","2b","3a","3b","4a","4b","5a","5b","6a","6b","7a","7b","8a","8b"],	
-			perVideoInteractions = []
-			;
-		//	
-		for(var groupname in groups){
+		}
+	// effective group interactions
+	var 
+		out = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n",
+		groups = getGroupIds();//["1","2","3","5","7","9","11","13","17","19","21","23","25","27","29","28"],	
+		perVideoInteractions = []
+			; 
+	// filter some groups
+	var t = new gauss.Collection({persons:3},{persons:4},{persons:-1});
+	var tt = new gauss.Collection(groupData);
+//	console.log('___'+ t.find({persons: 3}).map(function(thing) { return thing.persons; }).toVector());
+//	console.log(tt.find(function(e) { return e.persons < 4 }));
+
+  // get group constellation of the first phase
+  groups = tt.find(function(e) { return e.persons < 4 }).map(function(thing) { return thing.id; }, undefined).toVector();  	
+
+	//	
+	for(var i in groups){
+		if(groups.hasOwnProperty(i)){
 			var
-				group = groups[groupname]
+				group = groups[i],
 				participation = 0,
-				annotations = [],
+				annotations = 0,
+				foreign_clicks = 0,
+				foreign_contributions = 0,
+				rhythm = 0,
 				equal = [],
 				role_fullfillment = [],
 				clicks_elsewhere = [],
 				contributions_elsewhere = [],
 				tmp = []
 				;
-			for(var key in group_user_clicks[group] ){
-				participation += group_user_clicks[group][key];
-				equal.push( group_user_clicks[group][key] ); //echo "user\n";
+			if(group != undefined && typeof group == 'string'){		
+			for(var user in group_user_clicks[group] ){
+				participation += group_user_clicks[group][user]; 
+				equal.push( group_user_clicks[group][user] ); //echo "user\n";
 			
-				for(var pp in actions_per_user[key]){
-					tmp.push( actions_per_user[key][pp] );  // actions je user je phase
+				for(var pp in actions_per_user[user]){
+					tmp.push( actions_per_user[user][pp] );  // actions je user je phase
 				}
-				role_fullfillment.push( tmp.sd() );
+				role_fullfillment.push( (new gauss.Vector(tmp)).stdev() ); 
 			}
-			for(var uu in group_user_annotations[group]){
-				annotations.push( group_user_annotations[group][uu] );
+			for(var user in group_user_annotations[group]){
+				annotations += Number(group_user_annotations[group][user]); 
 			}
 			for(var uu  in group_user_clicks_elsewhere[group]){
 				clicks_elsewhere.push( group_user_clicks_elsewhere[group][uu] );
@@ -510,14 +625,18 @@ function cordtra(){
 			//for(var actions_per_day[group] as user=>num){
 				//echo "user :: num\n";
 			//}
-			participation = participation / group_user_clicks[group].length; // calculate mean participation
-			annotation  = annotations.sum() / group_user_clicks[group].length; // oder this->util->sd(annotations) ????
-	 		role_fulfilled = role_fullfillment.sum() / role_fullfillment.length;
-			foreign_clicks = clicks_elsewhere.length > 0 ? clicks_elsewhere.sum() / clicks_elsewhere.length : 0;
-			foreign_contributions = contributions_elsewhere.length > 0 ? contributions_elsewhere.sum() / contributions_elsewhere.length : 0;
+			//console.log(group+' '+Object.size(group_user_clicks[group]))
+			participation = Object.size(group_user_clicks[group])  > 0 ? ( participation / Object.size(group_user_clicks[group]) ).toFixed(2) : 0; // calculate mean participation
+			annotation  = Object.size(group_user_clicks[group]) > 0 ? ( annotations / Object.size(group_user_clicks[group]) ).toFixed(2) : 0; // oder this->util->sd(annotations) ????
+	 		equal = Object.size(equal) > 0 ? new gauss.Vector(equal).stdev().toFixed(2) : 0; 
+	 		role_fullfillment = Object.size(role_fullfillment) > 0 && new gauss.Vector(role_fullfillment).sum() > 0 ? ( new gauss.Vector(role_fullfillment).sum() / Object.size(role_fullfillment) ).toFixed(2) : 0; 
+			foreign_clicks = Object.size(clicks_elsewhere) > 0 ? ( new gauss.Vector(clicks_elsewhere).sum() / Object.size(clicks_elsewhere) ).toFixed(2) : 0;
+			rhythm = Object.size(actions_per_day[group]);
+			foreign_contributions = Object.size(contributions_elsewhere) > 0 ? ( new gauss.Vector(contributions_elsewhere).sum() / Object.size(contributions_elsewhere) ).toFixed(2) : 0;
 			// per group output
-			out +=  group +'\t'+ participation +'\t'+ annotation +'\t'+ equal.sd() +'\t'+ role_fulfilled +'\t'+ foreign_clicks +'\t'+ actions_per_day[group].length +'\t'+ foreign_contributions +'\n';	
-		
+			out +=  String(group) +'\t'+ participation +'\t'+ annotation +'\t'+ equal +'\t'+ (role_fullfillment)  +'\t'+ foreign_clicks +'\t'+ rhythm +'\t'+ foreign_contributions +'\n';	
+			// collect data to calc mean and max
+			
 			// per video output 
 			/*
 			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["video"] = this->scriptData->getVideoOfGroup2(group);
@@ -528,10 +647,25 @@ function cordtra(){
 			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["foreignclicks"] += foreign_clicks;
 			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["rhythm"] += sizeof(actions_per_day[group]);
 			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["foreigncontributions"] += foreign_contributions;
-			*/		
+			*/	
+			}
 		}	
+	}
+	var rows = out.split('\n');
+	var x = [];
+	for(var i=1; i < rows.length; i++){
+		var row = String(rows[i]).split('\t');
+		for(var j = 1; j < row.length; j++){
+			if(j in x == false ){ x[j-1] = [];}
+			//if(typeof row[j] != 'number'){ console.log(typeof row[j])}
+			x[j-1][i-1] = Number(row[j]);
+		}
+	}
+	console.log(x[5])	
+	out += 'mean'+'\t'+ new gauss.Vector(x[1]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[2]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[3]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[4]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[5]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[6]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[7]).mean().toFixed(2) +'\n';	
+	console.log(out)			
 		// write output
-		write2file('effectiv-group-interactions.tsv', out);
+		write2file('effective-group-interactions.tsv', out);
 	
 	/*
 		out = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n";
@@ -557,16 +691,48 @@ Array.prototype.sd = function() {
 Array.prototype.sum = function() {
 		var sum = 0;
 		for (var i = 0, l = this.length; i < l; ++i) {
-			if(this[i].isNaN() == 0){
+			if(typeof this[i] == 'number'){
 				sum += this[i];
 			}
 		}
     return this;
 };
 
+Array.prototype.search = function(val) {
+    for (var i=0; i < this.length; i++){
+	    if (this[i] == val){
+	    	return i;
+	    }
+	  }  
+    return false;
+}
 
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
 
+//
+function getVideoOfGroup(g){
+	for(var i in groupData){
+		if(groupData[i].id == g){
+			return groupData[i].videos;
+		}
+	}
+	return -1;
+}
 
+function getGroupIds(){
+	var r=[];
+	for(var i in groupData){
+		if(groupData[i].id != undefined)
+		r.push(groupData[i].id);
+	}
+	return r;
+}
 
 
 
@@ -1078,7 +1244,7 @@ function write2file(filename, dataset){
 	if(!filename || ! dataset){
 		console.log('No data or file to write'); return;
 	}
-	fs.writeFile(__dirname+'/../public/vi-lab/analysis/data/'+filename, dataset, function(err){
+	fs.writeFile(__dirname+'/results/data/'+filename, dataset, function(err){
 	 if(err) {
 	      console.log(err);
 	  } else {
