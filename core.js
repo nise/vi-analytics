@@ -59,11 +59,21 @@ convertLog = function(req, res){
   			j = 0,
   			el = [],
   			x = [],
-  			a_tmp = []
-  			;
+  			a_tmp = [],
+  			csv_amount_of_fields = [],
+  			csv_empty_fields = []
+  			;	
   	for(var i = 0; i < data.length; i++){ //if(i == 10) break;
-  		if(data[i] != undefined ){
+  		if(data[i] == undefined ){
+  			console.warning('Ignores Rows: '+i +' '+data[i-1].utc);
+  		}else{
 				el = data[i].toString().split(', ');
+				// do some statistics about the data consistency
+				csv_amount_of_fields[i] = el.length;
+				if(el.length ==10){
+					console.log(data[i]);
+				}
+				//csv_empty_fields[i] = new gauss.Vector(el).find(function(e) { return e === ''; }).toVector().sum();
 				// distinguish different log-types for cleanup and preparation	 
 				if(req.type == 'scm2'){
 					// filter test user
@@ -140,7 +150,15 @@ convertLog = function(req, res){
 				//
 				j++;	
 			}	
-  	} 
+  	}
+  	console.log('.....................');
+  	console.log('Number of lines: '+data.length);
+  	console.log('Distribution of the number of fields per row:'); 
+  	console.log(new gauss.Collection(csv_amount_of_fields).distribution());
+  	console.log('Empty values per field'); 
+  	console.log(new gauss.Collection(csv_empty_fields).distribution());
+		console.log('.....................');
+  	return; 
   	//console.log(cleanLog);
   	var fs = require('fs');
 		fs.writeFile(__dirname+'/input/'+req.type+'.json', JSON.stringify(cleanLog,undefined,"\t"), function(err) {
@@ -160,10 +178,10 @@ convertLog = function(req, res){
 exports.init = function(req, result){
 
 // PREPARE DATA	
-	//convertLog({filename:'scm2.debug', type:'scm2'}); 
+	convertLog({filename:'scm2.csv', type:'scm2'}); 
 	//getUserData({filename:'scm2_user.csv'});
 	//getGroupData({filename:'scm2_groups.csv'});
-	//return;
+	return;
 	//convertLog({filename:'iwrm-clean.csv', type:'iwrm'}); return;
 
 // INPUT DATA SCM
@@ -485,7 +503,8 @@ function effektiveInteractions(){
 		user_annotations = []	
 		;
 				
-	var matrix = new gauss.Collection(cleanlog);	
+	var matrix = new gauss.Collection(cleanlog);
+	// xxx reduce to pahse x	
 	//analyse logfile
 	for(var i = 0; i < cleanlog.length; i++) {
 		 if(cleanlog[i] == undefined){
@@ -676,18 +695,19 @@ function effektiveInteractions(){
 	s = "group\tparticipation\tannotations\tequal\trole\tforeign\trhythm\tforeigncontributions\n"
 	s += 'max'+'\t'+ new gauss.Vector(x[1]).max() +'\t'+ new gauss.Vector(x[2]).max() +'\t'+ new gauss.Vector(x[3]).max() +'\t'+ new gauss.Vector(x[4]).max() +'\t'+ new gauss.Vector(x[5]).max() +'\t'+ new gauss.Vector(x[6]).max() +'\t'+ new gauss.Vector(x[7]).max() +'\n';	
 	s += 'mean'+'\t'+ new gauss.Vector(x[1]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[2]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[3]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[4]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[5]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[6]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[7]).mean().toFixed(2) +'\n';	
+//	s += 'median'+'\t'+ new gauss.Vector(x[1]).median().toFixed(2) +'\t'+ new gauss.Vector(x[2]).median().toFixed(2) +'\t'+ new gauss.Vector(x[3]).median().toFixed(2) +'\t'+ new gauss.Vector(x[4]).median().toFixed(2) +'\t'+ new gauss.Vector(x[5]).median().toFixed(2) +'\t'+ new gauss.Vector(x[6]).median().toFixed(2) +'\t'+ new gauss.Vector(x[7]).median().toFixed(2) +'\n';	
+	
 	out = s + out;
 	console.log(out)			
-		// write output
+	// write output
 	write2file('effective-group-interactions.tsv', out);
 	
 	// calc effectiv groups
 	var mmean = out.split('\n')[2].split('\t');  console.log(mmean+'\n\n');
 	var rows = out.split('\n');
-	rows.shift();
-	rows.shift();
-	rows.shift();
-	
+	rows.shift();// remove header
+	rows.shift();// remove max
+	rows.shift();// remove median /arith mean
 	var x = {};
 	for(var i=0; i < rows.length; i++){
 		var col = String(rows[i]).split('\t');
