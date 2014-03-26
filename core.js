@@ -70,9 +70,7 @@ convertLog = function(req, res){
 				el = data[i].toString().split(', ');
 				// do some statistics about the data consistency
 				csv_amount_of_fields[i] = el.length;
-				if(el.length ==10){
-					console.log(data[i]);
-				}
+				if(el.length ==10){ console.log(data[i]); }
 				//csv_empty_fields[i] = new gauss.Vector(el).find(function(e) { return e === ''; }).toVector().sum();
 				// distinguish different log-types for cleanup and preparation	 
 				if(req.type == 'scm2'){
@@ -111,7 +109,9 @@ convertLog = function(req, res){
 							user: Number(el[6]), 
 							action: el[7], 
 							action_details: action, //{command:, value:'',}, // xxx
-							user_agent: el[8]};
+							user_agent: el[8],
+							flag: false
+						};
 					}
 				}else if(req.type == 'iwrm'){
 					var video = '?';
@@ -178,10 +178,10 @@ convertLog = function(req, res){
 exports.init = function(req, result){
 
 // PREPARE DATA	
-	convertLog({filename:'scm2.csv', type:'scm2'}); 
+	//convertLog({filename:'scm2.csv', type:'scm2'}); 
 	//getUserData({filename:'scm2_user.csv'});
 	//getGroupData({filename:'scm2_groups.csv'});
-	return;
+	//return;
 	//convertLog({filename:'iwrm-clean.csv', type:'iwrm'}); return;
 
 // INPUT DATA SCM
@@ -189,13 +189,20 @@ exports.init = function(req, result){
 	videoMetaData = require('./input/scm2_videos.json');
 	userData = require('./input/scm2-users.json');
 	groupData = require('./input/scm2-groups.json');
+
+
 // PRE CALC
+	var sessions = getSessions();
+	var paths = frequentPaths(sessions, 3);
 	
-// VISUALIZATION	
-effektiveInteractions();	
+	
+// VISUALIZATION		
 //phaseActivity(userData);
 
+pathTime(sessions, 3);	
+
 // done:
+//effektiveInteractions();
 // cordtra();
 //annotations(userData, videoMetaData);		
 	
@@ -224,11 +231,6 @@ return;
 //  frequentPathsNetwork(paths, categoryOfVideo, categoryNameOfVideo);
 //	activityPerVideo(categoryOfVideo, categoryNameOfVideo);	
 	
-	return;
-	
-	
-	result.type('application/json');
-  result.jsonp({done:'yes'});
 };	
 
 /*
@@ -656,11 +658,11 @@ function effektiveInteractions(){
 	 		
 	 		equal = Object.size(equal) > 0 ? new gauss.Vector(equal).stdev().toFixed(2) : 0; 
 	 		
-	 		role_fullfillment = Object.size(role_fullfillment) > 0 && new gauss.Vector(role_fullfillment).sum() > 0 ? ( new gauss.Vector(role_fullfillment).sum() / Object.size(role_fullfillment) ).toFixed(2) : 0; 
+	 		role_fullfillment = Object.size(role_fullfillment) > 0 && new gauss.Vector(role_fullfillment).sum() > 0 ? ( new gauss.Vector(role_fullfillment).mean() ).toFixed(2) : 0; 
 			
 			foreign_clicks = Object.size(clicks_elsewhere) > 0 ? ( new gauss.Vector(clicks_elsewhere).sum() / group_size ).toFixed(2) : 0;
 			
-			rhythm = Object.size(actions_per_day[group]);
+			rhythm = ( Object.size(actions_per_day[group]) ).toFixed(); // / group_size  ??
 			
 			foreign_contributions = Object.size(contributions_elsewhere) > 0 ? ( new gauss.Vector(contributions_elsewhere).sum() / group_size ).toFixed(2) : 0;
 			
@@ -1223,8 +1225,8 @@ function pathTime(session_arr, minPathLength){
   	return (b[b.length-1].t - b[0].t) - (a[a.length-1].t - a[0].t); // ASC -> a - b; DESC -> b - a
 	});
 	for(var d in dataset){
-		for(var i = 0; i < 100-dataset[d].length; i++){
-			dataset[d].push({t: 0, name: ''});
+		for(var i = 0; i < 100 - dataset[d].length; i++){
+			//dataset[d].push({t: 0, name: ''});
 		}
 	}
 	// write output
@@ -1281,7 +1283,7 @@ function segmentTime(session_arr, minPathLength){
 			
 			
 			
-function write2file(filename, dataset){
+write2file = function(filename, dataset){
 	if(!filename || ! dataset){
 		console.log('No data or file to write'); return;
 	}
