@@ -14,7 +14,7 @@ Video usage mining techniques can be applied in order to generate D3.js visualiz
 Calvani, A., Fini, A., Molino, M., & Ranieri, M. (2010). Visualizing and monitoring effective interactions in online collaborative groups. British Journal of Educational Technology, 41(2), 213–226. doi:10.1111/j.1467-8535.2008.00911.x
 
 So fare this library has been used to analyses a few field studies:
-- IWRM education
+- [IWRM education](http://www.iwrm-education.de/)
 - CSCL-Scripts for Peer Assessment and Peer Annotation in a video-based Learning Environment
 - Comparison of open and script-based collaboration in a video-based Learning Environment
 
@@ -23,6 +23,7 @@ comming soon
 
 ## Installation ##
 Dependencies:
+- express
 - gauss
 - fs
 - csv
@@ -38,7 +39,7 @@ node vi-analytics.js
 
 2. Data Preparation 
 
-3. Visualize the output as SVG by using D3.js
+3. Visualize the output as SVG by using D3.js and related libraries
 
 
 
@@ -49,19 +50,22 @@ Structure of a typical csv input:
 
 JSON data model for further procedures:
 ```
-							utc: // [integer] unix time stamp, 
-							date: // pre-calculated date for faster processing 
-							time: 
-							ip: // user IP address 
-							location: // [object] derived location   
-								{...}
-							video: // [string] 
-							group: [integer] 
-							user: [integer] 
-							action: [string], 
-							action_details: [object] 
-								{command:'', value:'', referring:''}, // xxx
-							user_agent: [string];
+	utc: // [integer] unix time stamp, 
+	date: // pre-calculated date for faster processing 
+	time: 
+	ip: // user IP address 
+	location: // [object] derived location   
+		{...}
+	video: // [string] 
+	group: [integer] 
+	user: [integer] 
+	action: [string], 
+	action_details: [object] 
+		{
+			command: [string] 
+			value: [string/number] 
+		}, 
+	user_agent: [string];
 ```
 
 ### Function reference ###
@@ -70,16 +74,14 @@ JSON data model for further procedures:
 
 ## Included D3 Plots##
 - CORDTRA diagram
-- ...
+- [Venn Diagrams](https://github.com/benfred/venn.js)
 
 
 ## Road Map ##
-- fully include gauss package
-- csv data consistency check
-- Include meta data descriptors for data sets in order to pre pare them for publishing in open science data shops
-- UI 
-* uploading data sets 
-* mapping from csv to JSON
-* select analyses procedures
-- mboston like output of rendered D3/SVG graphics including a general and specific description of the plot type and visualized data
+* Include meta data descriptors for data sets in order to pre pare them for publishing in open science data shops
+* UI 
+** uploading data sets 
+** mapping from csv to JSON
+** select analyses procedures
+* mboston like output of rendered D3/SVG graphics including a general and specific description of the plot type and visualized data
  
