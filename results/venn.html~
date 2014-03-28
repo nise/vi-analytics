@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>mds venn.js example</title>
+</head>
+
+<body>
+    <div class="mds"></div>
+</body>
+
+<script src="js/d3.v2.min.js"></script>
+<script src="js/venn.js"></script>
+<script src="js/mds.js"></script>
+<script src="js/numeric-1.2.6.min.js"></script>
+<script>
+// 1 0.033580305927342256  0.3154875717017208  0.014280592734225621
+var sets = [
+//	{label : 'C', size : 100}, 
+	{label : 'A', size: 3.335},
+	{label : 'FC', size : 31.548},   
+	{label : 'FA', size:1.43}
+ 	],
+  overlaps  = [				
+/*		{sets : [0,1], size:100}, 
+		{sets : [0,2], size:100},
+		{sets : [0,3], size:100},*/
+		{sets : [0,1], size:1},
+		{sets : [0,2], size:2.33},
+		{sets : [2,1], size:22}
+	 ];
+
+// get positions for each set
+sets = venn.venn(sets, overlaps, {layoutFunction: venn.classicMDSLayout})
+
+// draw the diagram in the 'mds' div
+venn.drawD3Diagram(d3.select(".mds"), sets, 300, 300);
+
+
+
+
+</script>
+</html>

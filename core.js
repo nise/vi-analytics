@@ -202,7 +202,7 @@ exports.init = function(req, result){
 pathTime(sessions, 3);	
 
 // done:
-//effektiveInteractions();
+effektiveInteractions();
 // cordtra();
 //annotations(userData, videoMetaData);		
 	
@@ -567,8 +567,8 @@ function effektiveInteractions(){
 		
 			// total actions per group, user and day
 			if (group in actions_per_day == false){ actions_per_day[group] = {}; }
-			if (cleanlog[i].date in actions_per_day[group] == false){ actions_per_day[group][cleanlog[i].date] = 1; }
-			actions_per_day[group][cleanlog[i].date] = 1; 
+			if (cleanlog[i].date in actions_per_day[group] == false){ actions_per_day[group][String(cleanlog[i].time).split(':')[0]] = 1; }
+//			actions_per_day[group][cleanlog[i].time] = 1; 
 			
 			// total actions per user and script phase
 			if (user in actions_per_user == false){ actions_per_user[user] = {}; }
@@ -633,8 +633,8 @@ function effektiveInteractions(){
 				participation += group_user_clicks[group][user]; 
 				equal.push( group_user_clicks[group][user] ); //echo "user\n";
 			
-				for(var pp in actions_per_user[user]){
-					tmp.push( actions_per_user[user][pp] );  // actions je user je phase
+				for(var phase in actions_per_user[user]){
+					tmp.push( actions_per_user[user][phase] );  // actions je user je phase
 				}
 				role_fullfillment.push( (new gauss.Vector(tmp)).stdev() ); 
 			}
@@ -658,11 +658,11 @@ function effektiveInteractions(){
 	 		
 	 		equal = Object.size(equal) > 0 ? new gauss.Vector(equal).stdev().toFixed(2) : 0; 
 	 		
-	 		role_fullfillment = Object.size(role_fullfillment) > 0 && new gauss.Vector(role_fullfillment).sum() > 0 ? ( new gauss.Vector(role_fullfillment).mean() ).toFixed(2) : 0; 
+	 		role_fullfillment = Object.size(role_fullfillment) > 0 && new gauss.Vector(role_fullfillment).mean() > 0 ? ( new gauss.Vector(role_fullfillment).mean() ).toFixed(2) : 0; 
 			
 			foreign_clicks = Object.size(clicks_elsewhere) > 0 ? ( new gauss.Vector(clicks_elsewhere).sum() / group_size ).toFixed(2) : 0;
 			
-			rhythm = ( Object.size(actions_per_day[group]) ).toFixed(); // / group_size  ??
+			rhythm = ( Object.size(actions_per_day[group]) / group_size ).toFixed() ; // / group_size  ??
 			
 			foreign_contributions = Object.size(contributions_elsewhere) > 0 ? ( new gauss.Vector(contributions_elsewhere).sum() / group_size ).toFixed(2) : 0;
 			
