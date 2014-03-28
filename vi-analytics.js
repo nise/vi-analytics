@@ -69,14 +69,16 @@ var
 		  		if(name.slice(-1) === '~'){ break;}
 		      console.log('Running module: '+ files[i])
 		      var mod = require(name);
-		      mod.init();
+		      //mod.init();
 		  }
 	}
 
 	
-	
-	//analytics.init();
-	app.get('/analytics', analytics.init);
+	//require('./modules/time-effort').init();
+//	require('./modules/feedback-analysis').init();
+require('./modules/effective-interactions').init();
+//	analytics.init();
+	//app.get('/analytics', analytics.init);
 	
 
 
