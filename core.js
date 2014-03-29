@@ -40,6 +40,78 @@ var
 
 
 
+var groupData = require('./input/scm2-groups.json');
+var userData = require('./input/scm2-users.json');
+	
+/*
+
+**/	
+exports.init = function(req, result){
+
+// PREPARE DATA	
+	//convertLog({filename:'scm2.csv', type:'scm2'}); 
+	//getUserData({filename:'scm2_user.csv'});
+	//getGroupData({filename:'scm2_groups.csv'});
+	//getVideoData({filename:'scm2-video-metadata.csv'});
+	//return;
+	//convertLog({filename:'iwrm-clean.csv', type:'iwrm'}); return;
+
+// INPUT DATA SCM
+	cleanlog = require('./input/scm2.json');
+	videoMetaData = require('./input/scm2_videos.json');
+	userData = require('./input/scm2-users.json');
+	groupData = require('./input/scm2-groups.json');
+	videoMetaData = require('./input/scm2-video-metadata.json');
+
+
+// PRE CALC
+	var sessions = getSessions();
+	var paths = frequentPaths(sessions, 3);
+	
+	
+// VISUALIZATION		
+//phaseActivity(userData);
+
+pathTime(sessions, 3);	
+
+// done:
+effektiveInteractions();
+// cordtra();
+//annotations(userData, videoMetaData);		
+	
+
+return;
+// INPUT DATA IWRM
+	cleanlog = require('./iwrm.json');
+	videoMetadata = require('./iwrm-data-video.json')
+
+// PRE CALC
+	var sessions = getSessions();
+	var categoryOfVideo = getVideoCategories(videoMetadata);
+	var categoryNameOfVideo = getVideoCategoryName(videoMetadata);
+	var paths = frequentPaths(sessions, 3);
+
+// VISUALIZATION
+//	sessionActivityDistribution(sessions);
+//	sessionsPerCountry(sessions)
+//	simpleCordtra();		
+	frequentPathsMatrix(paths, categoryOfVideo, node_list);
+
+//pathTime(sessions, 3);	
+
+
+// done:
+//  frequentPathsNetwork(paths, categoryOfVideo, categoryNameOfVideo);
+//	activityPerVideo(categoryOfVideo, categoryNameOfVideo);	
+	
+};	
+
+
+
+
+
+/*****************************************************************************/
+
 /*
 Loads logfile and converts and cleans it into a json file that is saved loacaly
 @filename The csv file that is going to be converted and cleaned
@@ -172,68 +244,7 @@ convertLog = function(req, res){
 };		
 	
 
-var groupData = require('./input/scm2-groups.json');
-	
-/*
 
-**/	
-exports.init = function(req, result){
-
-// PREPARE DATA	
-	//convertLog({filename:'scm2.csv', type:'scm2'}); 
-	//getUserData({filename:'scm2_user.csv'});
-	//getGroupData({filename:'scm2_groups.csv'});
-	//return;
-	//convertLog({filename:'iwrm-clean.csv', type:'iwrm'}); return;
-
-// INPUT DATA SCM
-	cleanlog = require('./input/scm2.json');
-	videoMetaData = require('./input/scm2_videos.json');
-	userData = require('./input/scm2-users.json');
-	groupData = require('./input/scm2-groups.json');
-
-
-// PRE CALC
-	var sessions = getSessions();
-	var paths = frequentPaths(sessions, 3);
-	
-	
-// VISUALIZATION		
-//phaseActivity(userData);
-
-pathTime(sessions, 3);	
-
-// done:
-effektiveInteractions();
-// cordtra();
-//annotations(userData, videoMetaData);		
-	
-
-return;
-// INPUT DATA IWRM
-	cleanlog = require('./iwrm.json');
-	videoMetadata = require('./iwrm-data-video.json')
-
-// PRE CALC
-	var sessions = getSessions();
-	var categoryOfVideo = getVideoCategories(videoMetadata);
-	var categoryNameOfVideo = getVideoCategoryName(videoMetadata);
-	var paths = frequentPaths(sessions, 3);
-
-// VISUALIZATION
-//	sessionActivityDistribution(sessions);
-//	sessionsPerCountry(sessions)
-//	simpleCordtra();		
-	frequentPathsMatrix(paths, categoryOfVideo, node_list);
-
-//pathTime(sessions, 3);	
-
-
-// done:
-//  frequentPathsNetwork(paths, categoryOfVideo, categoryNameOfVideo);
-//	activityPerVideo(categoryOfVideo, categoryNameOfVideo);	
-	
-};	
 
 /*
 **/
@@ -258,6 +269,39 @@ getUserData = function(req){
 		});// end fs
 }
 
+/*
+**/
+getVideoData = function(req){
+	var dataset = [];
+	fs.readFile(__dirname+'/input/'+req.filename, function read(err, data) {
+			csv().from.string(data, {comment: '#'} )
+				.to.array( function(data){ 
+					for(var i = 1; i < data.length; i++){ // id,beschreibung,Personenzahl,hs, videos
+						dataset[i] = {
+							id: data[i][0], 
+							author: data[i][1],
+							institution: data[i][2],
+							title: data[i][3],
+							category: data[i][4],
+							abstract: data[i][5],
+							length: data[i][6],
+							language: data[i][7],
+							filename: data[i][8],
+							source: data[i][9]
+						}; 
+						//console.log(userData[i]);				
+					}// end for
+					var fs = require('fs');
+					fs.writeFile(__dirname+'/input/scm2-video-metadata.json', JSON.stringify(dataset, null, "\t"), function(err) {
+						if(err) {
+								console.log('Error: '+err);
+						} else {
+								console.log('The file was saved to '+__dirname+'/input/scm2-video-metadata.json');
+						}
+					});
+			});// end csv
+		});// end fs
+}
 
 /*
 **/
@@ -287,6 +331,25 @@ getGroupData = function(req){
 		});// end fs
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************************************************/
+/*
+Utils
+**/
 /*
 toDo: implement a regEx that removes strings of a given array
 **/
@@ -296,6 +359,57 @@ getVideoURL = function (id){
 		if(videoMetaData[video].id == id){
 			res = (videoMetaData[video].video).toString().replace('scm_','').replace('.webm','').replace('http://141.46.8.101/beta/scm-lab2/videos/','');
 		}
+	}
+	return res;
+}
+
+
+Array.prototype.search = function(val) {
+    for (var i=0; i < this.length; i++){
+	    if (this[i] == val){
+	    	return i;
+	    }
+	  }  
+    return false;
+}
+
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+//
+exports.getVideoOfGroup = function (g){ 
+	for(var i in groupData){ 
+		if(groupData[i].id == g){
+			return groupData[i].videos;
+		}
+	}
+	return -1;
+}
+
+exports.getGroupIds = function(){
+	var r=[];
+	for(var i in groupData){
+		if(groupData[i].id != undefined)
+		r.push(groupData[i].id);
+	}
+	return r;
+}
+
+
+/*
+
+**/
+exports.getObjectOfUser = function(user_id, key){
+	var res = -99;
+	for(var i = 0; i < userData.length; i++){
+		if(i == user_id && userData[i].hasOwnProperty(key)){
+			res = userData[i][key];
+		} 
 	}
 	return res;
 }
@@ -332,7 +446,86 @@ function test(res){
 
 
 
+			
+write2file = function(filename, dataset){
+	if(!filename || ! dataset){
+		console.log('No data or file to write'); return;
+	}
+	fs.writeFile(__dirname+'/results/data/'+filename, dataset, function(err){
+	 if(err) {
+	      console.log(err);
+	  } else {
+	  	 console.log('Data generated: '+filename);
+		}	
+	});
+}			
+			
+			
+/***/
+function plot(res, title){
+	//$('#data').append('<br><br>').append(title);
+	console.log(title);
+	for(var t in res){ 
+			//$('#data').append('<br>').append(t+': '+res[t]);
+			console.log(t+': '+res[t]);
+	}
+};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************************************************/
+/*
+Data strcutures
+**/
+
+exports.resultSet = function(arr){
+	return {
+		n : Object.size(arr),
+		mean :  new gauss.Vector(arr).mean(),
+		median  : new gauss.Vector(arr).median(),
+		stdev : new gauss.Vector(arr).stdev(),
+		min : new gauss.Vector(arr).min(),
+		max : new gauss.Vector(arr).max(),
+		range:  new gauss.Vector(arr).range(),
+		quartile: new gauss.Vector(arr).quantile(4),
+		percentile : new gauss.Vector(arr).percentile(.68),
+		varCoeff : (new gauss.Vector(arr).stdev() / new gauss.Vector(arr).mean()), //Coefficient of variation
+		density : new gauss.Vector(arr).density(.25)
+	};
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************************************************/
+/*
+Modules
+**/
 
 
 /*
@@ -467,60 +660,6 @@ function cordtra(){
 
 
 	
-
-
-
-
-Array.prototype.search = function(val) {
-    for (var i=0; i < this.length; i++){
-	    if (this[i] == val){
-	    	return i;
-	    }
-	  }  
-    return false;
-}
-
-Object.size = function(obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
-
-//
-exports.getVideoOfGroup = function (g){ 
-	for(var i in groupData){ 
-		if(groupData[i].id == g){
-			return groupData[i].videos;
-		}
-	}
-	return -1;
-}
-
-exports.getGroupIds = function(){
-	var r=[];
-	for(var i in groupData){
-		if(groupData[i].id != undefined)
-		r.push(groupData[i].id);
-	}
-	return r;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -1012,27 +1151,3 @@ function segmentTime(session_arr, minPathLength){
 }	
 			
 			
-			
-write2file = function(filename, dataset){
-	if(!filename || ! dataset){
-		console.log('No data or file to write'); return;
-	}
-	fs.writeFile(__dirname+'/results/data/'+filename, dataset, function(err){
-	 if(err) {
-	      console.log(err);
-	  } else {
-	  	 console.log('Data generated: '+filename);
-		}	
-	});
-}			
-			
-			
-/***/
-function plot(res, title){
-	//$('#data').append('<br><br>').append(title);
-	console.log(title);
-	for(var t in res){ 
-			//$('#data').append('<br>').append(t+': '+res[t]);
-			console.log(t+': '+res[t]);
-	}
-};
