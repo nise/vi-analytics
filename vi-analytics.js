@@ -74,10 +74,13 @@ var
 	}
 
 	
-	//require('./modules/time-effort').init();
+//
+//require('./analysis');	
+//require('./modules/time-effort').init();
 //	require('./modules/feedback-analysis').init();
 require('./modules/effective-interactions').init();
-//	analytics.init();
+
+	//analytics.init();
 	//app.get('/analytics', analytics.init);
 	
 
