@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+</style>
+<body>
+<script src="js/d3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 30, left: 140},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = 0;
+
+var y = 0;
+var color = {};
+
+var xAxis = {};
+
+var yAxis = {};
+
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("data/user-effort.tsv", function(error, data) {//_distribution
+  data.forEach(function(d) {
+    d.totalEffort = d.totalEffort / 60 ; // convert in hours
+    d.effortPerMinute = d.effortPerMinute;
+    d.videoLength = d.videoLength; // 
+  });
+  
+  var line = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.totalEffort); })
+    .y(function(d) { return y(d.effortPerMinute); });
+ 
+
+  
+	var maxY = d3.max(data, function(d) { return +d.effortPerMinute;} );
+	var maxX = d3.max(data, function(d) { return +d.effortPerMinute;} );
+	
+	x = d3.scale.linear()
+    .range([0, width-300]);
+
+	y = d3.scale.linear()
+    .range([height, 0]);
+
+	color = d3.scale.category20();
+
+	xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+	yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+    
+	y.domain(d3.extent(data, function(d) { return d.effortPerMinute; })).nice();
+  x.domain(d3.extent(data, function(d) { return d.totalEffort; })).nice();
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width-300)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Zeitlicher Aufwand insgesamt / h");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Zeitlicher Aufwand je Minute des Vidoes");
+      
+
+  svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("r", 3)
+      .attr("cy", function(d) { return y(d.effortPerMinute); })
+      .attr("cx", function(d) { return x(d.totalEffort); })
+      .style("fill", function(d) { return color(d.video); });
+      
+
+  var ll = svg.selectAll(".line")
+  		.data(data, function(d){  
+  			return d.totalEffort+':'+d.effortPerMinute;
+  		}).enter()
+  		.apped("g");
+  
+  ll.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { return line(d); })
+      .style("stroke", function(d) { return color(2); });      
+            
+      
+      
+// legend
+  var legend = svg.selectAll(".legend")
+      .data(data, function(d){
+      	return color.domain() +':'+d.videoLength;
+      })
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + d.video * 24 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 300)
+//      .attr("y", function(d, i){ return d.video*20})
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", function(d){ return color(d.video);});
+
+  legend.append("text")
+      .attr("x", width -280)
+      .attr("y", 9)
+      .attr("dy", ".40em")
+      .style("text-anchor", "start")
+      .text(function(d) { return "Video " + d.video + " ("+(d.videoLength/60)+" min)"; });
+
+});
+
+</script>
