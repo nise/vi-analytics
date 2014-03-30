@@ -31,7 +31,7 @@ exports.init = function(){
 	// effective group interactions
 	var 
 		out = '',
-		groups = core.getGroupIds();	
+		groups = core.getGroupIds(),	
 		perVideoInteractions = []
 			; 
 	// filter some groups
@@ -103,16 +103,26 @@ exports.init = function(){
 			// collect data to calc mean and max
 			
 			// per video output  XXX BUGY: Die Daten müssen alle neu berechnet werden, und zwar je Video, nicht je Gruppe! Gruppen haben sich ja nachweislich nicht nur mit einem Video befasst.
-			/*
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["video"] = this->scriptData->getVideoOfGroup2(group);
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["participation"] += participation;
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["annotation"] += annotation;
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["equal"] += equal.sd();
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["role"] += role_fulfilled;
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["foreignclicks"] += foreign_clicks;
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["rhythm"] += sizeof(analysis.actions_per_day[group]);
-			perVideoInteractions[this->scriptData->getVideoOfGroup2(group)]["foreigncontributions"] += foreign_contributions;
-			*/	
+			
+			var the_video = core.getVideoOfGroup(group).split(';')[0];
+			var lang = core.getObjectOfVideo(the_video, 'language'); 
+			if(the_video.length ==3){the_video = the_video[2];}
+			if(the_video.length ==2){the_video = the_video[1];}
+			
+			if(the_video in perVideoInteractions == false){ 
+				perVideoInteractions[the_video] = {video:'',lang:'',participation:0,annotation:0, equal:0, role:0, foreignclicks:0, rhythm:0, foreigncontributions:0};
+			}
+			perVideoInteractions[the_video]["video"] = the_video;
+			perVideoInteractions[the_video]["lang"] = lang == 'de' ? 1 : 2;
+//			perVideoInteractions[the_video]["groupsize"] = group_size;
+			perVideoInteractions[the_video]["participation"] += Number(participation);
+			perVideoInteractions[the_video]["annotation"] += Number(annotation);
+			perVideoInteractions[the_video]["equal"] += Number(equal);
+			perVideoInteractions[the_video]["role"] += Number(role_fullfillment);
+			perVideoInteractions[the_video]["foreignclicks"] += Number(foreign_clicks);
+			perVideoInteractions[the_video]["rhythm"] += Number(rhythm);
+			perVideoInteractions[the_video]["foreigncontributions"] += Number(foreign_contributions);
+				
 			}
 		}	
 	}
@@ -136,6 +146,23 @@ exports.init = function(){
 	console.log('');			
 	// write output
 	write2file('effective-group-interactions.tsv', out);
+	
+	
+	
+	/**/
+	console.log('Rangkorrelationmatrix:');
+	out = "video,language,participation,annotations,equal,role,foreign,rhythm,foreigncontributions\n";//groupsize,
+		for(var v in perVideoInteractions){
+			if(perVideoInteractions.hasOwnProperty(v)){
+				v = perVideoInteractions[v]; //,"+v["groupsize"]+"
+				out += v["video"]+","+v["lang"]+","+v["participation"]+","+v["annotation"]+","+v["equal"]+","+v["role"]+","+v["foreignclicks"]+","+v["rhythm"]+","+v["foreigncontributions"]+"\n";
+			}
+		}
+	// write data for rang correlation matrix
+	write2file('corr-matrix-interactions.csv', out);
+	console.log(out);
+	console.log('');
+	
 
 /*
 Consider balanced workload among group members:
@@ -175,7 +202,7 @@ console.log(x);
 			if(v["video"] === 7 || v["video"] === 3){ 
 				div = 3;
 			}
-			out .= v["video"]."\t".v["participation"]/div."\t".v["annotation"]/div."\t".v["equal"]/div."\t".v["role"]/div."\t".v["foreignclicks"]/div."\t".v["rhythm"]/div."\t".v["foreigncontributions"]/div."\n";
+			out .= v["video"]+"\t"+v["participation"]+"\t"+v["annotation"]+"\t"+v["equal"]+"\t"+v["role"]+"\t"+v["foreignclicks"]+"\t"+v["rhythm"]+"\t"+v["foreigncontributions"]."\n";
 		}
 	
 		//echo out;

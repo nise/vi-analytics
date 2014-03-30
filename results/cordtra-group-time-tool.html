@@ -82,7 +82,11 @@ d3.tsv("data/cordtra-group-time-tool.tsv", function(error, data) {
 			case "videopaused": d.action = "video navigation";break;
 			case "videoplayed": d.action = "video navigation";break;
 			case "videoended": d.action = "video navigation";break;
+			case "seek_start": d.action = "video navigation";break;
+			case "seek_end": d.action = "video navigation";break;
 			case "assessmentdisplaybegin": d.action = "assessment";break;
+			case "assessment submit": d.action = "assessment";break;
+			case "finish_assessment": d.action = "assessment";break;
 			case "submitassessmenttask": d.action = "assessment submit";break;
 			case "assessmentcorrect": d.action = "assessment";break;
 			case "[call": d.action = "assessment";break;
@@ -92,6 +96,10 @@ d3.tsv("data/cordtra-group-time-tool.tsv", function(error, data) {
 			case "clickcommentfromlist": d.action = "video navigation";break;
 			case "save": d.action = "annotation";break;
 			case "saveannotation": d.action = "annotation";break;
+			case "saveannotation toc": d.action = "annotation";break;
+			case "saveannotation tags": d.action = "annotation";break;
+			case "saveannotation assessment": d.action = "annotation";break;
+			case "saveannotation comments": d.action = "annotation";break;
 			case "deleteannotation": d.action = "annotation";break;
 		}
   });
@@ -158,7 +166,7 @@ d3.tsv("data/cordtra-group-time-tool.tsv", function(error, data) {
       .data(color.domain())
     .enter().append("g")
       .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(60," + i * 20 + ")"; });
+      .attr("transform", function(d, i) { return "translate(50," + i * 20 + ")"; });
 /*
   legend.append("rect")
       .attr("x", width - 18)

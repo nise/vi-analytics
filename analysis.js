@@ -68,7 +68,7 @@ function init(){
 			// core.getObjectOfUser(user, 'cours') == 'IPM12'
 	//		if( core.getObjectOfUser(user, 'university') == 'Z' && core.getObjectOfUser(user, 'experimental') == 'e'){
 	//		if( core.getObjectOfUser(user, 'university') == 'N' && core.getObjectOfUser(user, 'experimental') == 'e'){
-	//		if( core.getObjectOfUser(user, 'experimental') == 'e'){
+			if( core.getObjectOfUser(user, 'experimental') == 'e'){
 	//		if( core.getObjectOfUser(user, 'university') == 'Z' && core.getObjectOfUser(user, 'experimental') == 'control'){
 	//		if( core.getObjectOfUser(user, 'university') == 'N' && core.getObjectOfUser(user, 'experimental') == 'control'){
 	//		if( core.getObjectOfUser(user, 'experimental') == 'control'){ 
@@ -78,7 +78,7 @@ function init(){
 	//		if( core.getObjectOfUser(user, 'university') == 'Z'){
 	//		if( core.getObjectOfUser(user, 'university') == 'N'){
 	//	if( core.getObjectOfUser(user, 'cours') != 'IPM12' ){
-	if(true){	 		 
+	//if(true){	 		 
 			
 				if(userData[cleanlog[i].user] != undefined){ 
 					group = userData[cleanlog[i].user]['GruppeP1']; 

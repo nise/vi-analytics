@@ -42,6 +42,7 @@ var
 
 var groupData = require('./input/scm2-groups.json');
 var userData = require('./input/scm2-users.json');
+var videoMetaDataOrg = require('./input/scm2-video-metadata.json');
 	
 /*
 
@@ -61,7 +62,7 @@ exports.init = function(req, result){
 	videoMetaData = require('./input/scm2_videos.json');
 	userData = require('./input/scm2-users.json');
 	groupData = require('./input/scm2-groups.json');
-	videoMetaData = require('./input/scm2-video-metadata.json');
+	videoMetaDataOrg = require('./input/scm2-video-metadata.json');
 
 
 // PRE CALC
@@ -72,12 +73,12 @@ exports.init = function(req, result){
 // VISUALIZATION		
 //phaseActivity(userData);
 
-pathTime(sessions, 3);	
+//pathTime(sessions, 3);	
 
 // done:
-effektiveInteractions();
+//effektiveInteractions();
 // cordtra();
-//annotations(userData, videoMetaData);		
+annotations(userData, videoMetaData);		
 	
 
 return;
@@ -364,6 +365,7 @@ getVideoURL = function (id){
 }
 
 
+
 Array.prototype.search = function(val) {
     for (var i=0; i < this.length; i++){
 	    if (this[i] == val){
@@ -413,6 +415,20 @@ exports.getObjectOfUser = function(user_id, key){
 	}
 	return res;
 }
+
+exports.getObjectOfVideo = function (video_id, key){
+	var res = -99;
+	for(var i = 0; i < videoMetaDataOrg.length; i++){ 
+		if(videoMetaDataOrg[i].id == video_id && videoMetaDataOrg[i].hasOwnProperty(key)){
+			//console.log(videoMetaDataOrg[i].id +' '+ videoMetaDataOrg[i][key]);
+			res = videoMetaDataOrg[i][key];
+		} 
+	}
+	return res;
+}
+
+
+
 
 
 /*
@@ -597,19 +613,48 @@ function annotations(userData, videoMetaData){
 			res['k']['sumcomments'] += video.comments.length;
 		}
 	}
-	
 	var dataset = "Gruppe\tVideo\tTags\tKapitelmarken\tKommentare\tFragen\n"
+	var sum_anno = {e:0, k:0};
 	for(var t in res){
 		var groupp = t=='e' ? 'Experimentalgruppe' : 'Kontrollgruppe'; 
-		dataset += groupp+"\t_\t"+res[t].sumtags+'\t'+res[t].sumtoc+'\t'+res[t].sumcomments+'\t'+res[t].sumassessment+'\n';	
+		dataset += groupp+"\t_\t"+res[t].sumtags+'\t'+res[t].sumtoc+'\t'+res[t].sumcomments+'\t'+res[t].sumassessment+'\n';
+		sum_anno[t] = res[t].sumtags+res[t].sumtoc+res[t].sumcomments+res[t].sumassessment;
 	}
-	
+	console.log('Annotations per experimental and control group:')
+	console.log(dataset);
+	console.log('');
 	// write output
 	write2file('bar_group_annotations.tsv', dataset);
+
+	// Annotations per video length
+	console.log('Annotations per length of all videos per group:')
+	var exp_videos = "6;104;8;102;11;5;110;107;9;12;2;4;10;1;3;7";
+	var con_videos = "201;202;203;204;205;206;207;208;209;210;211;212;301;302;303;304;305;306;307;308;309;310;311;312"; // 301;302;303;304;305;306;307;308;309;310;311;312
+	
+	var exp_total = getLength(exp_videos.split(';'));
+	var con_total = getLength(con_videos.split(';'));
+	console.log(exp_total.toFixed(2) + ' '+sum_anno.e+' '+ sum_anno.e / exp_total);
+	console.log(con_total.toFixed(2) + ' '+sum_anno.k+' '+ sum_anno.k / con_total);
+	
 }
 
 
-
+var getLength = function(arr){
+		var length = 0.0;
+		var core = require('./core');	
+		for(var vi in arr){
+			var v = core.getObjectOfVideo(arr[vi], 'length');
+			length += toMin(v);
+		}
+		return length / 60 / 60; // in hours
+	};
+	
+var toMin = function(s){
+	var s = String(s).split(':'); 
+	if( s[0] != -99 && s[0] != NaN){
+		return Number(s[0])*60 + Number(s[1]);// + Number(s[0])/60; // in minutes
+	} return 0;
+}	
 
 
 /*

@@ -11,7 +11,7 @@ Video usage mining techniques can be applied in order to generate D3.js visualiz
 - what learning paths can be found within a collection of videos?
 - what usage patterns appear regarding a single video?
 - Analyse effectiv group interactions in collaborative learning scenarios.
-Calvani, A., Fini, A., Molino, M., & Ranieri, M. (2010). Visualizing and monitoring effective interactions in online collaborative groups. British Journal of Educational Technology, 41(2), 213–226. doi:10.1111/j.1467-8535.2008.00911.x
+> Calvani, A., Fini, A., Molino, M., & Ranieri, M. (2010). Visualizing and monitoring effective interactions in online collaborative groups. British Journal of Educational Technology, 41(2), 213–226. doi:10.1111/j.1467-8535.2008.00911.x
 
 So fare this library has been used to analyses a few field studies:
 - [IWRM education](http://www.iwrm-education.de/)
@@ -84,4 +84,9 @@ JSON data model for further procedures:
 ** mapping from csv to JSON
 ** select analyses procedures
 * mboston like output of rendered D3/SVG graphics including a general and specific description of the plot type and visualized data
+
+
+## Related Works ##
+* (https://github.com/mintuhouse/VideoAnalytics), written in PHP
+* ...
  
