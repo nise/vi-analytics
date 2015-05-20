@@ -1,13 +1,27 @@
 /*
 
 
+Run D3.js on serverside
+http://mango-is.com/blog/engineering/pre-render-d3-js-charts-at-server-side.html
+
 
 time series in node: https://github.com/cgbystrom/hoard
 rrd format: http://oss.oetiker.ch/rrdtool/tut/rrd-beginners.en.html
 
+Bigger frameworks for various analyses
+https://github.com/CIShell/CIShell
 
 
+R und node.js
+https://gitorious.org/r-node/r-node/source/3cd7d5bb0b2ea73ae0ea7ab68e839cb8af2567f0:
 
+
+http://square.github.io/cube/
+intro: http://flowingdata.com/2011/09/21/quick-time-series-visualization-with-cube/
+
+
+Web Analyse
+http://piwik.org/docs/installation-maintenance/
 
 */
 
@@ -23,7 +37,7 @@ var
 	flash = require('connect-flash'),
 	server = require('http').createServer(app),
 	fs = require('node-fs'),
-	analytics = require('./core')
+	core = require('./core')
 	;
 
 	server.listen(3000);
@@ -33,7 +47,7 @@ var
     app.set('port', process.env.PORT || 3000);
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.bodyParser()),
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'results')));
     // Passport:
 		app.set('views', __dirname + '/views');
 		app.set('view engine', 'ejs');
@@ -55,6 +69,8 @@ var
 	console.log('............................................................................\n\n');
 	
 	
+	
+	
 	/*
 	Scan modules folder to register modules	
 	**/
@@ -67,22 +83,42 @@ var
 		      //getFiles(name);
 		  }else{
 		  		if(name.slice(-1) === '~'){ break;}
-		      console.log('Running module: '+ files[i])
-		      var mod = require(name);
+		      //console.log('Running module: '+ files[i])
+		      //var mod = require(name);
 		      //mod.init();
+		      break;
 		  }
 	}
 
 	
 //
 //require('./analysis');	
+//require('./modules/distribution').init();
 //require('./modules/time-effort').init();
-//	require('./modules/feedback-analysis').init();
-require('./modules/effective-interactions').init();
+//require('./modules/feedback-analysis').init();
 
-//analytics.init();
-	//app.get('/analytics', analytics.init);
-	
+//require('./modules/effective-interactions').init();
+
+core.init();
+
+var config = require("./input/etuscript/config.json");
+//require('./modules/annotations').init(config);
+//require('./modules/fill-in').init(config);
+//require('./modules/ondemandtasks').init(config);
+require('./modules/etherpad').init(config);
+
+
+//app.get('/analytics', core.init);
+
+
+
+
+
+
+
+
+
+
 
 
 

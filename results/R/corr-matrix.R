@@ -10,6 +10,8 @@ setwd("/home/abb/Documents/www2/vi-analytics/results/R/")
 # load data
 d <- read.table("../data/corr-matrix-interactions.csv", sep=",", stringsAsFactors=FALSE, header=TRUE, fill=TRUE)
 
+
+
 # prepare data
 m <- cbind(d,d)
 # ? pearson, spearman oder kendall? Man sollte die Methode wählen, die die niedrigsten Korrelationen ausgebibt
@@ -19,6 +21,13 @@ COR <- cor(d, method="kendall", use="pairwise")
 print(COR)
 x <- d
 y <- d
+
+# Kendalls tau ist hier nicht zulässig!! 
+#https://de.wikipedia.org/wiki/Zusammenhangsma%C3%9F#F.C3.BCr_zwei_Variablen_unterschiedlichen_Skalenniveaus
+#print("------------------xx")
+#library(vcd)
+#assocstats(d)
+#print("------------------xxx")
 
 # draw image
 image(x=seq(dim(x)[2]), y=seq(dim(y)[2]), axes = FALSE, z=COR, xlab="", ylab="", col = colorRampPalette(c("white", "yellow", "red"))(10))

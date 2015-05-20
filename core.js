@@ -13,7 +13,7 @@ toDo:
 -- Upload, Felder zuordnen, Lizenz festlegen, daten für visualisierung berechnen
 
 IWRM
-file:///home/abb/Documents/www2/scm2-node/public/vi-lab/analysis/cordtra-video-time.html
+file:///home/abb/Documents/www2/vi-analytics/public/vi-lab/analysis/cordtra-video-time.html
 file:///home/abb/Documents/www2/scm2-node/public/vi-lab/analysis/bar_sessions_per_country.html
 file:///home/abb/Documents/www2/scm2-node/public/vi-lab/analysis/session_activity_distribution.html
 file:///home/abb/Documents/www2/scm2-node/public/vi-lab/analysis/bar_activities_per_video.html
@@ -48,6 +48,12 @@ var videoMetaDataOrg = require('./input/scm2-video-metadata.json');
 
 **/	
 exports.init = function(req, result){
+	
+	// load config and integrate all data
+	var config = require("./input/etuscript/config.json");
+	convertLog2( config, true );  
+
+return;
 
 // PREPARE DATA	
 	//convertLog({filename:'scm2.csv', type:'scm2'}); 
@@ -58,6 +64,7 @@ exports.init = function(req, result){
 	//convertLog({filename:'iwrm-clean.csv', type:'iwrm'}); return;
 
 // INPUT DATA SCM
+/*
 	cleanlog = require('./input/scm2.json');
 	videoMetaData = require('./input/scm2_videos.json');
 	userData = require('./input/scm2-users.json');
@@ -68,7 +75,7 @@ exports.init = function(req, result){
 // PRE CALC
 	var sessions = getSessions();
 	var paths = frequentPaths(sessions, 3);
-	
+	*/
 	
 // VISUALIZATION		
 //phaseActivity(userData);
@@ -76,27 +83,33 @@ exports.init = function(req, result){
 //pathTime(sessions, 3);	
 
 // done:
-//effektiveInteractions();
+//effektiveInter();
 // cordtra();
-annotations(userData, videoMetaData);		
-	
+//annotations(userData, videoMetaData);		
+
+var path = '/home/abb/Documents/proj_001_doc/pres/20150204-BGU/data/scm2-users.json';	
+var ano = anonymizeData(path, ['firstname', 'name', 'user'], 'md5');
 
 return;
+
 // INPUT DATA IWRM
-	cleanlog = require('./iwrm.json');
-	videoMetadata = require('./iwrm-data-video.json')
+	cleanlog = require('./input/iwrm.json');
+	videoMetadata = require('./input/iwrm-data-video.json')
 
 // PRE CALC
 	var sessions = getSessions();
+	//var paths = frequentPaths(sessions, 3);
+
+	//return;
 	var categoryOfVideo = getVideoCategories(videoMetadata);
 	var categoryNameOfVideo = getVideoCategoryName(videoMetadata);
-	var paths = frequentPaths(sessions, 3);
+	
 
 // VISUALIZATION
-//	sessionActivityDistribution(sessions);
-//	sessionsPerCountry(sessions)
-//	simpleCordtra();		
-	frequentPathsMatrix(paths, categoryOfVideo, node_list);
+	//sessionActivityDistribution(sessions);
+	sessionsPerCountry(sessions)
+	//simpleCordtra();		
+	//frequentPathsMatrix(paths, categoryOfVideo, node_list);
 
 //pathTime(sessions, 3);	
 
@@ -112,12 +125,244 @@ return;
 
 
 /*****************************************************************************/
+/*
+- script transitions
+
+*/
+
+
+convertLog2 = function(conf, debug){ 
+	
+	var geoip = require('geoip-lite');	
+	// var log = fs.createWriteStream(__dirname+'/input/'+req.type+'.json', {'flags': 'a'}); 
+	var cleanLog = [];
+	// load raw log
+	fs.readFile( conf.raw_logfile, 'utf8', function read(err, data) { 
+		if (err) throw err;
+  	console.log('Read raw log file: ' + conf.raw_logfile);
+  	
+  	var 
+			location = {},
+			action = {},
+			j = 0,
+			el = [],
+			x = [],
+			a_tmp = [],
+			csv_amount_of_fields = [],
+			csv_empty_fields = [],
+  		phases = require( conf.script_phases ).transitions,
+  		videos = require( conf.videos )
+  		users = require( conf.users )
+  		groups = require( conf.groups )
+  		;
+  	
+  	// process lines
+  	lines = data.toString().split('\n');
+  	for(var i = 0; i < lines.length-1; i++){ //if(i == 10) break;
+  		if(lines[i] == undefined ){
+  			console.warning('Ignores Rows: '+i +' '+lines[i-1].utc);
+  		}else{
+				el = lines[i].toString().split(',');
+				// do some statistics about the data consistency
+				csv_amount_of_fields[i] = el.length;
+				
+				
+				// filter test group
+				if( conf.exclude_groups.indexOf( el[ conf.raw_field_mapping.group ] ) == -1 ){
+					// pre-process
+					
+					if(el[  conf.raw_field_mapping.action_details  ] != undefined){
+						a_tmp = el[  conf.raw_field_mapping.action_details  ].split(':');
+						action_value = el[  conf.raw_field_mapping.action_details  ]
+					}else{
+						//console.log(i, el);
+					}
+					
+					if(el.length != 9 && debug){
+						console.log(i, el.length, el);
+					}
+						
+					switch(a_tmp[0]){
+						case 'loadvideo' : 								action = {command:a_tmp[0], value:action_value.replace('loadvideo:','')}; break;
+						case 'videoplayed' : 							action = {command:a_tmp[0], value:action_value.replace('videoplayed:','')}; break;
+						case 'videopaused' : 							action = {command:a_tmp[0], value:action_value.replace('videopaused:','')}; break;
+						case 'videoended' : 							action = {command:a_tmp[0], value:action_value.replace('videoended:','')}; break;
+						case 'assessmentdisplaybegin' : 	action = {command:a_tmp[0], value:''}; break;
+						case 'submitassessmenttask' : 		action = {command:a_tmp[0], value:a_tmp[1]}; break;
+						case 'assessmentcorrect' : 				action = {command:a_tmp[0], value:''}; break;
+						case 'clicktocfromlist' : 				action = {command:a_tmp[0], value:action_value.replace('clicktocfromlist:')}; break;
+						case 'clicktagfromlist' : 				action = {command:a_tmp[0], value:action_value.replace('clicktagfromlist:')}; break;
+						case 'clickcommentfromlist' : 		action = {command:a_tmp[0], value:action_value.replace('clickcommentfromlist:')}; break;
+						case 'clickassessmentfromlist' : 	action = {command:a_tmp[0], value:action_value.replace('clickassessmentfromlist:')}; break;
+						case 'save' : 										action = {command:a_tmp[0], value:a_tmp[1]}; break;
+						case 'deleteannotation' : 				action = {command:a_tmp[0], value:a_tmp[1]}; break;
+
+						case '[call' : 										action = {command:a_tmp[1].replace(']',''), value:''}; break;
+						case 'saveannotation' : 					x = a_tmp[1].split(' '); action = {command:a_tmp[0]+' '+x[0], value:x[1]}; break;
+						default : x = action_value.split(' '); action = {command:x[1].replace(':',''), value:Number(x[2])}; 
+					} 
+					
+					//var action_tmp = el[  conf.raw_field_mapping.action_details  ] != undefined ? el[  conf.raw_field_mapping.action_details  ].split(':') : 'nix';
+					
+					/*
+					For a given time stamp it returns the script phase with that time event occured. 
+					Since the timestamps of the script phases are sorted we can compare them against the given stamp.
+					**/
+					var getPhase = function (stamp){
+								for (var i = 0; i < phases.length; i++){
+									if( stamp < phases[i]){
+										return i+1;
+									} 
+								}
+								return phases.length;
+							}
+					/*
+					Identify the video file for a given video-id
+					**/
+					var getVideoFile = function(id){ 
+						for (var i = 0; i < videos.length; i++){
+								if( id === videos[i]._id ){
+									return {
+										video_file: videos[i].video.replace("http://141.46.8.101/beta/e2script/", ''),
+										video_length: videos[i].metadata[0].length,
+										video_language: videos[i].metadata[0].language
+									};	
+								} 
+							}
+							return {
+										video_file: "xxx",
+										video_length: "xxx",
+										video_language: "xxx"
+									};
+						}
+					/*
+					Identify the video file for a given video-id
+					**/
+					var getUserData = function(id){ 
+						for (var i = 0; i < users.length; i++){
+								if( Number(id) === Number(users[i].id) ){
+									return {
+										user_name: users[i].username,
+										user_gender: users[i].gender,
+										user_culture: users[i].culture
+									};	
+								} 
+							}
+							return {
+										user_name: 'xxx',
+										user_gender: 'xxx',
+										user_culture: 'xxx'
+									};
+						}	
+					var user = getUserData( el[ conf.raw_field_mapping.user ] );
+					var video = getVideoFile( el[ conf.raw_field_mapping.video_id ] );
+							
+					// fill data modell
+					cleanLog[j] = {
+						utc: 							Number( el[ conf.raw_field_mapping.utc ] ), 
+						phase: 						getPhase( el[ conf.raw_field_mapping.utc ] ),
+						date:  						el[ conf.raw_field_mapping.date ], 
+						time:  						el[ conf.raw_field_mapping.time ], 
+						
+						group:  					el[ conf.raw_field_mapping.group ], 
+						user:  						Number( el[ conf.raw_field_mapping.user ] ) , 
+						user_name:  			conf.raw_field_mapping.user_name === -1 ? user.user_name : el[ conf.raw_field_mapping.user_name ], 
+						user_gender:			conf.raw_field_mapping.user_gender === -1 ? user.user_gender : el[ conf.raw_field_mapping.user_gender ],
+						user_culture:			conf.raw_field_mapping.user_culture === -1 ? user.user_culture : el[ conf.raw_field_mapping.user_culture ], 
+						
+						video_id:  				el[ conf.raw_field_mapping.video_id ], 
+						video_file:  			conf.raw_field_mapping.video_file === -1 ? video.video_file : el[ conf.raw_field_mapping.video_file ], 
+						video_length:  		conf.raw_field_mapping.video_length === -1 ? video.video_length : el[ conf.raw_field_mapping.video_length ], 
+						video_language:  	conf.raw_field_mapping.video_language === -1 ? video.video_language : el[ conf.raw_field_mapping.video_language ], 
+						
+						action:  					action.command,//action_tmp[0], 
+						action_details: 	action.value,//el[ conf.raw_field_mapping.action_details ],
+						
+						user_agent:  			el[ conf.raw_field_mapping.user_agent ],
+						ip: 							el[ conf.raw_field_mapping.ip ],
+						flag: false // storage parameter for session detection
+					}
+					j++;
+				}// end if filter
+			}		
+		};	// end for	
+		
+		// output debug info
+		if(debug){	
+			console.log('.....................');
+			console.log('Number of lines: '+lines.length);
+			console.log('Distribution of the number of fields per row:'); 
+			console.log(new gauss.Collection(csv_amount_of_fields).distribution());
+			console.log('Empty values per field'); 
+			console.log(new gauss.Collection(csv_empty_fields).distribution());
+			console.log('.....................');
+		}	
+		
+		//console.log(cleanLog);
+		
+		// write clean log to fs	
+		fs.writeFile( conf.clean_log, JSON.stringify( cleanLog, undefined,"\t"), function(err) {
+		  if(err) {
+		      console.log('Error: '+err);
+		  } else {
+		      console.log('The clean log was saved to ' + conf.clean_log );
+		  }
+		});// end fs out
+	
+	});// end read fs
+} // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 Loads logfile and converts and cleans it into a json file that is saved loacaly
 @filename The csv file that is going to be converted and cleaned
 @typ Logfile type 
 **/
+
 convertLog = function(req, res){
 	var geoip = require('geoip-lite');	
 	var log = fs.createWriteStream(__dirname+'/input/'+req.type+'.json', {'flags': 'a'}); 
@@ -146,7 +391,61 @@ convertLog = function(req, res){
 				if(el.length ==10){ console.log(data[i]); }
 				//csv_empty_fields[i] = new gauss.Vector(el).find(function(e) { return e === ''; }).toVector().sum();
 				// distinguish different log-types for cleanup and preparation	 
-				if(req.type == 'scm2'){
+				////////////////////////////////////////////////////////////////////
+				if(req.type == 'etuscript'){
+					/*
+					0 .. timestamp
+					1 date
+					2 time
+					3 user
+					4 --
+					5 _user id
+					6 _group id
+					7 command
+					8 user agend
+			
+					*/
+					// filter test group
+					if(el[6] !== " x"){
+						// pre-process
+						phase = getPhaseByDate(el[1]);
+						
+						a_tmp = el[7].split(':');
+						switch(a_tmp[0]){
+							case 'loadvideo' : action = {command:a_tmp[0], value:el[7].replace('loadvideo:','')}; break;
+							case 'videoplayed' : action = {command:a_tmp[0], value:el[7].replace('videoplayed:','')}; break;
+							case 'videopaused' : action = {command:a_tmp[0], value:el[7].replace('videopaused:','')}; break;
+							case 'videoended' : action = {command:a_tmp[0], value:el[7].replace('videoended:','')}; break;
+							case 'assessmentdisplaybegin' : action = {command:a_tmp[0], value:''}; break;
+							case 'submitassessmenttask' : action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case '[call' : action = { command: a_tmp[1].replace(']',''), value:''}; break;
+							case 'assessmentcorrect' : action = {command:a_tmp[0], value:''}; break;
+							case 'clicktocfromlist' : action = {command:a_tmp[0], value:el[7].replace('clicktocfromlist:')}; break;
+							case 'clicktagfromlist' : action = {command:a_tmp[0], value:el[7].replace('clicktagfromlist:')}; break;
+							case 'clickcommentfromlist' : action = {command:a_tmp[0], value:el[7].replace('clickcommentfromlist:')}; break;
+							case 'clickassessmentfromlist' : action = {command:a_tmp[0], value:el[7].replace('clickassessmentfromlist:')}; break;
+							case 'save' : action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case 'deleteannotation' : action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case 'saveannotation' : x = a_tmp[1].split(' '); action = {command:a_tmp[0]+' '+x[0], value:x[1]}; break;
+							default : x = el[7].split(' '); action = {command:x[1], value:Number(x[2])}; 
+						} 
+						// fill data modell
+						cleanLog[j] = {
+							utc: Number(el[0]), 
+							phase: Number(phase), 
+							date: el[1], 
+							time: el[2], 
+							video: Number(el[3]), 
+							group: Number(el[5]), 
+							user: Number(el[6]), 
+							action: el[7], 
+							action_details: action, //{command:, value:'',}, // xxx
+							user_agent: el[8],
+							flag: false // storage parameter for session detection
+						};
+					}
+				////////////////////////////////////////////////////////////////////	
+				}else if(req.type == 'scm2'){
 					// filter test user
 					if(el[6] < 78){
 						// pre-process
@@ -183,9 +482,10 @@ convertLog = function(req, res){
 							action: el[7], 
 							action_details: action, //{command:, value:'',}, // xxx
 							user_agent: el[8],
-							flag: false
+							flag: false // storage parameter for session detection
 						};
 					}
+				////////////////////////////////////////////////////////////////////	
 				}else if(req.type == 'iwrm'){
 					var video = '?';
 					if(el[4] != undefined){
@@ -207,7 +507,7 @@ convertLog = function(req, res){
 					location = geoip.lookup(el[3]) == null  ? false : geoip.lookup(el[3]);
 					// 
 					cleanLog[j] = {
-						flag: false, 
+						flag: false, // storage parameter for session detection
 						utc: el[0], 
 						phase: 0, 
 						date: el[1], 
@@ -231,7 +531,7 @@ convertLog = function(req, res){
   	console.log('Empty values per field'); 
   	console.log(new gauss.Collection(csv_empty_fields).distribution());
 		console.log('.....................');
-  	return; 
+  	//return; 
   	//console.log(cleanLog);
   	var fs = require('fs');
 		fs.writeFile(__dirname+'/input/'+req.type+'.json', JSON.stringify(cleanLog,undefined,"\t"), function(err) {
@@ -244,7 +544,37 @@ convertLog = function(req, res){
 	});
 };		
 	
-
+/*
+Anonymize data
+**/
+anonymizeData = function(path, fields, method){
+	var crypto = require('crypto');
+	// get file
+	var json = require(path);
+	// iterate documents of the file
+	var ii = 0;
+	for(var i in json){
+		// iterate fields that should be hashed 
+		for(var j = 0; j < fields.length; j++){ 
+			//console.log(json[i][fields[j]]);
+			if(json[i][fields[j]] != undefined){
+				json[i][fields[j]] = crypto.createHash('md5').update(json[i][fields[j]]).digest('hex');
+				json[i]['id'] = i;
+				ii++;	
+			}
+		}
+	}
+	// write output
+	var fs = require('fs');
+	fs.writeFile(path.replace(/\.([0-9a-z]+)(?:[\?#]|$)/i, '')+'_anonymized.json', JSON.stringify(json,undefined,"\t"), function(err) {
+	  if(err) {
+	      console.log('Error: '+err);
+	  } else {
+	      console.log('The file was saved to: '+path+'_anonymized');
+	  }
+	});
+	return json;
+};
 
 
 /*
@@ -255,7 +585,21 @@ getUserData = function(req){
 			csv().from.string(data, {comment: '#'} )
 				.to.array( function(data){ 
 					for(var i = 1; i < data.length; i++){ 
-						dataset[i] = {firstname:data[i][0],name:data[i][1],university:data[i][3],cours:data[i][4],priorgroup:data[i][5],GruppeP1:data[i][6],PeerGroup:data[i][7],GruppeP2:data[i][8],GruppeP3:data[i][9],experimental:data[i][10],role:data[i][12],user:data[i][13]}; 
+						dataset[i] = {
+							firstname:data[i][0],
+							name:data[i][1],
+							university:data[i][3],
+							cours:data[i][4],
+							priorgroup:data[i][5],
+							GruppeP1:data[i][6],
+							PeerGroup:data[i][7],
+							GruppeP2:data[i][8],
+							GruppeP3:data[i][9],
+							experimental:data[i][10],
+							role:data[i][12],
+							user:data[i][13],
+							culture:data[i][14]
+						}; 
 						//console.log(userData[i]);				
 					}// end for
 					var fs = require('fs');
@@ -451,6 +795,19 @@ function getPhaseByDate(d){
 	}	
 }
 
+/*
+For a given time stamp it returns the script phase with that time event occured. 
+Since the timestamps of the script phases are sorted we can compare them against the given stamp.
+**/
+function getPhaseByUTC(stamp){
+	for (var i = 0; i < phases.length; i++){
+		if( stamp < phases[i]){
+			return i+1;
+		} 
+	}
+	return phases.length;
+}
+
 /***/
 function test(res){
 	var 
@@ -515,13 +872,39 @@ exports.resultSet = function(arr){
 		stdev : new gauss.Vector(arr).stdev(),
 		min : new gauss.Vector(arr).min(),
 		max : new gauss.Vector(arr).max(),
+		sum : new gauss.Vector(arr).sum(),
 		range:  new gauss.Vector(arr).range(),
-		quartile: new gauss.Vector(arr).quantile(4),
+		quartile: arr.length > 4 ? new gauss.Vector(arr).quantile(4) : -1,
 		percentile : new gauss.Vector(arr).percentile(.68),
 		varCoeff : (new gauss.Vector(arr).stdev() / new gauss.Vector(arr).mean()), //Coefficient of variation
 		density : new gauss.Vector(arr).density(.25)
 	};
 }	
+
+/*
+Konverts object into an associative array
+**/
+exports.obj2arr = function(obj){ 
+	return Object.keys(obj).map(function (key) {
+	  return obj[key];
+	});
+}
+
+
+exports.uniqArray = function(a) {
+    var seen = {};
+    var out = [];
+    var len = a.length;
+    var j = 0;
+    for(var i = 0; i < len; i++) {
+         var item = a[i];
+         if(seen[item] !== 1) {
+               seen[item] = 1;
+               out[j++] = item;
+         }
+    }
+    return out;
+}
 
 
 
@@ -768,8 +1151,9 @@ function getSessions(){
 				session_arr['session-'+i].push(cleanlog[i]);
 				cleanlog[i].flag = true;
 				for(var j = i; j < cleanlog.length; j++){  //if((Number(cleanlog[j].utc) - tmp_t) < 50000) console.log('kleiner')
-						if(tmp_session == cleanlog[j].user_agent+','+cleanlog[j].ip && (Number(cleanlog[j].utc) - tmp_t) < 14400000  && cleanlog[j].flag == false){
+						if(tmp_session == cleanlog[j].user_agent+','+cleanlog[j].ip && (Number(cleanlog[j].utc) - tmp_t) < 10800000  && cleanlog[j].flag == false){
 							session_arr['session-'+i].push(cleanlog[j]);
+//							console.log('session-'+i);
 							cleanlog[j].flag = true;
 						}	
 						if((cleanlog[j].utc - tmp_t) > 14400000){
@@ -820,8 +1204,12 @@ function getVideoCategories(json){
 	}
 	// get categories
 	for(var video in json.stream){
-		arr[json.stream[video].id] = loseCodeHash( json.stream[video].metadata[0].category ); 
-		//console.log('-'+json.stream[video].id+'- '+loseCode(json.stream[video].metadata[0].category));
+		if(json.stream[video].metadata != undefined){
+			arr[json.stream[video].id] = loseCodeHash( json.stream[video].metadata[0].category ); 
+			//console.log('-'+json.stream[video].id+'- '+ json.stream[video].metadata[0].category);
+		}else{
+			//console.log(json.stream[video].metadata);
+		}
 	}
 	return arr;
 }
@@ -834,8 +1222,11 @@ function getVideoCategoryName(json){
 	var arr = [];
 	// get categories
 	for(var video in json.stream){
+		if(json.stream[video].metadata != undefined){
 		arr[json.stream[video].id] = json.stream[video].metadata[0].category; 
 		//console.log('-'+json.stream[video].id+'- '+loseCode(json.stream[video].metadata[0].category));
+		
+		}
 	}
 	return arr;
 }			
@@ -866,21 +1257,24 @@ function sessionActivityDistribution(session_arr){
 /*
 sessions per Country
 **/
-function sessionsPerCountry(session_arr){
+function sessionsPerCountry(session_arr){ 
 // distribution of activities
 	var	countries = [],
 			no_country = 0;
 	
 	for(var key in session_arr){
-		if(session_arr[key][0].location == false){
+		//console.log(session_arr[key])
+		if(session_arr[key].location === false){
 			//console.log('no entry'); 
 			no_country++;
-		}
-		if(isNaN(countries[session_arr[key][0].location.country])){
-			countries[session_arr[key][0].location.country] = 1;
-		}else{
-			countries[session_arr[key][0].location.country]++;
-		}
+		}else{ 
+			if(session_arr[key][0] != undefined){  
+			if(session_arr[key][0].location.country in countries == false){
+				countries[session_arr[key][0].location.country] = 1;
+			}else{
+				countries[session_arr[key][0].location.country]++;
+			}}
+		}	
 		
 	}
 	console.log('No country found for '+no_country+' sessions');
@@ -963,7 +1357,9 @@ Determine Learning Paths
 function frequentPaths(session_arr, minPathLength){ 
 	var	session = {},
 			path = '',
-			paths = []
+			paths = [],
+			paths_as_tsv = '',
+			j = 0;
 			// node_list = [], // global
 		;
 			
@@ -985,9 +1381,15 @@ function frequentPaths(session_arr, minPathLength){
 			if(path.split(',').length > minPathLength){
 				//console.log(path);
 				paths.push(path.replace('MAIN PAGE,','').split(','));
+				paths_as_tsv += j+' '+path.replace('MAIN PAGE,','').replace(/,/g, '-') +'\n';
+				j++;
+
 			}		
 		}	
 	}
+	
+	console.log(paths_as_tsv);
+	write2file('iwrm-paths.tsv',paths_as_tsv);
 	return paths;	
 }
 

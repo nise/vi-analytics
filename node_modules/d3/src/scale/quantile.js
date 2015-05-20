@@ -1,6 +1,7 @@
 import "../arrays/ascending";
 import "../arrays/bisect";
 import "../arrays/quantile";
+import "../math/number";
 import "scale";
 
 d3.scale.quantile = function() {
@@ -24,7 +25,7 @@ function d3_scale_quantile(domain, range) {
 
   scale.domain = function(x) {
     if (!arguments.length) return domain;
-    domain = x.filter(function(d) { return !isNaN(d); }).sort(d3.ascending);
+    domain = x.map(d3_number).filter(d3_numeric).sort(d3_ascending);
     return rescale();
   };
 

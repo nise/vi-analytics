@@ -77,10 +77,23 @@ JSON data model for further procedures:
 - [Venn Diagrams](https://github.com/benfred/venn.js)
 
 
-## Road Map ##
+## Road Map - ToDo ##
+* Report
+ * List all modules
+ * views: 
+ 	- table nxm
+ 	- single plot
+ 	- plot matrix
+ 	- header
+ 	- description
+
+
+
+
 * Include meta data descriptors for data sets in order to pre pare them for publishing in open science data shops
 * UI 
 ** uploading data sets 
+** See viewing activity and drop-off rates to determine audience attention span minute-by-minute.
 ** mapping from csv to JSON
 ** select analyses procedures
 * mboston like output of rendered D3/SVG graphics including a general and specific description of the plot type and visualized data

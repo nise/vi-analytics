@@ -1,6 +1,7 @@
 
 var 
 	core = require('./core'),
+	gauss = require('gauss'),
 	cleanlog = require('./input/scm2.json'),
 	videoMetaData = require('./input/scm2_videos.json'),
 	userData = require('./input/scm2-users.json'),
@@ -23,6 +24,11 @@ exports.group_user_annotations = analysis.group_user_annotations;
 exports.group_user_clicks_elsewhere = analysis.group_user_clicks_elsewhere;
 exports.group_user_contributions_elsewhere = analysis.group_user_contributions_elsewhere;
 exports.perception_per_user = analysis.perception_per_user;
+exports.activity_per_cultural_background = analysis.activity_per_cultural_background;
+exports.ttt = analysis.ttt;
+exports.ccc = analysis.ccc;
+exports.actionsPUPC = analysis.actionsPUPC;
+exports.contributions_per_cultural_background = analysis.contributions_per_cultural_background;
 
 
 /*
@@ -47,10 +53,16 @@ function init(){
 	this.group_user_contributions_elsewhere = [];
 	this.perception_per_user = [];		
 	this.user_annotations = [];	
+	this.activity_per_cultural_background = {de:0, other:0};
+	this.ttt = [];
+	this.ccc = [];
+	this.actionsPUPC =[];
+	this.contributions_per_cultural_background = {de:0, other:0};
 	// xxx this needs to be more flexible # UI
 	action_filter = [0,'save','deleteannotation','saveannotation','loadvideo','videoplayed','videopaused','videoended','assessmentdisplaybegin','submitassessmenttask','[call','assessmentcorrect','clicktocfromlist','clicktagfromlist','clickcommentfromlist','clickassessmentfromlist','seek_start','seek_end', 'saveannotation toc','saveannotation assessment','saveannotation toc','saveannotation toc'];
 	annotation_filter = [0,'save','deleteannotation','saveannotation','submitassessmenttask', 'saveannotation toc','saveannotation assessment','saveannotation toc','saveannotation tag'];
-		
+	
+	var video_source_in_use = '';	
 	
 	// xxx reduce to pahse x	
 	//analyse logfile
@@ -68,7 +80,7 @@ function init(){
 			// core.getObjectOfUser(user, 'cours') == 'IPM12'
 	//		if( core.getObjectOfUser(user, 'university') == 'Z' && core.getObjectOfUser(user, 'experimental') == 'e'){
 	//		if( core.getObjectOfUser(user, 'university') == 'N' && core.getObjectOfUser(user, 'experimental') == 'e'){
-			if( core.getObjectOfUser(user, 'experimental') == 'e'){
+	//		if( core.getObjectOfUser(user, 'experimental') == 'e'){
 	//		if( core.getObjectOfUser(user, 'university') == 'Z' && core.getObjectOfUser(user, 'experimental') == 'control'){
 	//		if( core.getObjectOfUser(user, 'university') == 'N' && core.getObjectOfUser(user, 'experimental') == 'control'){
 	//		if( core.getObjectOfUser(user, 'experimental') == 'control'){ 
@@ -78,7 +90,16 @@ function init(){
 	//		if( core.getObjectOfUser(user, 'university') == 'Z'){
 	//		if( core.getObjectOfUser(user, 'university') == 'N'){
 	//	if( core.getObjectOfUser(user, 'cours') != 'IPM12' ){
-	//if(true){	 		 
+//	if( core.getObjectOfUser(user, 'culture') == 'other'){
+
+// alle deutschen
+//if( core.getObjectOfUser(user, 'university') == 'Z' && core.getObjectOfUser(user, 'culture') == 'de'){
+//core.getObjectOfVideo(video_use, 'language')
+// alle deutsche + deutsche videos
+//if( core.getObjectOfUser(user, 'culture') == 'de' ){
+
+
+	if(core.getObjectOfVideo(cleanlog[i].video, 'language') == 'en'){	 		 
 			
 				if(userData[cleanlog[i].user] != undefined){ 
 					group = userData[cleanlog[i].user]['GruppeP1']; 
@@ -89,7 +110,7 @@ function init(){
 				video = core.getVideoOfGroup(group).split(';')[0];
 				// get video in use
 				video_use = cleanlog[i].video; 	
-			
+				video_source_in_use = Number(String(video_use).charAt(String(video_use).length-1));
 			
 				// total actions per group, user and day
 				if (group in this.actions_per_day == false){ this.actions_per_day[group] = {}; }
@@ -126,6 +147,16 @@ function init(){
 				if(typeof cleanlog[i]['utc'] == 'function'){ console.log(''+i)}
 				this.perception_per_user[user].push(cleanlog[i]['utc']);	
 			
+				// actions per cultural background / per video
+				this.activity_per_cultural_background[core.getObjectOfUser(user, 'culture')]++;
+				if (video_source_in_use in this.ccc == false){ this.ccc[video_source_in_use] = {video_id: video_source_in_use, language: core.getObjectOfVideo(video_use, 'language'), de:0, other:0, total:0 }; }
+				this.ccc[video_source_in_use][core.getObjectOfUser(user, 'culture')]++;
+				this.ccc[video_source_in_use].total++;	
+				
+				//
+				if (user in this.actionsPUPC == false){ this.actionsPUPC[user] = { user: user, actions:0, contributions:0, culture: core.getObjectOfUser(user, 'culture') }; }	
+				this.actionsPUPC[user].actions++;
+				
 				// destilate value actions
 				if(action_filter.search(action) > 0 ){
 			
@@ -137,7 +168,14 @@ function init(){
 						if (user in user_annotations[group] == false){ user_annotations[group][user] = 0; }
 						user_annotations[group][user]++;
 						*/
-					
+						
+						// actions per cultural background
+						this.contributions_per_cultural_background[String(core.getObjectOfUser(user, 'culture'))]++;
+						if (video_source_in_use in this.ttt == false){ this.ttt[video_source_in_use] = {video_id: video_source_in_use, language: core.getObjectOfVideo(video_use, 'language'), de:0, other:0, total:0}; }
+						this.ttt[video_source_in_use][core.getObjectOfUser(user, 'culture')]++;
+						this.ttt[video_source_in_use].total++;
+						this.actionsPUPC[user].contributions++;
+			
 						// annotations per user
 						if (user in this.annotations_per_user == false){ this.annotations_per_user[user] = 0; }
 						this.annotations_per_user[user]++;
@@ -172,5 +210,14 @@ function init(){
 			}
 		}	
 	} 
+	console.log('++++++++++++++++++++++++++++');
+	console.log('Activities and Contributions per cultural background');
+	console.log(this.activity_per_cultural_background);
+	console.log(this.contributions_per_cultural_background);
+	console.log(this.ttt);
+	console.log('#####');
+	console.log(this.ccc);
+	
+	console.log('++++++++++++++++++++++++++++');
 }	
 		

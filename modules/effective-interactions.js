@@ -39,7 +39,8 @@ exports.init = function(){
   // get experimental group only, constellation of the first phase
   groups = tt.find(function(e) { return e.persons < 4 }).map(function(thing) { return thing.id; }).toVector();  	
 	// get control groups only
-	groups = tt.find(function(e) { return e.persons === 18 }).map(function(thing) { return thing.id; }).toVector();  	
+	groups = tt.find(function(e) { return e.persons === 18 }).map(function(thing) { return thing.id; }).toVector();
+		  	
 	// get control and experimental group
 	groups = tt.find(function(e) { return e.persons === 18 || e.persons < 4 }).map(function(thing) { return thing.id; }).toVector();  	
 	
@@ -140,6 +141,7 @@ exports.init = function(){
 	s += 'max'+'\t'+ new gauss.Vector(x[1]).max() +'\t'+ new gauss.Vector(x[2]).max() +'\t'+ new gauss.Vector(x[3]).max() +'\t'+ new gauss.Vector(x[4]).max() +'\t'+ new gauss.Vector(x[5]).max() +'\t'+ new gauss.Vector(x[6]).max() +'\t'+ new gauss.Vector(x[7]).max() +'\n';	
 	s += 'mean'+'\t'+ new gauss.Vector(x[1]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[2]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[3]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[4]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[5]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[6]).mean().toFixed(2) +'\t'+ new gauss.Vector(x[7]).mean().toFixed(2) +'\n';	
 	//s += 'median'+'\t'+ new gauss.Vector(x[1]).median().toFixed(2) +'\t'+ new gauss.Vector(x[2]).median().toFixed(2) +'\t'+ new gauss.Vector(x[3]).median().toFixed(2) +'\t'+ new gauss.Vector(x[4]).median().toFixed(2) +'\t'+ new gauss.Vector(x[5]).median().toFixed(2) +'\t'+ new gauss.Vector(x[6]).median().toFixed(2) +'\t'+ new gauss.Vector(x[7]).median().toFixed(2) +'\n';	
+	s += 'varCoeff'+'\t'+ (new gauss.Vector(x[1]).stdev() / new gauss.Vector(x[1]).mean()).toFixed(2) +'\t'+ ( new gauss.Vector(x[2]).stdev() / new gauss.Vector(x[2]).mean()).toFixed(2) +'\t'+ ( new gauss.Vector(x[3]).stdev() / new gauss.Vector(x[3]).mean()).toFixed(2) +'\t'+ ( new gauss.Vector(x[4]).stdev() / new gauss.Vector(x[4]).mean()).toFixed(2) +'\t'+ (new gauss.Vector(x[5]).stdev() / new gauss.Vector(x[5]).mean()).toFixed(2) +'\t'+ ( new gauss.Vector(x[6]).stdev() / new gauss.Vector(x[6]).mean()).toFixed(2) +'\t'+ ( new gauss.Vector(x[7]).stdev() / new gauss.Vector(x[7]).mean()).toFixed(2) +'\n';	
 	
 	out = s + out;
 	console.log(out);

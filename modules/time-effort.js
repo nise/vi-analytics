@@ -115,11 +115,12 @@ doo = function(delay){
 			//oout += round(sum / vlength,2)."\t". i/1000/60 ."\tx\n";
 			perception_sum += sum;
 			repeatition_sum += sum / vlength;
-			eff[ii] = sum;
+			if(sum > 0)
+				eff.push(sum);
 			ii++;
 			}
 		}
-		console.log('pp '+ii)
+		console.log(eff)
 		console.log("Durchschnittliche Video Wdh.: "+ repeatition_sum / 40 );
 		write2file("user-effort.tsv", out);
 		//console.log(eff)

@@ -14,7 +14,11 @@
 <script src="js/mds.js"></script>
 <script src="js/numeric-1.2.6.min.js"></script>
 <script>
+
+// see also : http://sysbio.uni-ulm.de/?Software:VennMaster:2._Running_VennMaster
+
 // 1 0.033580305927342256  0.3154875717017208  0.014280592734225621
+// XXX diagramm a s circles shows some logical backdraws.
 var sets = [
 //	{label : 'C', size : 100}, 
 	{label : 'A', size: 3.335},
