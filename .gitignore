@@ -1,2 +1,6 @@
 *~
 input/*
+node_modules/*
+.gitignore
+*.log
+*.debug
