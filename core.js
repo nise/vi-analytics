@@ -819,7 +819,6 @@ function test(res){
 
 
 
-			
 write2file = function(filename, dataset){
 	if(!filename || ! dataset){
 		console.log('No data or file to write'); return;
