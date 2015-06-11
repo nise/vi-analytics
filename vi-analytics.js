@@ -90,6 +90,11 @@ var
 		  }
 	}
 
+
+
+module.exports = function() {
+    console.log(other.doSomething());
+}
 	
 //
 //require('./analysis');	
