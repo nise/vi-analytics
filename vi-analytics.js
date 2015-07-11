@@ -144,6 +144,9 @@ module.exports = function() {
 //require('./modules/effective-interactions').init();
 
 core.init();
+//var t = require('./modules/peer-annotations/peer-annotations');
+var tt = require('./modules/video-perception/video-perception');
+var t = new tt(22);
 
 //var config = require("./input/etuscript/config.json");
 //require('./modules/annotations').init(config);

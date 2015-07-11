@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- Load c3.css -->
+<link href="c3.min.css" rel="stylesheet" type="text/css">
+
+<!-- Load d3.js and c3.js -->
+<script src="d3.min.js" charset="utf-8"></script>
+<script src="c3.min.js"></script>
+<script src="jquery-1.11.3.min.js"></script>
+
+<style>
+html {
+    font-family:Arial;
+}
+
+span {
+    font-size:10px;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.chart{
+	padding:10px;
+	display:block;
+	margin:50px 30px 30px 30px;
+	width:100%;
+}
+
+h4 {
+font-size:14px;
+color:#555;
+}
+</style>
+
+</head>
+<body>
+<div id="charts"></div>
+
+
+</body>
+
+<script>
+
+var questions = [
+"1.1 Die fachlichen Anforderungen im Studium zu erfüllen",
+"1.2 Die Stoffmenge im Semester zu bewältigen",
+"1.3 Mit anderen Studierenden zusammenzuarbeiten",
+"1.4 Prüfungen effektiv vorzubereiten",
+"1.5 Schriftliche Arbeiten wie Hausarbeiten zu erstellen",
+"1.6 Vorträge zu halten",
+"1.7 Mich an Diskussionen in Lehrveranstaltungen zu beteiligen",
+"1.8 Sonstige…",
+"Inwieweit haben Sie das geforderte fachliche Vorwissen (aus Ihrem vorherigen Studium) mitgebracht?",
+"3.1 Inhalte allein bzw. im Selbststudium erarbeiten",
+"3.2 Zusammenarbeit und Austausch mit Mitstudierenden",
+"3.3 Gespräch mit dem/der Lehrenden",
+"3.4 Sonstige…",
+"4.1 Das Lehrangebot ist inhaltlich vielfältig.",
+"4.2 Das in meinem Studium vermittelte theoretische Fachwissen halte ich für relevant.",
+"4.3 Die Art der Vermittlung fördert mein eigenes Interesse für die Studieninhalte. ",
+"4.4 Durch die Lehrinhalte fühle ich mich auf den beruflichen Einstieg gut vorbereitet.",
+"4.5 Die Lehrveranstaltungen sind inhaltlich aufeinander abgestimmt.",
+"4.6 Das Modulhandbuch ist für mich verständlich.",
+"4.7 Das Modulhandbuch entspricht den gelehrten Inhalten.",
+"4.8 Das Angebot an fachlichen Vertiefungsmöglichkeiten ist vielfältig.",
+"4.9 Ich kann meine gewünschte Vertiefungsrichtung besuchen. ",
+"4.10 Das Studium lässt ausreichend Freiräume, um individuelle Schwerpunkte zu setzen.",
+"4.11 Der Arbeitsaufwand ist auf alle Semester gleichmäßig verteilt.",
+"4.12 Der Arbeitsaufwand ist innerhalb des Semesters zeitlich gut verteilt.",
+"4.13 Die Prüfungstermine sind zeitlich gut aufeinander abgestimmt.",
+"4.14 Ein Abschluss des Studiums innerhalb der Regelstudienzeit ist gut realisierbar.",
+"4.15 Ich kann mein Semester rechtzeitig planen.",
+"4.16 Änderungen im Vorlesungsverzeichnis/ Stundenplan werden rechtzeitig bekanntgegeben.",
+"5.1 Der Schwierigkeitsgrad der Studieninhalte ist",
+"5.2 Die Anforderungen an das Selbststudium sind",
+"5.3 Der Schwierigkeitsgrad von Prüfungen ist ",
+"5.4 Der Anteil an studienbezogenen E-Learning-Angeboten (Opal, Videokonferenzen, Wikis usw.) ist",
+"6.1 Die Lehrenden machen die Ziele der Lehrveranstaltungen deutlich. ",
+"6.2 Die Lehrenden motivieren mich zur Auseinandersetzung mit den Lehrinhalten.",
+"6.3 Die Lehrenden stellen Bezüge zu anderen Lehrveranstaltungen her.",
+"6.4 Die Lehrenden binden digitale Medien sinnvoll in ihre Lehrveranstaltungen ein.",
+"6.5 Die Lehrenden stellen Skripte und Materialien zur Verfügung.",
+"6.6 Die Skripte und Materialien unterstützen mich beim Verständnis der Inhalte.",
+"6.7 Die Lehrenden ermöglichen die Diskussion von Lehrinhalten in den Lehrveranstaltungen.",
+"6.8  Die Lehrenden nehmen Anregungen oder Vorschläge der Studierenden ernst. ",
+"7.1 Praxisbezug in den Lehrveranstaltungen ",
+"7.2 Möglichkeit im Studium, selbst praktische Erfahrungen zu sammeln",
+"7.3 Forschungsbezug der Lehrveranstaltungen ",
+"7.4 Möglichkeit im Studium, selbst zu forschen ",
+"8.1 Praxisbezug in den Lehrveranstaltungen ",
+"8.2 Möglichkeit im Studium, selbst praktische Erfahrungen zu sammeln",
+"8.3 Forschungsbezug der Lehrveranstaltungen ",
+"8.4 Möglichkeit im Studium, selbst zu forschen ",
+"9.1 Fachwissen verstehen",
+"9.2 Fachwissen  anderen Studierenden erklären",
+"9.3 Wissen aus anderen Fachbereichen nutzen",
+"9.4 selbstständig arbeiten",
+"9.5 vorhandenes Wissen auf neue Fragen und Probleme anwenden",
+"9.6 wissenschaftliches Arbeiten ",
+"9.7 Inhalte präsentieren",
+"9.8 in Teams zusammenarbeiten",
+"9.9 Konflikte zielführend lösen",
+"9.10 Veränderungsprozesse begleiten ",
+"9.11 eine Führungsrolle einnehmen",
+"9.12 meine eigene Arbeitsstrategie entwickeln ",
+"9.13 Zeit effektiv planen",
+"9.14 mich selbst motivieren",
+"9.15 Mediennutzungskompetenz",
+"9.16 Nutzung von Softwareprogrammen ",
+"9.17 Sonstige",
+"10.1 Fachwissen verstehen",
+"10.2 Fachwissen  anderen Studierenden erklären",
+"10.3 Wissen aus anderen Fachbereichen nutzen",
+"10.4 selbstständig arbeiten",
+"10.5 vorhandenes Wissen auf neue Fragen und Probleme anwenden",
+"10.6 wissenschaftliches Arbeiten ",
+"10.7 Inhalte präsentieren",
+"10.8 in Teams zusammenarbeiten",
+"10.9 Konflikte zielführend lösen",
+"10.10 Veränderungsprozesse begleiten ",
+"10.11 eine Führungsrolle einnehmen",
+"10.12 meine eigene Arbeitsstrategie entwickeln ",
+"10.13 Zeit effektiv planen",
+"10.14 mich selbst motivieren",
+"10.15 Mediennutzungskompetenz",
+"10.16 Nutzung von Softwareprogrammen ",
+"10.17 Sonstige",
+"12.1 der inhaltlichen Gestaltung des Studiengangs?",
+"12.2 dem Lehrangebot des Studiengangs?",
+"12.3 der Vermittlung des Lehrstoffs durch die Lehrenden?",
+"12.4 Ihrem bisher erreichten Wissen und Können?"
+];
+
+var data = [
+   { set:[ 'F2',0,0,3,5,1,1,10,4,4,0.9428090416] },
+  { set:[ 'F2',0,5,2,2,1,0,10,2.9,2.5,1.1005049346] },
+  { set:[ 'F2',0,3,1,3,3,0,10,3.6,4,1.2649110641] },
+  { set:[ 'F2',1,0,3,2,1,3,10,4.1,4,1.6633299933] },
+  { set:[ 'F2',0,0,2,4,3,1,10,4.3,4,0.9486832981] },
+  { set:[ 'F2',0,0,4,3,3,0,10,3.9,4,0.8755950358] },
+  { set:[ 'F2',0,1,2,2,4,1,10,4.2,4.5,1.2292725943] },
+  { set:[ 'F2',0,0,0,0,0,0,0,0,0,0] },
+  { set:[ 'F2',0,0,0,7,2,0,9,4.2222222222,4,0.4409585518] },
+  { set:[ 'F2',0,1,2,2,4,1,10,4.2,4.5,1.2292725943] },
+  { set:[ 'F2',0,1,2,4,3,0,10,3.9,4,0.994428926] },
+  { set:[ 'F2',0,1,3,5,1,0,10,3.6,4,0.8432740427] },
+  { set:[ 'F2',0,1,0,0,0,0,1,2,2,0] },
+  { set:[ 'F2',0,1,1,4,4,0,10,4.1,4,0.994428926] },
+  { set:[ 'F2',0,1,2,3,4,0,10,4,4,1.0540925534] },
+  { set:[ 'F2',0,1,3,6,0,0,10,3.5,4,0.7071067812] },
+  { set:[ 'F2',0,2,3,3,1,1,10,3.6,3.5,1.2649110641] },
+  { set:[ 'F2',1,0,1,6,2,0,10,3.8,4,1.1352924244] },
+  { set:[ 'F2',0,0,0,3,3,4,10,5.1,5,0.8755950358] },
+  { set:[ 'F2',0,1,2,2,1,4,10,4.5,4.5,1.5092308564] },
+  { set:[ 'F2',0,2,2,2,2,2,10,4,4,1.490711985] },
+  { set:[ 'F2',0,2,1,0,5,2,10,4.4,5,1.5055453054] },
+  { set:[ 'F2',0,4,2,3,1,0,10,3.1,3,1.1005049346] },
+  { set:[ 'F2',0,0,0,0,0,10,10,6,6,0] },
+  { set:[ 'F2',1,2,4,2,0,0,9,2.7777777778,3,0.9718253158] },
+  { set:[ 'F2',2,3,1,1,3,0,10,3,2.5,1.6329931619] },
+  { set:[ 'F2',0,0,0,1,4,5,10,5.4,5.5,0.6992058988] },
+  { set:[ 'F2',1,1,3,2,2,1,10,3.6,3.5,1.5055453054] },
+  { set:[ 'F2',0,2,3,3,2,0,10,3.5,3.5,1.0801234497] },
+  { set:[ 'F2',0,2,8,0,0,0,10,2.8,3,0.4216370214] },
+  { set:[ 'F2',0,3,6,0,0,1,10,3,3,1.1547005384] },
+  { set:[ 'F2',0,0,2,0,0,8,10,5.4,6,1.2649110641] },
+  { set:[ 'F2',0,3,4,1,0,2,10,3.4,3,1.5055453054] },
+  { set:[ 'F2',0,0,4,3,3,0,10,3.9,4,0.8755950358] },
+  { set:[ 'F2',0,3,3,4,0,0,10,3.1,3,0.8755950358] },
+  { set:[ 'F2',0,1,3,6,0,0,10,3.5,4,0.7071067812] },
+  { set:[ 'F2',0,2,4,2,2,0,10,3.4,3,1.0749676998] },
+  { set:[ 'F2',0,0,1,2,7,0,10,4.6,5,0.6992058988] },
+  { set:[ 'F2',0,0,5,3,2,0,10,3.7,3.5,0.8232726023] },
+  { set:[ 'F2',0,0,3,2,5,0,10,4.2,4.5,0.9189365835] },
+  { set:[ 'F2',0,0,1,2,6,1,10,4.7,5,0.8232726023] },
+  { set:[ 'F2',0,0,1,1,8,0,10,4.7,5,0.6749485577] },
+  { set:[ 'F2',0,1,0,3,6,0,10,4.4,5,0.9660917831] },
+  { set:[ 'F2',1,1,4,2,2,0,10,3.3,3,1.251665557] },
+  { set:[ 'F2',2,1,3,2,2,0,10,3.1,3,1.4491376746] },
+  { set:[ 'F2',0,0,4,4,2,0,10,3.8,4,0.7888106377] },
+  { set:[ 'F2',0,1,3,5,1,0,10,3.6,4,0.8432740427] },
+  { set:[ 'F2',1,4,3,0,0,2,10,3,2.5,1.6996731712] },
+  { set:[ 'F2',3,1,2,1,0,3,10,3.3,3,2.1108186932] },
+  { set:[ 'F2',0,0,0,3,7,0,10,4.7,5,0.4830458915] },
+  { set:[ 'F2',0,1,2,4,3,0,10,3.9,4,0.994428926] },
+  { set:[ 'F2',1,0,1,5,3,0,10,3.9,4,1.1972189997] },
+  { set:[ 'F2',0,0,2,2,6,0,10,4.4,5,0.8432740427] },
+  { set:[ 'F2',0,0,2,2,6,0,10,4.4,5,0.8432740427] },
+  { set:[ 'F2',0,0,2,4,4,0,10,4.2,4,0.7888106377] },
+  { set:[ 'F2',0,1,0,5,4,0,10,4.2,4,0.9189365835] },
+  { set:[ 'F2',0,0,2,4,4,0,10,4.2,4,0.7888106377] },
+  { set:[ 'F2',0,0,3,2,5,0,10,4.2,4.5,0.9189365835] },
+  { set:[ 'F2',0,1,5,2,1,1,10,3.6,3,1.1737877908] },
+  { set:[ 'F2',1,2,4,2,0,1,10,3.1,3,1.3703203194] },
+  { set:[ 'F2',1,0,2,5,2,0,10,3.7,4,1.1595018087] },
+  { set:[ 'F2',0,1,1,3,5,0,10,4.2,4.5,1.032795559] },
+  { set:[ 'F2',0,1,3,1,5,0,10,4,4.5,1.1547005384] },
+  { set:[ 'F2',0,1,3,3,2,1,10,3.9,4,1.1972189997] },
+  { set:[ 'F2',0,0,1,4,4,1,10,4.5,4.5,0.8498365856] },
+  { set:[ 'F2',0,0,0,0,0,0,0,0,0,0] },
+  { set:[ 'F2',0,1,2,6,1,0,10,3.7,4,0.8232726023] },
+  { set:[ 'F2',0,3,4,2,1,0,10,3.1,3,0.994428926] },
+  { set:[ 'F2',0,0,5,4,1,0,10,3.6,3.5,0.6992058988] },
+  { set:[ 'F2',0,2,0,3,5,0,10,4.1,4.5,1.1972189997] },
+  { set:[ 'F2',0,1,5,2,2,0,10,3.5,3,0.9718253158] },
+  { set:[ 'F2',1,2,3,3,1,0,10,3.1,3,1.1972189997] },
+  { set:[ 'F2',0,0,2,4,4,0,10,4.2,4,0.7888106377] },
+  { set:[ 'F2',0,0,1,2,7,0,10,4.6,5,0.6992058988] },
+  { set:[ 'F2',0,3,3,4,0,0,10,3.1,3,0.8755950358] },
+  { set:[ 'F2',0,6,2,1,0,1,10,2.8,2,1.3165611772] },
+  { set:[ 'F2',3,2,3,2,0,0,10,2.4,2.5,1.1737877908] },
+  { set:[ 'F2',0,2,3,3,1,1,10,3.6,3.5,1.2649110641] },
+  { set:[ 'F2',0,4,1,2,2,1,10,3.5,3.5,1.5092308564] },
+  { set:[ 'F2',1,2,4,0,2,1,10,3.3,3,1.5670212365] },
+  { set:[ 'F2',0,1,4,3,1,1,10,3.7,3.5,1.1595018087] },
+  { set:[ 'F2',0,1,0,6,3,0,10,4.1,4,0.8755950358] },
+  { set:[ 'F2',0,0,0,0,0,0,0,0,0,0] },
+  { set:[ 'F2',3,5,2,0,0,0,10,1.9,2,0.7378647874] },
+  { set:[ 'F2',1,4,5,0,0,0,10,2.4,2.5,0.6992058988] },
+  { set:[ 'F2',0,0,2,6,2,0,10,4,4,0.6666666667] },
+  { set:[ 'F2',0,1,0,8,1,0,10,3.9,4,0.7378647874] },
+  { set:[ 'F2',0,0,2,8,0,0,10,3.8,4,0.4216370214] },
+  { set:[ 'F2',0,0,7,2,1,0,10,3.4,3,0.6992058988] },
+  { set:[ 'F2',4,6,0,0,0,0,10,1.6,2,0.5163977795] },
+  { set:[ 'F2',4,4,2,0,0,0,10,1.8,2,0.7888106377] }
+];
+
+for( var i = 0; i < data.length; i++ ){
+		$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
+    var chart = c3.generate({
+        bindto:'#chart'+i,
+        size: {
+            width: 250,
+            height: 120
+        },
+        axis: {
+          y: {
+            max: 10,
+            tick: {
+              values: [2, 4, 6, 8, 10]
+            }
+          },
+          x:	{ 
+          	min:0, 
+          	type: 'category',
+          	categories: ['1', '2', '3', '4', '5']
+          		//tick: { values: [1,2, 3,4, 5, -99] }
+           		}
+        },
+        legend: {  hide: true },
+        data: {
+            columns: [ data[i].set.slice(0,6) ],
+            type: 'bar'
+        },
+        oninit: function () {
+					var head = $('<h4></h4>').text( questions[i] ).prependTo('#chart'+i);         
+          var span = $('<span></span>')
+              .append('n = '+ data[i].set[7] + '<br>')
+              .append('mean = '+ (data[i].set[8] ).toFixed(2) + '<br>')
+          .append('median = '+ (data[i].set[9] ).toFixed(2) + '<br>')
+           .append('stdev = '+ (data[i].set[10] ).toFixed(2) + '<br>');
+          $('#chart'+i).append(span);
+            
+        },
+        bar: {
+            width: {
+                ratio: 1 
+            }
+        }
+    });
+}
+</script>
+</html>

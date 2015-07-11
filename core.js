@@ -39,19 +39,20 @@ var
 	;
 
 
-
+var project = 'etuscript';
+var projectConfiguration = require("./input/"+ project +"/config.json");
 var groupData = require('./input/scm2-groups.json');
 var userData = require('./input/scm2-users.json');
 var videoMetaDataOrg = require('./input/scm2-video-metadata.json');
-	
+
+exports.projectConfiguration = projectConfiguration;
+exports.project = project;	
 /*
 
 **/	
 exports.init = function(req, result){
-	
 	// load config and integrate all data
-	var config = require("./input/etuscript/config.json");
-	convertLog2( config, true );  
+	convertLog2( projectConfiguration, true );  
 
 return;
 
@@ -122,15 +123,43 @@ return;
 
 
 
+var 
+	loglog = {},
+	hooks = {}
+	;
 
 
-/*****************************************************************************/
 /*
-- script transitions
+* Returns the refurnished log // USELESS
+**/
+exports.getLog = function(){
+	return loglog;
+}
 
-*/
+exports.registerHook = function(hook, callback, fn){ console.log(99999999999999999999)
+	if( hook in hooks === false){
+		hooks[hook] = [];
+	}
+	hooks[hook].push( {callback: callback, fn: fn} );
+}
 
+function callHook(hook){ 
+	for(var h in hooks[hook] ){
+		if( hooks[hook].hasOwnProperty(h) ){ 
+			var the_hook = hooks[hook][h];
+			the_hook.callback[ the_hook.fn ]();
+		}
+	}
+}
 
+exports.callHook = callHook();
+
+/*
+* Loads a raw log file and converts its fields to the internal data model by follwong the given configuration file.
+
+* todo
+*  - implement anymization of clear names, e.g. for data publication 
+**/
 convertLog2 = function(conf, debug){ 
 	
 	var geoip = require('geoip-lite');	
@@ -151,11 +180,10 @@ convertLog2 = function(conf, debug){
 			csv_amount_of_fields = [],
 			csv_empty_fields = [],
   		phases = require( conf.script_phases ).transitions,
-  		videos = require( conf.videos )
+  		videos = require( './input/' + project + '/' + conf.videos )
   		users = require( conf.users )
-  		groups = require( conf.groups )
+  		groups = require( './input/' + project + '/' + conf.groups )
   		;
-  	
   	// process lines
   	lines = data.toString().split('\n');
   	for(var i = 0; i < lines.length-1; i++){ //if(i == 10) break;
@@ -300,15 +328,20 @@ convertLog2 = function(conf, debug){
 		
 		//console.log(cleanLog);
 		
+	
+		
 		// write clean log to fs	
 		fs.writeFile( conf.clean_log, JSON.stringify( cleanLog, undefined,"\t"), function(err) {
 		  if(err) {
 		      console.log('Error: '+err);
 		  } else {
 		      console.log('The clean log was saved to ' + conf.clean_log );
+		      //
+					callHook( 'log-data-loaded' );
 		  }
 		});// end fs out
-	
+		
+		
 	});// end read fs
 } // end function
 
@@ -863,12 +896,13 @@ function plot(res, title){
 Data strcutures
 **/
 
-exports.resultSet = function(arr){
+exports.resultSet = function(arr, fixed){
+	if(fixed == undefined){ fixed = 10; }
 	return {
 		n : Object.size(arr),
-		mean :  new gauss.Vector(arr).mean(),
+		mean :  new gauss.Vector(arr).mean().toFixed(fixed),
 		median  : new gauss.Vector(arr).median(),
-		stdev : new gauss.Vector(arr).stdev(),
+		stdev : new gauss.Vector(arr).stdev().toFixed(fixed),
 		min : new gauss.Vector(arr).min(),
 		max : new gauss.Vector(arr).max(),
 		sum : new gauss.Vector(arr).sum(),
@@ -903,6 +937,16 @@ exports.uniqArray = function(a) {
          }
     }
     return out;
+}
+
+
+exports.sumArray = function(a) {
+    var sum = 0;
+    var len = a.length;
+    for(var i = 0; i < len; i++) {
+    	sum += a[i];     
+    }
+    return sum;
 }
 
 

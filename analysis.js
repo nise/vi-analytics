@@ -97,9 +97,8 @@ function init(){
 //core.getObjectOfVideo(video_use, 'language')
 // alle deutsche + deutsche videos
 //if( core.getObjectOfUser(user, 'culture') == 'de' ){
-
-
-	if(core.getObjectOfVideo(cleanlog[i].video, 'language') == 'en'){	 		 
+//if(core.getObjectOfVideo(cleanlog[i].video, 'language') == 'en'){	 		 
+		
 			
 				if(userData[cleanlog[i].user] != undefined){ 
 					group = userData[cleanlog[i].user]['GruppeP1']; 
