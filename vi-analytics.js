@@ -30,22 +30,63 @@ http://piwik.org/docs/installation-maintenance/
 
 var 
 	express = require('express'),
+	expressValidator = require('express-validator'),
 	app = express(),
 	path = require('path'),
-//	wine = require('./routes/wines'),  //!!
-//	userMgmt = require('./routes/userMgmt'),
 	flash = require('connect-flash'),
 	server = require('http').createServer(app),
 	fs = require('node-fs'),
 	core = require('./core')
 	;
-
-	server.listen(3000);
+	var port = 3033;
+	server.listen( port );
 
 /* configure application **/
+    app.set('port', process.env.PORT || port);
+    app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+    
+
+    app.use(express.static(path.join(__dirname, 'public')));
+    // Passport:
+	app.set('views', __dirname + '/public/vi-lab/views');
+	app.set('view engine', 'ejs');
+	app.engine('ejs', require('ejs-locals'));
+		
+	var cookieParser = require('cookie-parser');
+	app.use(cookieParser());
+//	app.use(express.cookieSession({ secret: 'tobo!', maxAge: 360*5 }));
+		
+	var json = require('express-json');
+	app.use( json());
+	
+	var bodyParser = require('body-parser');
+	app.use(expressValidator());	
+	app.use( bodyParser.urlencoded({ extended: true }));
+	app.use( bodyParser.json());
+		
+	var methodOverride = require('method-override');
+	app.use( methodOverride());
+		
+	var session = require('express-session');
+	app.use(session({
+	  secret: 'keyb22oar4d cat', 
+	  saveUninitialized: true,
+	  resave: true
+    }));
+	
+	app.use(flash());
+	// Initialize Passport!  Also use passport.session() middleware, to support
+	// persistent login sessions (recommended).
+//	app.use(users.passport.initialize());
+//	app.use(users.passport.session());
+	//app.use(app.router);
+	app.set("jsonp callback", true); // ?????
+
+
+/*
 	app.configure(function () {
     app.set('port', process.env.PORT || 3000);
-    app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+    app.use(express.logger('dev'));  // 'default', 'short', 'tiny', 'dev' 
     app.use(express.bodyParser()),
     app.use(express.static(path.join(__dirname, 'results')));
     // Passport:
@@ -65,9 +106,7 @@ var
 		app.use(app.router);
 		app.set("jsonp callback", true); // ?????
 	});
-	
-	//console.log('............................................................................\n\n');
-	
+*/	
 	
 	
 	
@@ -104,7 +143,7 @@ module.exports = function() {
 
 //require('./modules/effective-interactions').init();
 
-//core.init();
+core.init();
 
 //var config = require("./input/etuscript/config.json");
 //require('./modules/annotations').init(config);
@@ -119,44 +158,7 @@ module.exports = function() {
 
 
 
-/**
-Proofe of concept about generating SVG files from data input
-*/
-var jsdom = require('jsdom').jsdom;
-var fs = require('fs');
 
-var boilerplate = fs.readFileSync('index.html');
-
-var doc = jsdom(boilerplate);
-//doc.implementation.addFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')
-var window = doc.parentWindow;
-
-window.onload = function() {
-   window.Raphael.prototype.renderfix = function(){};
-   var svgContainer = window.document.getElementById('svg');
-   var paper = window.Raphael(svgContainer, 640, 480);
-   paper
-      .rect(0, 0, 640, 480, 10)
-      .attr({
-         fill: '#fff',
-         stroke: 'none'
-      });
-   var circle = paper
-                .circle(320, 240, 60)
-                .attr({
-                  fill: '#223fa3',
-                  stroke: '#000',
-                  'stroke-width': 80,
-                  'stroke-opacity': 0.5
-                });
-   paper
-      .rect(circle.attr('cx') - 10, circle.attr('cy') - 10, 20, 20)
-      .attr({
-         fill: '#fff',
-         stroke: 'none'
-      });
-   console.log(svgContainer.innerHTML);
-};
 
 
 
