@@ -1,7 +1,7 @@
 /* 
-	* @description estimates the whatched parts of a video
-	* 
-	*/
+* @description estimates the whatched parts of a video
+* 
+*/
 	
 (function() {
 	var VideoPerception = function(values) {

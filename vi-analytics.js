@@ -146,7 +146,13 @@ module.exports = function() {
 core.init();
 //var t = require('./modules/peer-annotations/peer-annotations');
 var tt = require('./modules/video-perception/video-perception');
-var t = new tt(22);
+//var t = new tt(22);
+
+var selfa = require('./modules/self-assessment/self-assessment');
+var s = new selfa();
+
+
+core.callHook( 'on-load' );
 
 //var config = require("./input/etuscript/config.json");
 //require('./modules/annotations').init(config);

@@ -136,23 +136,29 @@ exports.getLog = function(){
 	return loglog;
 }
 
-exports.registerHook = function(hook, callback, fn){ console.log(99999999999999999999)
+/***/
+exports.registerHook = function(hook, callback, fn){ 
 	if( hook in hooks === false){
 		hooks[hook] = [];
 	}
 	hooks[hook].push( {callback: callback, fn: fn} );
 }
 
-function callHook(hook){ 
+/***/
+exports.callHook = function(c){ callHook(c) };
+
+var callHook = function (hook){ 
 	for(var h in hooks[hook] ){
 		if( hooks[hook].hasOwnProperty(h) ){ 
 			var the_hook = hooks[hook][h];
 			the_hook.callback[ the_hook.fn ]();
+		}else{
+			return;
 		}
 	}
 }
 
-exports.callHook = callHook();
+
 
 /*
 * Loads a raw log file and converts its fields to the internal data model by follwong the given configuration file.
