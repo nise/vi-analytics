@@ -82,7 +82,7 @@ var
 	//app.use(app.router);
 	app.set("jsonp callback", true); // ?????
 
-	app.get('/test', function(req, res) { 
+	app.get('/video-heatmap', function(req, res) { 
 						res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
 	});
 	
