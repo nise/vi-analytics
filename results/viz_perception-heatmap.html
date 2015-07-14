@@ -2,178 +2,175 @@
 <meta charset="utf-8">
 <style>
 
-body {
-  font: 10px sans-serif;
-}
+body { font: 12px Arial;}
 
-.d2{
-top:10px;
-}
-
-#heatmap2{
-height:150px;
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
 }
 
 .axis { 
   fill: none; 
   stroke: black; 
-  stroke-width; 1; 
+  stroke-width; .4;
+   
 } 
 
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
 .label {
-  stroke: #222;
+  stroke: #888;
   fill:none; 
-  stroke-width; 1; 
+  stroke-width; .2; 
 } 
 
 .text {
-	top:20px;
-  stroke-width; 1;
+  stroke-width; .4;
+}
+
+svg rect {
+	fill:#003366;
+}
+
+svg {
+	border:black solid 1px;
+	padding:25px;
 }
 
 
 </style>
-<body>
+<body>sss
 <div id='head'></div>
-<div id='heatmap2'></div>
 <div id='heatmap'></div>
 
 
-<script src="js/d3.min.js"></script>
+<script src="js/d3.js"></script>
 <script>
 
 var user = 'xxx';
 
-d3.tsv("data/perception-heatmap.tsv", function(error, data) {
+var width = 1000,
+		height = 500;
+// second heatmap
+var svg = d3.select("#heatmap").append("svg")
+		.attr('class','d2')
+		.attr("width", width +50)
+		.attr("height", height)
+		.append("g")
+		.attr("transform", function(d, i) { return "translate(30,0)"; });;
+		
+		
+		
+var x = d3.scale.linear().range([0, width ]);			
+var y = d3.scale.linear().range([ height, 0 ]);
 
+ var yAxis = d3.svg.axis().scale(y).orient("left").ticks(4);//tickValues([0,  maxY ]);
+	var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(4);
+
+//d3.tsv("perception-heatmap.tsv", function(error, data) {
+d3.tsv("./data/video-perception.tsv", function(error, data) {
+	
+	
 	data.forEach(function(d) {
 		user = d.user;
   });
   
 	
-	var gridSize = 5,
+	var gridSize = 4,
     h = 20,
-    w = 1,
-    rectPadding = 10;
-		var scaleF = 0.5;
-		
+    w = 1;
+
 		var colorLow = 'lightgreen', colorMed = 'yellow', colorHigh = 'red';
 
-		var margin = {top: 0, right: 10, bottom: 30, left: 100},
-				margin2 = {top: 0, right: 10, bottom: 30, left: 100},
-				width = 1200 - margin.left - margin.right,
-				height = 420 - margin.top - margin.bottom;
 
-		// colors
-		var colorScale = d3.scale.linear().domain([1, 3, 7]).range([colorLow, colorMed, colorHigh]); 
-		var color = d3.scale.category10();		 
+		
 
 
+	// axis	
+	var 
+			 scaleF = 0.3
+			,yScale = 0.1
+			
+			;	
+	var maxY = d3.max(data, function(d) { return d.score;} ); 
+	var maxX = d3.max(data, function(d) { return d.col;} );
+  	
+var yscale =  height < maxY ? (height-200) / maxY  : maxY / (height-200) / 4; 
 
-
-		// second heatmap
-		var svg = d3.select("#heatmap").append("svg")
-				.attr('class','d2')
-				.attr("width", width)
-				.attr("height", height)
-				.append("g")
-				.attr("transform", "translate(" + margin2.left + ", 0)");
-
-
-		// add annotations to heatmap
-		d3.tsv("annotation_distribution.tsv", function(error, anno) {
-			var heatMap = svg.selectAll("#heatmap")
-				.data(anno, function(d) { 
-					return d.time; })	
-				.enter().append("svg:rect")
-					.attr("x", function(d) { return d.time * w* scaleF })
-					.attr("y", function(d) { return 120; })
-					.attr("width", function(d) { return 2; })
-					.attr("height", function(d) { return 25; })
-					.style("fill", function(d) { return color(d.type); });;
-		});
-
-		var heatMap = svg.selectAll("#heatmap")
+ 
+//	y.domain(d3.extent(data, function(d) { return d.score; })).nice();
+	//x.domain(d3.extent(data, function(d) { return d.col/60; })).nice();
+	x.domain([0, d3.max(data, function(d) { return d.col/60; })]);
+	y.domain([0, maxY]);
+  
+var heatMap = svg.selectAll("#heatmap")
 				.data(data, function(d) { 
 					return d.col + ':' + d.row; })
 						.enter().append("svg:rect")
 							.attr("x", function(d) { return d.col * w * scaleF; })
-							.attr("y", function(d) { return 120 - d.score * 10 ; })
+							.attr("y", function(d) { return y(d.score* yscale) -100; })
 							.attr("width", function(d) { return w; })
-							.attr("height", function(d) { return  d.score * 10 ; });
-//							.style("fill", function(d) { return colorScale(d.score); });
+							.attr("height", function(d) { return  height - y(d.score* yscale)  ; })
+						.attr("transform", function(d, i) { return "translate(0,0)"; });
+							
+					
 
-// axis
-	
-	var maxY = d3.max(data, function(d) { return +d.score;} );
-	var maxX = d3.max(data, function(d) { return +d.col;} );
-  
-  var y = d3.scale.linear().range([maxY,0 ]);
-	var x = d3.scale.linear().range([0, maxX/3.15 ]);
-  var yAxis = d3.svg.axis().scale(y).orient("left").tickValues([1, 3, 5, 7, 9, 11]);
-//    .innerTickSize(20);
-	var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5);
-	
-	 y.domain(d3.extent(data, function(d) { return d.score/10; })).nice();
-	 x.domain(d3.extent(data, function(d) { return d.col/60; })).nice();
-	  
-	  var axisY = svg.append("g")
+
+
+  var axisY = svg.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(0,84)")
+      .attr("transform", "translate(0,"+ (y(1000)-100) +")")
+//      .attr("transform", "scale(0.8)")
       .call(yAxis)
     .append("text")
-      .attr("class", "label")
+     .attr("class", "label")
       .attr("transform", "rotate(-90)")
-      .attr("x", 100)
-      .attr("y", 10)
+      .attr("transform", "translate(0,20)")
+      .attr("x", 40)
+      .attr("y", 0)
       .attr("dy", ".1em")
       .style("text-anchor", "end")
-     	.text("Aufrufe")
+     	.text("Aufrufe");
      
     var axisX =	svg.append("g")
 		    .attr("class", "x axis")
-		    .attr("transform", "translate(0,120)")
+		    .attr("transform", "translate(3,400)")
+		    .attr('width', width-300)
 		    .call(xAxis)
 		  .append("text")
 		    .attr("class", "label")
-		    .attr("x", maxX/3 - 20)
-		    .attr("y", -25)
-		    .style("text-anchor", "end")
+		    .attr("x", x(maxX* scaleF)  )
+		    .attr("y", 30)
+		    //.style("text-anchor", "end")
+		    
 		    .text("Abspielposition im Video / min");
-
-		// headline
-		 var text = svg.append("text")
-		     .attr("x", 100)
-		     .attr("y", 0)
-		    // .text( 'User: '+ user.length)
-		     .attr("font-family", "Arial")
-		     .attr("font-size", "20px")
-		     .attr("fill", "#333");   
+});
+		// colors
+	//	var colorScale = d3.scale.linear().domain([ Math.floor(maxY/3),  Math.floor((maxY*2)/3),  maxY]).range([colorLow, colorMed, colorHigh]); 
+		var color = d3.scale.category10();		 
 
 
-
-
-
-		var heatMap = svg.selectAll("#heatmap")
-				.data(data, function(d) { 
-					return d.col + ':' + d.row; })
-						.enter().append("svg:rect")
-							.attr("x", function(d) { return d.col * w * scaleF; })
-							.attr("y", function(d) { return d.row * h +124; })
-							.attr("width", function(d) { return w; })
-							.attr("height", function(d) { return h; })
-							.style("fill", function(d) { return d.score > 0 ? colorScale(d.score) : 'white'; });
-
+		
+							
+							//.style("fill", function(d) { return colorScale(d.score); });
+/*
 		 var legend = svg.selectAll(".legend")
 		    .data(colorScale.domain())
 		  	.enter().append("g")
 		    .attr("class", "legend")
-		    .attr("transform", function(d, i) { return "translate(" + i * 20 + ",120)"; });
+		    .attr("transform", function(d, i) { return "translate(" + (i * 25 +50) + ",105)"; });
 
 		legend.append("rect")
 		    .attr("x", 800)
 		    .attr("y", 55)
-		    .attr("width", 18)
+		    .attr("width", 25)
 		    .attr("height", 18)
 		    .style("fill", colorScale);
 
@@ -183,20 +180,8 @@ d3.tsv("data/perception-heatmap.tsv", function(error, data) {
 		    .attr("dy", ".35em")
 		    .style("text-anchor", "start")
 		    .text(function(d) { return d; });
-		    
-	
-	
+		*/    
 
-
-
-
-
-});
-
-
-
-//height of each row in the heatmap
-//width of each column in the heatmap
 
 
 

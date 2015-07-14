@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- Load c3.css -->
+<link href="c3.min.css" rel="stylesheet" type="text/css">
+
+<!-- Load d3.js and c3.js -->
+<script src="d3.min.js" charset="utf-8"></script>
+<script src="c3.min.js"></script>
+<script src="jquery-1.11.3.min.js"></script>
+
+<style>
+html {
+    font-family:Arial;
+}
+
+span {
+    font-size:10px;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.chart{
+	padding:10px;
+	display:block;
+	margin:50px 30px 30px 30px;
+	width:100%;
+}
+
+h4 {
+font-size:14px;
+color:#555;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+<div id="charts"></div>
+
+
+</body>
+
+<script>
+
+
+
+var data = [
+   { set:[ 'F2',0,0,3,5,1,1,10,4,4,0.9428090416] },
+  { set:[ 'F2',0,5,2,2,1,0,10,2.9,2.5,1.1005049346] },
+  { set:[ 'F2',0,3,1,3,3,0,10,3.6,4,1.2649110641] },
+  { set:[ 'F2',1,0,3,2,1,3,10,4.1,4,1.6633299933] },
+  { set:[ 'F2',0,0,2,4,3,1,10,4.3,4,0.9486832981] },
+  { set:[ 'F2',4,4,2,0,0,0,10,1.8,2,0.7888106377] }
+];
+
+$.get('./data/video-perception-forward-backward.json', function(data){
+
+	for( var i in data){
+		if(data.hasOwnProperty(i)){ 
+			$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
+		  var chart = c3.generate({
+		      bindto:'#chart'+i,
+		      size: {
+		          width: 300,
+		          height: 300
+		      },
+		     	axis: {
+						  x: {
+						      label: 'Videowiedergabe/Minuten',
+						      tick: {
+						          count: 5,
+						         format: function (x) { return Math.floor(x/60); }
+						      }
+						  },
+						  y: {
+						      label: 'Rücksprünge',
+						      tick: {
+						         count: 5,
+						         format: function (x) { return Math.floor(x/60); }
+						      }
+						  }
+					},
+		      legend: {  hide: true },
+		       data: {
+						  /*xs: {
+						      setosa: 'setosa_x'//,
+						      //versicolor: 'versicolor_x',
+						  },*/
+						  // iris data from R
+						  rows: data[i].data,
+						  x: 'forward', // it's possible to specify 'x' when category axis
+      				y: 'backward',
+							
+						  type: 'line'
+					},
+		      oninit: function () {
+						var head = $('<h4></h4>').text( 'User '+i ).prependTo('#chart'+i); 
+						       
+		        var span = $('<span></span>')
+		            //.append('n = '+ data[i].set[7] + '<br>')
+		            .append('effort = '+  data[i].user_data.effort  + '<br>')
+		        //.append('median = '+ (data[i].set[9] ).toFixed(2) + '<br>')
+		         //.append('stdev = '+ (data[i].set[10] ).toFixed(2) + '<br>');
+		        $('#chart'+i).append(span);
+		          
+		      }
+		  });
+		}
+	}	
+});	
+
+/*
+var chart = c3.generate({
+    data: {
+        xs: {
+            setosa: 'setosa_x',
+            versicolor: 'versicolor_x',
+        },
+        // iris data from R
+        columns: [
+            ["setosa_x", 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3.0, 3.0, 4.0, 4.4, 3.9, 3.5, 3.8, 3.8, 3.4, 3.7, 3.6, 3.3, 3.4, 3.0, 3.4, 3.5, 3.4, 3.2, 3.1, 3.4, 4.1, 4.2, 3.1, 3.2, 3.5, 3.6, 3.0, 3.4, 3.5, 2.3, 3.2, 3.5, 3.8, 3.0, 3.8, 3.2, 3.7, 3.3],
+            ["versicolor_x", 3.2, 3.2, 3.1, 2.3, 2.8, 2.8, 3.3, 2.4, 2.9, 2.7, 2.0, 3.0, 2.2, 2.9, 2.9, 3.1, 3.0, 2.7, 2.2, 2.5, 3.2, 2.8, 2.5, 2.8, 2.9, 3.0, 2.8, 3.0, 2.9, 2.6, 2.4, 2.4, 2.7, 2.7, 3.0, 3.4, 3.1, 2.3, 3.0, 2.5, 2.6, 3.0, 2.6, 2.3, 2.7, 3.0, 2.9, 2.9, 2.5, 2.8],
+            ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
+            ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
+        ],
+        type: 'scatter'
+    },
+    axis: {
+        x: {
+            label: 'Sepal.Width',
+            tick: {
+                fit: false
+            }
+        },
+        y: {
+            label: 'Petal.Width'
+        }
+    },  oninit: function () {
+					var head = $('<h4></h4>').text( 22 ).prependTo('#chart'+i);         
+          var span = $('<span></span>')
+              .append('n = '+ 2 + '<br>');
+          $('#chart'+i).append(span);
+            
+        },
+});
+*/
+</script>
+</html>

@@ -35,7 +35,9 @@ var
 	fs = require('node-fs'),
 	csv = require('csv'),
 	gauss = require('gauss'),
-	Collection = gauss.Collection
+	Collection = gauss.Collection,
+	mongoose = require( 'mongoose' ),
+	Log  = mongoose.model( 'Log' )
 	;
 
 
@@ -50,7 +52,7 @@ exports.project = project;
 /*
 
 **/	
-exports.init = function(req, result){
+exports.makeCleanLog = function(req, result){
 	// load config and integrate all data
 	convertLog2( projectConfiguration, true );  
 
@@ -145,9 +147,9 @@ exports.registerHook = function(hook, callback, fn){
 }
 
 /***/
-exports.callHook = function(c){ callHook(c) };
+exports.callHook = function(c){ callHook(c); };
 
-var callHook = function (hook){ 
+var callHook = function (hook){ console.log('hooked    '+hook)
 	for(var h in hooks[hook] ){
 		if( hooks[hook].hasOwnProperty(h) ){ 
 			var the_hook = hooks[hook][h];
@@ -157,6 +159,8 @@ var callHook = function (hook){
 		}
 	}
 }
+
+
 
 
 
@@ -190,163 +194,184 @@ convertLog2 = function(conf, debug){
   		users = require( conf.users )
   		groups = require( './input/' + project + '/' + conf.groups )
   		;
-  	// process lines
-  	lines = data.toString().split('\n');
-  	for(var i = 0; i < lines.length-1; i++){ //if(i == 10) break;
-  		if(lines[i] == undefined ){
-  			console.warning('Ignores Rows: '+i +' '+lines[i-1].utc);
-  		}else{
-				el = lines[i].toString().split(',');
-				// do some statistics about the data consistency
-				csv_amount_of_fields[i] = el.length;
+  	// drop db
+  	Log.remove({}, function(err) { console.log('Log removed from database') 
+			// process lines
+			lines = data.toString().split('\n');
+			for(var i = 0; i < lines.length-1; i++){ //if(i == 10) break;
+				if(lines[i] == undefined ){
+					console.warning('Ignores Rows: '+i +' '+lines[i-1].utc);
+				}else{
+					el = lines[i].toString().split(',');
+					// do some statistics about the data consistency
+					csv_amount_of_fields[i] = el.length;
 				
 				
-				// filter test group
-				if( conf.exclude_groups.indexOf( el[ conf.raw_field_mapping.group ] ) == -1 ){
-					// pre-process
+					// filter test group
+					if( conf.exclude_groups.indexOf( el[ conf.raw_field_mapping.group ] ) == -1 ){
+						// pre-process
 					
-					if(el[  conf.raw_field_mapping.action_details  ] != undefined){
-						a_tmp = el[  conf.raw_field_mapping.action_details  ].split(':');
-						action_value = el[  conf.raw_field_mapping.action_details  ]
-					}else{
-						//console.log(i, el);
-					}
+						if(el[  conf.raw_field_mapping.action_details  ] != undefined){
+							a_tmp = el[  conf.raw_field_mapping.action_details  ].split(':');
+							action_value = el[  conf.raw_field_mapping.action_details  ]
+						}else{
+							//console.log(i, el);
+						}
 					
-					if(el.length != 9 && debug){
-						console.log(i, el.length, el);
-					}
+						if(el.length != 9 && debug){
+							console.log(i, el.length, el);
+						}
 						
-					switch(a_tmp[0]){
-						case 'loadvideo' : 								action = {command:a_tmp[0], value:action_value.replace('loadvideo:','')}; break;
-						case 'videoplayed' : 							action = {command:a_tmp[0], value:action_value.replace('videoplayed:','')}; break;
-						case 'videopaused' : 							action = {command:a_tmp[0], value:action_value.replace('videopaused:','')}; break;
-						case 'videoended' : 							action = {command:a_tmp[0], value:action_value.replace('videoended:','')}; break;
-						case 'assessmentdisplaybegin' : 	action = {command:a_tmp[0], value:''}; break;
-						case 'submitassessmenttask' : 		action = {command:a_tmp[0], value:a_tmp[1]}; break;
-						case 'assessmentcorrect' : 				action = {command:a_tmp[0], value:''}; break;
-						case 'clicktocfromlist' : 				action = {command:a_tmp[0], value:action_value.replace('clicktocfromlist:')}; break;
-						case 'clicktagfromlist' : 				action = {command:a_tmp[0], value:action_value.replace('clicktagfromlist:')}; break;
-						case 'clickcommentfromlist' : 		action = {command:a_tmp[0], value:action_value.replace('clickcommentfromlist:')}; break;
-						case 'clickassessmentfromlist' : 	action = {command:a_tmp[0], value:action_value.replace('clickassessmentfromlist:')}; break;
-						case 'save' : 										action = {command:a_tmp[0], value:a_tmp[1]}; break;
-						case 'deleteannotation' : 				action = {command:a_tmp[0], value:a_tmp[1]}; break;
+						switch(a_tmp[0]){
+							case 'loadvideo' : 								action = {command:a_tmp[0], value:action_value.replace('loadvideo:','')}; break;
+							case 'videoplayed' : 							action = {command:a_tmp[0], value:action_value.replace('videoplayed:','')}; break;
+							case 'videopaused' : 							action = {command:a_tmp[0], value:action_value.replace('videopaused:','')}; break;
+							case 'videoended' : 							action = {command:a_tmp[0], value:action_value.replace('videoended:','')}; break;
+							case 'assessmentdisplaybegin' : 	action = {command:a_tmp[0], value:''}; break;
+							case 'submitassessmenttask' : 		action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case 'assessmentcorrect' : 				action = {command:a_tmp[0], value:''}; break;
+							case 'clicktocfromlist' : 				action = {command:a_tmp[0], value:action_value.replace('clicktocfromlist:')}; break;
+							case 'clicktagfromlist' : 				action = {command:a_tmp[0], value:action_value.replace('clicktagfromlist:')}; break;
+							case 'clickcommentfromlist' : 		action = {command:a_tmp[0], value:action_value.replace('clickcommentfromlist:')}; break;
+							case 'clickassessmentfromlist' : 	action = {command:a_tmp[0], value:action_value.replace('clickassessmentfromlist:')}; break;
+							case 'save' : 										action = {command:a_tmp[0], value:a_tmp[1]}; break;
+							case 'deleteannotation' : 				action = {command:a_tmp[0], value:a_tmp[1]}; break;
 
-						case '[call' : 										action = {command:a_tmp[1].replace(']',''), value:''}; break;
-						case 'saveannotation' : 					x = a_tmp[1].split(' '); action = {command:a_tmp[0]+' '+x[0], value:x[1]}; break;
-						default : x = action_value.split(' '); action = {command:x[1].replace(':',''), value:Number(x[2])}; 
-					} 
+							case '[call' : 										action = {command:a_tmp[1].replace(']',''), value:''}; break;
+							case 'saveannotation' : 					x = a_tmp[1].split(' '); action = {command:a_tmp[0]+' '+x[0], value:x[1]}; break;
+							default : x = action_value.split(' '); action = {command:x[1].replace(':',''), value:Number(x[2])}; 
+						} 
 					
-					//var action_tmp = el[  conf.raw_field_mapping.action_details  ] != undefined ? el[  conf.raw_field_mapping.action_details  ].split(':') : 'nix';
+						//var action_tmp = el[  conf.raw_field_mapping.action_details  ] != undefined ? el[  conf.raw_field_mapping.action_details  ].split(':') : 'nix';
 					
-					/*
-					For a given time stamp it returns the script phase with that time event occured. 
-					Since the timestamps of the script phases are sorted we can compare them against the given stamp.
-					**/
-					var getPhase = function (stamp){
-								for (var i = 0; i < phases.length; i++){
-									if( stamp < phases[i]){
-										return i+1;
+						/*
+						For a given time stamp it returns the script phase with that time event occured. 
+						Since the timestamps of the script phases are sorted we can compare them against the given stamp.
+						**/
+						var getPhase = function (stamp){
+									for (var i = 0; i < phases.length; i++){
+										if( stamp < phases[i]){
+											return i+1;
+										} 
+									}
+									return phases.length;
+								}
+						/*
+						Identify the video file for a given video-id
+						**/
+						var getVideoFile = function(id){ 
+							for (var i = 0; i < videos.length; i++){
+									if( id === videos[i]._id ){
+										return {
+											video_file: videos[i].video.replace("http://141.46.8.101/beta/e2script/", ''),
+											video_length: videos[i].metadata[0].length,
+											video_language: videos[i].metadata[0].language
+										};	
 									} 
 								}
-								return phases.length;
+								return {
+											video_file: "xxx",
+											video_length: "xxx",
+											video_language: "xxx"
+										};
 							}
-					/*
-					Identify the video file for a given video-id
-					**/
-					var getVideoFile = function(id){ 
-						for (var i = 0; i < videos.length; i++){
-								if( id === videos[i]._id ){
-									return {
-										video_file: videos[i].video.replace("http://141.46.8.101/beta/e2script/", ''),
-										video_length: videos[i].metadata[0].length,
-										video_language: videos[i].metadata[0].language
-									};	
-								} 
-							}
-							return {
-										video_file: "xxx",
-										video_length: "xxx",
-										video_language: "xxx"
-									};
+						/*
+						Identify the video file for a given video-id
+						**/
+						var getUserData = function(id){ 
+							for (var i = 0; i < users.length; i++){
+									if( Number(id) === Number(users[i].id) ){
+										return {
+											user_name: users[i].username,
+											user_gender: users[i].gender,
+											user_culture: users[i].culture
+										};	
+									} 
+								}
+								return {
+											user_name: 'xxx',
+											user_gender: 'xxx',
+											user_culture: 'xxx'
+										};
+							}	
+						var user = getUserData( el[ conf.raw_field_mapping.user ] );
+						var video = getVideoFile( el[ conf.raw_field_mapping.video_id ] );
+						var playback_time = '';
+						if( ['seek_start','seek_end','saveannotation comments','saveannotation toc','change_speed','saveannotation tags','timeline_link_seek'].indexOf(action.command) !== -1 ){
+							playback_time = String(action.value).trim();	
+						}else if( action.command === 'loadvideo'){
+							playback_time = 0;
+						}else if( ['clickcommentfromlist','clicktocfromlist','clicktagfromlist'].indexOf(action.command) !== -1){
+							playback_time = String(action.value).split(/\ /).slice(-1)[0]; //console.log(playback_time);
+						}else if( action.command === 'videoended'){
+							var len = (conf.raw_field_mapping.video_length === -1 ? video.video_length : el[ conf.raw_field_mapping.video_length ]).split(':');
+							playback_time = Number(len[0])*60 + Number(len[1]);
+						}else{
+							//console.log( '_'+action.command+'____'+action.value+'_' );
 						}
-					/*
-					Identify the video file for a given video-id
-					**/
-					var getUserData = function(id){ 
-						for (var i = 0; i < users.length; i++){
-								if( Number(id) === Number(users[i].id) ){
-									return {
-										user_name: users[i].username,
-										user_gender: users[i].gender,
-										user_culture: users[i].culture
-									};	
-								} 
-							}
-							return {
-										user_name: 'xxx',
-										user_gender: 'xxx',
-										user_culture: 'xxx'
-									};
-						}	
-					var user = getUserData( el[ conf.raw_field_mapping.user ] );
-					var video = getVideoFile( el[ conf.raw_field_mapping.video_id ] );
 							
-					// fill data modell
-					cleanLog[j] = {
-						utc: 							Number( el[ conf.raw_field_mapping.utc ] ), 
-						phase: 						getPhase( el[ conf.raw_field_mapping.utc ] ),
-						date:  						el[ conf.raw_field_mapping.date ], 
-						time:  						el[ conf.raw_field_mapping.time ], 
+						// fill data modell
+						cleanLog[j] = {
+							utc: 							Number( el[ conf.raw_field_mapping.utc ] ), 
+							phase: 						getPhase( el[ conf.raw_field_mapping.utc ] ),
+							date:  						String(el[ conf.raw_field_mapping.date ]), 
+							time:  						String(el[ conf.raw_field_mapping.time ]), 
 						
-						group:  					el[ conf.raw_field_mapping.group ], 
-						user:  						Number( el[ conf.raw_field_mapping.user ] ) , 
-						user_name:  			conf.raw_field_mapping.user_name === -1 ? user.user_name : el[ conf.raw_field_mapping.user_name ], 
-						user_gender:			conf.raw_field_mapping.user_gender === -1 ? user.user_gender : el[ conf.raw_field_mapping.user_gender ],
-						user_culture:			conf.raw_field_mapping.user_culture === -1 ? user.user_culture : el[ conf.raw_field_mapping.user_culture ], 
+							group:  					el[ conf.raw_field_mapping.group ], 
+							user:  						Number( el[ conf.raw_field_mapping.user ] ) , 
+							user_name:  			conf.raw_field_mapping.user_name === -1 ? user.user_name : el[ conf.raw_field_mapping.user_name ], 
+							user_gender:			conf.raw_field_mapping.user_gender === -1 ? user.user_gender : el[ conf.raw_field_mapping.user_gender ],
+							user_culture:			conf.raw_field_mapping.user_culture === -1 ? user.user_culture : el[ conf.raw_field_mapping.user_culture ], 
 						
-						video_id:  				el[ conf.raw_field_mapping.video_id ], 
-						video_file:  			conf.raw_field_mapping.video_file === -1 ? video.video_file : el[ conf.raw_field_mapping.video_file ], 
-						video_length:  		conf.raw_field_mapping.video_length === -1 ? video.video_length : el[ conf.raw_field_mapping.video_length ], 
-						video_language:  	conf.raw_field_mapping.video_language === -1 ? video.video_language : el[ conf.raw_field_mapping.video_language ], 
+							video_id:  				el[ conf.raw_field_mapping.video_id ], 
+							video_file:  			conf.raw_field_mapping.video_file === -1 ? video.video_file : el[ conf.raw_field_mapping.video_file ], 
+							video_length:  		conf.raw_field_mapping.video_length === -1 ? video.video_length : el[ conf.raw_field_mapping.video_length ], 
+							video_language:  	conf.raw_field_mapping.video_language === -1 ? video.video_language : el[ conf.raw_field_mapping.video_language ], 
 						
-						action:  					action.command,//action_tmp[0], 
-						action_details: 	action.value,//el[ conf.raw_field_mapping.action_details ],
+							action:  					action.command,//action_tmp[0], 
+							action_details: 	action.value,//el[ conf.raw_field_mapping.action_details ],
+							playback_time: 		Number(playback_time),
 						
-						user_agent:  			el[ conf.raw_field_mapping.user_agent ],
-						ip: 							el[ conf.raw_field_mapping.ip ],
-						flag: false // storage parameter for session detection
-					}
-					j++;
-				}// end if filter
-			}		
-		};	// end for	
+							user_agent:  			el[ conf.raw_field_mapping.user_agent ],
+							ip: 							el[ conf.raw_field_mapping.ip ],
+							flag: false // storage parameter for session detection
+						};
+						//console.log(cleanLog[j].video_file);
+						// save to Database
+						new Log( cleanLog[j] ).save( function( err, todo, count ){
+							if(err){
+								console.log(err)
+							}
+						});
+						j++;
+					}// end if filter
+				}		
+			};	// end for	
 		
-		// output debug info
-		if(debug){	
-			console.log('.....................');
-			console.log('Number of lines: '+lines.length);
-			console.log('Distribution of the number of fields per row:'); 
-			console.log(new gauss.Collection(csv_amount_of_fields).distribution());
-			console.log('Empty values per field'); 
-			console.log(new gauss.Collection(csv_empty_fields).distribution());
-			console.log('.....................');
-		}	
+			// output debug info
+			if(debug){	
+				console.log('.....................');
+				console.log('Number of lines: '+lines.length);
+				console.log('Distribution of the number of fields per row:'); 
+				console.log(new gauss.Collection(csv_amount_of_fields).distribution());
+				console.log('Empty values per field'); 
+				console.log(new gauss.Collection(csv_empty_fields).distribution());
+				console.log('.....................');
+			}	
 		
-		//console.log(cleanLog);
-		
-	
-		
-		// write clean log to fs	
-		fs.writeFile( conf.clean_log, JSON.stringify( cleanLog, undefined,"\t"), function(err) {
-		  if(err) {
-		      console.log('Error: '+err);
-		  } else {
-		      console.log('The clean log was saved to ' + conf.clean_log );
-		      //
-					callHook( 'log-data-loaded' );
-		  }
-		});// end fs out
-		
+			//console.log(cleanLog);
+
+			// write clean log to fs	
+			fs.writeFile( conf.clean_log, JSON.stringify( cleanLog, undefined,"\t"), function(err) {
+				if(err) {
+				    console.log('Error: '+err);
+				} else {
+				    console.log('The clean log was saved to ' + conf.clean_log );
+				    //
+						callHook( 'log-data-loaded' );
+				}
+			});// end fs out
+	});		
 		
 	});// end read fs
 } // end function
@@ -858,7 +883,7 @@ function test(res){
 
 
 
-write2file = function(filename, dataset){
+exports.write2file = function(filename, dataset){
 	if(!filename || ! dataset){
 		console.log('No data or file to write'); return;
 	}

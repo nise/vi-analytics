@@ -48,8 +48,8 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/forward-backward-dist.tsv", function(error, data) {//_distribution
-  data.forEach(function(d) {
+d3.tsv("data/video-perception-forward-backward.tsv", function(error, data) {//_distribution
+  data.forEach(function(d) { d.backward = d.backward / 60 / 60;  d.forward = d.forward / 60 / 60; return;
   	if(d.user == 'siegert'){
 		  d.backward = d.backward / 60 / 60; // convert in hours
 		  d.forward = d.forward / 60 / 60; // convert in hours

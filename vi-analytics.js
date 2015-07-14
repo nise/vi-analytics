@@ -26,7 +26,7 @@ http://piwik.org/docs/installation-maintenance/
 */
 
 
-
+require( './db' );
 
 var 
 	express = require('express'),
@@ -46,7 +46,7 @@ var
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
     
 
-    app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, 'results')));
     // Passport:
 	app.set('views', __dirname + '/public/vi-lab/views');
 	app.set('view engine', 'ejs');
@@ -82,6 +82,18 @@ var
 	//app.use(app.router);
 	app.set("jsonp callback", true); // ?????
 
+	app.get('/test', function(req, res) { 
+						res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
+	});
+	
+	app.get('/test3', function(req, res) { 
+						res.sendfile('./results/line_forward-backward-dist.html', {root: __dirname });
+	});
+	
+	
+	app.get('/test2', function(req, res) { 
+						res.sendfile('./results/viz_perception-patterns.html', {root: __dirname });
+	});
 
 /*
 	app.configure(function () {
@@ -107,7 +119,47 @@ var
 		app.set("jsonp callback", true); // ?????
 	});
 */	
+
+
+/**
+* Start application including modules when the database has been loaded
+*/	
+var mongoose = require( 'mongoose' );
+var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, db){
+	if(err){
+		console.log(err);
+	}else{
+		//
+		//require('./analysis');	
+		//require('./modules/distribution').init();
+		//require('./modules/time-effort').init();
+		//require('./modules/feedback-analysis').init();
+
+		//require('./modules/effective-interactions').init();
+		
 	
+		//core.makeCleanLog();
+		//var t = require('./modules/peer-annotations/peer-annotations');
+		var tt = require('./modules/video-perception/video-perception');
+		var t = new tt(22);
+
+		var selfa = require('./modules/self-assessment/self-assessment');
+		//var s = new selfa();
+		
+		core.callHook( 'on-load' );
+
+		//var config = require("./input/etuscript/config.json");
+		//require('./modules/annotations').init(config);
+		//require('./modules/fill-in').init(config);
+		//require('./modules/ondemandtasks').init(config);
+		//require('./modules/etherpad').init(config);
+
+
+		//app.get('/analytics', core.init);
+
+	
+	}
+});	
 	
 	
 	/*
@@ -135,33 +187,6 @@ module.exports = function() {
     console.log(other.doSomething());
 }
 	
-//
-//require('./analysis');	
-//require('./modules/distribution').init();
-//require('./modules/time-effort').init();
-//require('./modules/feedback-analysis').init();
-
-//require('./modules/effective-interactions').init();
-
-core.init();
-//var t = require('./modules/peer-annotations/peer-annotations');
-var tt = require('./modules/video-perception/video-perception');
-//var t = new tt(22);
-
-var selfa = require('./modules/self-assessment/self-assessment');
-var s = new selfa();
-
-
-core.callHook( 'on-load' );
-
-//var config = require("./input/etuscript/config.json");
-//require('./modules/annotations').init(config);
-//require('./modules/fill-in').init(config);
-//require('./modules/ondemandtasks').init(config);
-//require('./modules/etherpad').init(config);
-
-
-//app.get('/analytics', core.init);
 
 
 
