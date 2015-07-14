@@ -49,7 +49,7 @@ color:#555;
 <script>
 
 
-$.get('./data/video-perception-forward-backward.json', function(data){
+$.get('./data/video-heatmap.json', function(data){
 
 	for( var i in data){
 		if(data.hasOwnProperty(i)){ 
@@ -64,30 +64,25 @@ $.get('./data/video-perception-forward-backward.json', function(data){
 						  x: {
 						      label: 'Videowiedergabe/Minuten',
 						      tick: {
-						          count: 5,
-						         format: function (x) { return Math.floor(x/60); }
+						          count: 5//,
+						         //format: function (x) { return Math.floor(x/60); }
 						      }
 						  },
 						  y: {
 						      label: 'Rücksprünge',
 						      tick: {
-						         count: 5,
-						         format: function (x) { return Math.floor(x/60); }
+						         count: 5//,
+						         //format: function (x) { return Math.floor(x/60); }
 						      }
 						  }
 					},
 		      legend: {  hide: true },
 		       data: {
-						  /*xs: {
-						      setosa: 'setosa_x'//,
-						      //versicolor: 'versicolor_x',
-						  },*/
-						  // iris data from R
 						  rows: data[i].data,
-						  x: 'forward', // it's possible to specify 'x' when category axis
+						  x: 'forward', 
       				y: 'backward',
 							
-						  type: 'line'
+						  type: 'scatter'
 					},
 		      oninit: function () {
 						var head = $('<h4></h4>').text( 'User '+i ).prependTo('#chart'+i); 

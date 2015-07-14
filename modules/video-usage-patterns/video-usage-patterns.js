@@ -8,7 +8,7 @@
 */
 	
 (function() {
-	var VideoPerception = function(values) {
+	var VideoUsagePatterns = function(values) {
   //"use strict";
 		
 		var 
@@ -57,26 +57,9 @@
 					core = require('../../core'),
 					mongoose = require( 'mongoose' ),
 					Log  = mongoose.model( 'Log' ),
-					video_perception = "score\trow\tcol\tuser\n",
-					video_perception_c3 = '',
-					matrix = [3000],
 					tmp = {}
 					;	
-				
-				
-				// filter given video
-				/*var o = {};
-				o.map = function () { emit(this.user, {utc: this.utc, playback_time: this.playback_time } ); }
-				o.reduce = function (k, entries) { 
-					
-					return vals.length 
-				
-				}
-				//
-				Log.mapReduce(o, function (err, results) {
-					
-				})
-				*/
+			
 
 				Log.find( {video_file: 'e2script_lecture5.webm'} )
 						.select('video_file user utc playback_time action action_details')
@@ -85,15 +68,12 @@
 						console.log(err)
 					}
 					//
-					video_perception_c3 = entries'{["score","col"],\n",
-					
-					var periode = 1800000; // 1 hour = video lenght
-					//
 					var 
 						users = [],
-						user_data = require("../../input/etuscript/users.json")
-						forward_backward = 'forward\tbackward\tuser\n';
-						forward_backward_c3 = '{\n';
+						user_data = require("../../input/etuscript/users.json"),
+						forward_backward = 'forward\tbackward\tuser\n',
+						forward_backward_c3 = '{\n',
+						user_patterns = {}
 						;
 					for(var o = 0; o < user_data.length;o++){
 						users.push( Number( user_data[o].id ) );
@@ -106,19 +86,6 @@
 							forward_backward_c3 += '"'+user+'": { "data": [\n ["forward","backward"],\n';
 							for(var i = 0; i < entries.length; i++){  
 								if( entries[i].user === Number(user) && entries[i].playback_time !== undefined ){ 
-									var time = Math.floor( entries[i].playback_time ); 
-									if(time > 3000) { 
-										//console.log(time, entries[i].action );
-										//time = 100; 
-									}
-						
-									if( entries[i].utc - tmp.utc < periode ){
-										for(var j = tmp.time; j < entries[i].playback_time; j++){
-											matrix[j] = matrix[j] ? matrix[j]+1 : 1; 
-										}
-									}
-									matrix[time] = matrix[time] ? matrix[time]+1 : 1;
-									
 									// determine forward backward distribution
 									var diff_playback = tmp.time - entries[i].playback_time; // difference of playback time
 									var diff_time = (entries[i].utc - tmp.utc) / 1000; // difference of physical time in seconds
@@ -140,30 +107,33 @@
 							} // end for entries
 							// further calculations
 							var o = { effort: Math.floor(x/60), back: Math.floor(y/60) }; //console.log(JSON.stringify(o));
-							
+							user_patterns[user] = o;
 							forward_backward_c3 = forward_backward_c3.slice(0,-2) + '\n';
 							forward_backward_c3 +=  '], "user_data":' + JSON.stringify(o) +'},\n';
 						}//	end hasOwnProperty
 						
 					}//end user
 					
-					// print
-					for(var j = 1; j < 3000; j++){
-						video_perception += (matrix[j] ? matrix[j] : 0) + '\t1' + '\t' + j + '\txxx\n';
-					}
-					//console.log(user_effort);
+					
+					console.log(user_patterns);
 					forward_backward_c3 = forward_backward_c3.slice(0,-2) + '\n}';
 					//console.log(forward_backward_c3);
 					core.write2file('video-perception-forward-backward.json', forward_backward_c3);
-					core.write2file('video-perception-forward-backward.tsv', forward_backward);
-					console.log(video_perception);
-					core.write2file('video-perception.tsv', video_perception);
+					///core.write2file('video-perception-forward-backward.tsv', forward_backward);
+					
+					var pat = '';
+					for (var p in user_patterns){
+						if(user_patterns.hasOwnProperty(p)){
+							pat += user_patterns[p].effort +'\t'+ user_patterns[p].back;
+						}
+					}
+					
 				});
 			}	
 	});
 	return vc;
 };
 
-	exports = module.exports = VideoPerception;
+	exports = module.exports = VideoUsagePatterns;
 
 })();

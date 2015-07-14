@@ -87,11 +87,13 @@
 							resultPerTask[k] = [];
 						}
 						
+						var sum = new gauss.Vector( assess[i].results.map(function(a){ return Number(a); }) ).sum();
+						if(sum > 0){
 						if( maxTaskPoints[k] === Number(assess[i].results[k])){ 
 							resultPerTask[k].push( 1 );
 						}else{
 							resultPerTask[k].push( 0 );
-						}	
+						}	}
 					}
 				} 
 				

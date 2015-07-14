@@ -83,7 +83,8 @@ var
 	app.set("jsonp callback", true); // ?????
 
 	app.get('/video-heatmap', function(req, res) { 
-						res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
+						//res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
+						res.sendfile('./results/viz_video-heatmap.html', {root: __dirname });
 	});
 	
 	app.get('/test3', function(req, res) { 
@@ -91,7 +92,7 @@ var
 	});
 	
 	
-	app.get('/test2', function(req, res) { 
+	app.get('/video-perception-patterns', function(req, res) { 
 						res.sendfile('./results/viz_perception-patterns.html', {root: __dirname });
 	});
 
