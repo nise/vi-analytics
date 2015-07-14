@@ -34,5 +34,6 @@ window.onload = function() {
          fill: '#fff',
          stroke: 'none'
       });
+   // could be written to file   
    console.log(svgContainer.innerHTML);
 };
