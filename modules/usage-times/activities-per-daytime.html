@@ -40,61 +40,58 @@ color:#555;
 
 </head>
 <body>
-<h1>Perception Patterns per user and video</h1>
-In this view 
+<h1>Activities during the day time</h1>
+This charts shows how the student activies are distributed over the day time. Therefore, the activities of all days the study was running have been cumulated.
 <div id="charts"></div>
 </body>
 
 <script>
-$.get('./data/video-perception-forward-backward.json', function(data){
-for( var i in data){
-		if(data.hasOwnProperty(i) && data[i].meta.effort !== 0){ 
-			$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
+$.get('./data/usage-times.json', function(data){
+$('<div></div>').attr('id', 'chart').addClass('chart').appendTo('#charts');
 		  
 		  var chart = c3.generate({
-		      bindto:'#chart'+i,
+		      bindto:'#chart',
 		      size: {
-		          width: 300,
-		          height: 300
+		          width: 500,
+		          height: 500
 		      },
 		     	axis: {
 						  x: {
-						      label: 'Videowiedergabe/Minuten',
+						      label: 'day time [hour]',
 						      tick: {
-						          count: 5,
-						         format: function (x) { return Math.floor(x/60); }
+						          values : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+						         
 						      }
 						  },
 						  y: {
-						      label: 'Rücksprünge',
+						      label: 'number of activities [thousand]',
 						      tick: {
-						         count: 5,
-						         format: function (x) { return Math.floor(x/60); },
-						         min:0
+						         count: 10,
+						         min:0,
+						         values : [0,500,1000,1500,2000,2500,3000,3500]
 						      }
 						  }
 					},
 		      legend: {  hide: true },
 		       data: {
-						  rows: data[i].data,
-						  x: 'forward', // it's possible to specify 'x' when category axis
-      				y: 'backward',
-							type: 'line'
+						  rows: data.data,
+						  x: 'time', // it's possible to specify 'x' when category axis
+      				y: 'count',
+							type: 'bar'
 					},
 		      oninit: function () {
-						var head = $('<h4></h4>').text( 'User '+data[i].meta.user ).prependTo('#chart'+i); 
+						//var head = $('<h4></h4>').text( 'User '+data[i].meta.user ).prependTo('#chart'+i); 
 						       
-		        var span = $('<span></span>')
+		        //var span = $('<span></span>')
 		            //.append('n = '+ data[i].set[7] + '<br>')
-		          .append('effort = '+  data[i].meta.effort  + 'Minutes <br>')
-							.append('culture = '+  data[i].meta.culture  + '<br>')
+		         // .append('effort = '+  data[i].meta.effort  + 'Minutes <br>')
+							//.append('culture = '+  data[i].meta.culture  + '<br>')
 		         //.append('stdev = '+ (data[i].set[10] ).toFixed(2) + '<br>');
 		        //$('#chart'+i).append(span);
 		          
 		      }
 		  });
-		}
-	}
+		
 });	
 
 </script>

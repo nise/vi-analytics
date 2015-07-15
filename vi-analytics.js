@@ -129,10 +129,14 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 		//core.makeCleanLog();
 		//var t = require('./modules/peer-annotations/peer-annotations');
 		var tt = require('./modules/video-perception/video-perception');
-		var t = new tt(app);
+		//var t = new tt(app);
 		
 		var pattern = require('./modules/video-usage-patterns/video-usage-patterns');
-		var s = new pattern(app);
+		//var s = new pattern(app);
+
+		var usage = require('./modules/usage-times/usage-times');
+		var u = new usage(app);
+
 
 		var selfa = require('./modules/self-assessment/self-assessment');
 		//var s = new selfa();

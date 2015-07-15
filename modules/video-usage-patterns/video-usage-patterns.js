@@ -57,7 +57,15 @@
     vc.extend({
 			// videoReception_simple
 			
-			init : function (){ 
+			init : function(){
+				//this.usagePattern( {video_file: 'e2script_lecture1.webm'} );
+				//this.usagePattern( {video_file: 'e2script_lecture2.webm'} );
+				//this.usagePattern( {video_file: 'e2script_lecture3.webm'} );
+				//this.usagePattern( {video_file: 'e2script_lecture4.webm'} );
+				this.usagePattern( {video_file: 'e2script_lecture5.webm'} );
+			},
+			
+			usagePattern : function ( filter ){ 
 				var 
 					core = require('../../core'),
 					mongoose = require( 'mongoose' ),
@@ -66,7 +74,7 @@
 					;	
 			
 
-				Log.find( {video_file: 'e2script_lecture5.webm'} )
+				Log.find( filter )
 						.select('video_file user utc playback_time action action_details')
 						.lean().exec(function (err, entries) { 
 					if(err){
@@ -81,16 +89,17 @@
 						user_patterns = {}
 						;
 					for(var o = 0; o < user_data.length;o++){
-						users.push( Number( user_data[o].id ) );
+						users.push( { id: Number( user_data[o].id ), culture: user_data[o].culture } );
+						
 					}
 					for(user in users){ 
 						if(users.hasOwnProperty(user)  ){ // && users[user] === users[57]
 							tmp = { time:0 };
 							var t_last_time = 0, last_time = 0;
 							var x=0,y=0; 
-							forward_backward_c3 += '"'+user+'": { "data": [\n ["forward","backward"],\n';
+							forward_backward_c3 += '"'+users[user].id+'": { "data": [\n ["forward","backward"],\n';
 							for(var i = 0; i < entries.length; i++){  
-								if( entries[i].user === Number(user) && entries[i].playback_time !== undefined ){ 
+								if( entries[i].user === Number(users[user].id) && entries[i].playback_time !== undefined ){ 
 									// determine forward backward distribution
 									var diff_playback = tmp.time - entries[i].playback_time; // difference of playback time
 									var diff_time = (entries[i].utc - tmp.utc) / 1000; // difference of physical time in seconds
@@ -104,33 +113,45 @@
 										y += Math.abs( diff_playback); 
 									}
 									
-									forward_backward += x+'\t'+y+'\t'+ users[user] +'\n';
+									forward_backward += x+'\t'+y+'\t'+ users[user].id +'\n';
 									forward_backward_c3 += '['+Math.floor(x)+','+Math.floor(y)+'],\n';
-									tmp = {utc: entries[i].utc, time: Number(time) };
+									tmp = {utc: entries[i].utc, time: entries[i].playback_time };
 								}
 								
 							} // end for entries
 							// further calculations
-							var o = { effort: Math.floor(x/60), back: Math.floor(y/60) }; //console.log(JSON.stringify(o));
+							var o = { 
+								user: users[user].id,
+								culture : users[user].culture,
+								effort: Math.floor(x/60), 
+								back: Math.floor(y/60) 
+							}; //console.log(JSON.stringify(o));
 							user_patterns[user] = o;
 							forward_backward_c3 = forward_backward_c3.slice(0,-2) + '\n';
-							forward_backward_c3 +=  '], "user_data":' + JSON.stringify(o) +'},\n';
+							forward_backward_c3 +=  '], "meta":' + JSON.stringify(o).toString() +'},\n';
 						}//	end hasOwnProperty
 						
 					}//end user
 					
 					
 					forward_backward_c3 = forward_backward_c3.slice(0,-2) + '\n}';
-					console.log(forward_backward_c3);
+					//console.log(forward_backward_c3);
 					core.write2file('video-perception-forward-backward.json', forward_backward_c3);
 					
 					
-					var pat = '';
-					for (var p in user_patterns){
-						if(user_patterns.hasOwnProperty(p)){
-							pat += user_patterns[p].effort +'\t'+ user_patterns[p].back;
-						}
-					}
+					var all=[], german = [], foreign = [];
+					for( var p in user_patterns){
+						if( user_patterns.hasOwnProperty(p) ){ 
+							if( user_patterns[p].culture === 'ger' ){
+								german.push( user_patterns[p].effort );
+							}else{
+								foreign.push( user_patterns[p].effort );
+							}
+							all.push( user_patterns[p].effort );
+						}	
+					}// end for
+					console.log(filter);
+					console.log( core.resultSet(all,2).mean, core.resultSet(german,2).mean, core.resultSet(foreign,2).mean );
 					
 				});
 			}	
