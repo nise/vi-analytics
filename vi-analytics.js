@@ -135,8 +135,10 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 		//var s = new pattern(app);
 
 		var usage = require('./modules/usage-times/usage-times');
-		var u = new usage(app);
+		//var u = new usage(app);
 
+		var rewatching = require('./modules/rewatching/rewatching');
+		var r = new rewatching(app);
 
 		var selfa = require('./modules/self-assessment/self-assessment');
 		//var s = new selfa();

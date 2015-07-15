@@ -63,11 +63,7 @@
 			// videoReception_simple
 			
 			init : function(){
-				//this.usagePattern( {video_file: 'e2script_lecture1.webm'} );
-				//this.usagePattern( {video_file: 'e2script_lecture2.webm'} );
-				//this.usagePattern( {video_file: 'e2script_lecture3.webm'} );
-				//this.usagePattern( {video_file: 'e2script_lecture4.webm'} );
-				this.activitiesPerDate();
+				//this.activitiesPerDate();
 			},
 			
 			/*
@@ -81,7 +77,6 @@
 					Log  = mongoose.model( 'Log' ),
 					tmp = {}
 					;	
-			
 
 				Log.find(  )
 						.select('utc')
@@ -117,8 +112,6 @@
 					}	
 				});
 			},
-			
-			
 			
 			/*
 			*
