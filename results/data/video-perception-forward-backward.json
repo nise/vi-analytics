@@ -1,7 +1,4 @@
-{
-"0": { "data": [
- ["forward","backward"]
-], "user_data":{"effort":0,"back":0}},
+{ "0": { "data": [ ["forward","backward"] ], "user_data":{"effort":0,"back":0} },
 "1": { "data": [
  ["forward","backward"],
 [0,0],

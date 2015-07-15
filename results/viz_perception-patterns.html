@@ -41,6 +41,7 @@ color:#555;
 </head>
 <body>
 <h1>Perception Patterns per user and video</h1>
+In this view 
 <div id="charts"></div>
 
 
@@ -50,9 +51,9 @@ color:#555;
 
 
 $.get('./data/video-perception-forward-backward.json', function(data){
-
-	for( var i in data){
-		if(data.hasOwnProperty(i)){ 
+alert(data.length)
+	for( var i = 0, i<data.length; i++){
+		//if(data.hasOwnProperty(i)){ 
 			$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
 		  var chart = c3.generate({
 		      bindto:'#chart'+i,
@@ -90,7 +91,7 @@ $.get('./data/video-perception-forward-backward.json', function(data){
 						  type: 'line'
 					},
 		      oninit: function () {
-						var head = $('<h4></h4>').text( 'User '+i ).prependTo('#chart'+i); 
+						var head = $('<h4></h4>').text( 'User '+data[i].id ).prependTo('#chart'+i); 
 						       
 		        var span = $('<span></span>')
 		            //.append('n = '+ data[i].set[7] + '<br>')
@@ -102,7 +103,7 @@ $.get('./data/video-perception-forward-backward.json', function(data){
 		      }
 		  });
 		}
-	}	
+	//}	
 });	
 
 /*

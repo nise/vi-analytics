@@ -1,10 +1,9 @@
 /* 
 * @description estimates the whatched parts of a video
 * todo:
-* 	- highlight phases
-*   - forward/backward per phase
-*		- map annotation to effort and pattern
-* 	- calc number of breakpoints
+* 	- render plots on server side to minimize execution time
+*		- add some metadata about the video
+* 	- define interfaces for filtered data for groups, single users, script phases, ... 
 */
 	
 (function() {
@@ -56,64 +55,72 @@
 				var 
 					core = require('../../core'),
 					mongoose = require( 'mongoose' ),
+					user_data = require("../../input/etuscript/users.json")
 					Log  = mongoose.model( 'Log' ),
-					video_perception = "score\trow\tcol\tuser\n",
-					video_perception_c3 = '',
-					matrix = [3000],
-					tmp = {}
+					matrix = [], // number of times a minute of a video has been watched by all users
+					tmp = [],
+					periode = 1800000,  // interval of considered inactivity
+					time = [],
+					users = [],
+					userHited = [] // number of users that have been watching a particular minute in a video
 					;	
-			
-
-				Log.find( {video_file: 'e2script_lecture5.webm'} )
-						.select('video_file user utc playback_time action action_details')
+				
+				Log.find(  ) //{video_file: 'e2script_lecture1.webm'}
+						.select('video_file user utc playback_time')
 						.lean().exec(function (err, entries) { 
 					if(err){
 						console.log(err)
 					}
 					//
-					video_perception_c3 = '"'+entries[i].video_id+'" :{["score","col"],\n",
-					
-					var periode = 1800000; // 1 hour = video lenght
-					//
-					var 
-						users = [],
-						user_data = require("../../input/etuscript/users.json")	
-						;
 					for(var o = 0; o < user_data.length;o++){
 						users.push( Number( user_data[o].id ) );
 					}
 					for(user in users){ 
-						if(users.hasOwnProperty(user)  ){ // && users[user] === users[57]
-							tmp = { time:0 };
-							var t_last_time = 0, last_time = 0;
-							var x=0,y=0; 
-							forward_backward_c3 += '"'+user+'": { "data": [\n ["forward","backward"],\n';
+						if(users.hasOwnProperty(user)  ){ // && users[user] === users[57]	
 							for(var i = 0; i < entries.length; i++){  
 								if( entries[i].user === Number(user) && entries[i].playback_time !== undefined ){ 
-									var time = Math.floor( entries[i].playback_time ); 
-									if(time > 3000) { 
-										//console.log(time, entries[i].action );
-										//time = 100; 
-									}
-						
-									if( entries[i].utc - tmp.utc < periode ){
-										for(var j = tmp.time; j < entries[i].playback_time; j++){
-											matrix[j] = matrix[j] ? matrix[j]+1 : 1; 
+									// init variables and arrays
+									video = (entries[i].video_file).replace(/e2script_lecture/,'').replace(/.webm/,'');
+									tmp[video] = tmp[video] ? tmp[video] : { time:0, utc: entries[i].utc};
+									matrix[video] = matrix[video] ? matrix[video] : [];
+									time[video] = Math.floor( entries[i].playback_time );
+									userHited[video] = userHited[video] ? userHited[video] : []; 
+							
+									if( entries[i].utc - tmp[video].utc < periode ){
+										for(var j = Math.floor(tmp[video].time); j < time[video]; j++){
+											matrix[video][j] = matrix[video][j] ? matrix[video][j]+1 : 1;
+											userHited[video][j] = userHited[video][j] ? userHited[video][j] : [];
+									userHited[video][j][user] = userHited[video][j][user] ? userHited[video][j][user]+1 : 1;
 										}
 									}
-									matrix[time] = matrix[time] ? matrix[time]+1 : 1;
-									
+									matrix[video][time[video]] = matrix[video][time[video]] ? matrix[video][time[video]]+1 : 1;
+									userHited[video][j] = userHited[video][j] ? userHited[video][j] : [];
+									userHited[video][j][user] = userHited[video][j][user] ? userHited[video][j][user]+1 : 1;
+									// store some data temporally
+									tmp[video].utc = entries[i].utc;
+									tmp[video].time = time[video];
+								} // end has playback time
 							} // end for entries
-						}//	end hasOwnProperty
-						
-					}//end user
-					
-					// print
-					for(var j = 1; j < 3000; j++){
-						video_perception += (matrix[j] ? matrix[j] : 0) + '\t1' + '\t' + j + '\txxx\n';
+						}
 					}
-					console.log(video_perception);
-					core.write2file('video-perception.tsv', video_perception);
+					// output results in a format that fits the requirements of c3.js
+					var video_perception_c3 = '[';
+					for(var video in matrix){ //console.log((video).substr(-2))
+						if(matrix.hasOwnProperty(video) && matrix[video].length > 0){
+							video_perception_c3 += '{ "id":"'+video+'", "data": [ ["time","hits","userHits"],\n';
+							for(var j = 1; j < 3000; j++){
+								if(matrix[video][j]){
+									video_perception_c3 += '['+j+','+Math.floor(matrix[video][j])+',' + Object.size(userHited[video][j]) +'],\n'
+								}	
+							}
+							video_perception_c3 = video_perception_c3.slice(0,-2) + '\n';
+							video_perception_c3 += ']},\n';
+						}
+					}
+					video_perception_c3 = video_perception_c3.slice(0,-2) + '\n ]';
+					// save to file 
+					//console.log(video_perception_c3);
+					core.write2file('video-heatmap.json', video_perception_c3);
 				});
 			}	
 	});
