@@ -8,7 +8,7 @@
 */
 	
 (function() {
-	var VideoUsagePatterns = function(values) {
+	var VideoUsagePatterns = function(app) {
   //"use strict";
 		
 		var 
@@ -19,6 +19,11 @@
 			;
 			// register some hooks
 			core.registerHook('on-load', vc, 'init');//log-data-loaded
+			
+			// define routes
+			app.get('/video-usage-patterns', function(req, res) { 
+				res.sendfile('./video-usage-patterns.html', {root: __dirname });
+			});
 			
 			var result = function(value, callback) {
 				if (callback) {
@@ -115,11 +120,10 @@
 					}//end user
 					
 					
-					console.log(user_patterns);
 					forward_backward_c3 = forward_backward_c3.slice(0,-2) + '\n}';
-					//console.log(forward_backward_c3);
+					console.log(forward_backward_c3);
 					core.write2file('video-perception-forward-backward.json', forward_backward_c3);
-					///core.write2file('video-perception-forward-backward.tsv', forward_backward);
+					
 					
 					var pat = '';
 					for (var p in user_patterns){

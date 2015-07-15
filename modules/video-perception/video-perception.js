@@ -7,7 +7,7 @@
 */
 	
 (function() {
-	var VideoPerception = function(values) {
+	var VideoPerception = function(app) {
   //"use strict";
 		
 		var 
@@ -18,6 +18,12 @@
 			;
 			// register some hooks
 			core.registerHook('on-load', vc, 'init');//log-data-loaded
+			console.log(__dirname)
+			// define routes
+			app.get('/video-heatmap', function(req, res) { 
+						//res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
+				res.sendfile('./video-perception.html', {root: __dirname });
+			});
 			
 			var result = function(value, callback) {
 				if (callback) {
@@ -74,7 +80,7 @@
 					//
 					for(var o = 0; o < user_data.length;o++){
 						users.push( Number( user_data[o].id ) );
-					}
+					} 
 					for(user in users){ 
 						if(users.hasOwnProperty(user)  ){ // && users[user] === users[57]	
 							for(var i = 0; i < entries.length; i++){  

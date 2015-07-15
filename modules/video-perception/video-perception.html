@@ -83,10 +83,11 @@ $.get('./data/video-heatmap.json', function(data){
 						  		show: true,
 						      label: 'Teilnehmer',
 						      tick: {
-      							values: [0,50]
+      							values: [0,10,20,30,40,50],
+      							outer: true
     							},
     							padding:0,
-    							max : 100
+    							max : 50
 						  }
 					},
 		      legend: {  hide: true },

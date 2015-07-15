@@ -81,20 +81,7 @@ var
 //	app.use(users.passport.session());
 	//app.use(app.router);
 	app.set("jsonp callback", true); // ?????
-
-	app.get('/video-heatmap', function(req, res) { 
-						//res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
-						res.sendfile('./results/viz_video-heatmap.html', {root: __dirname });
-	});
-	
-	app.get('/test3', function(req, res) { 
-						res.sendfile('./results/line_forward-backward-dist.html', {root: __dirname });
-	});
-	
-	
-	app.get('/video-perception-patterns', function(req, res) { 
-						res.sendfile('./results/viz_perception-patterns.html', {root: __dirname });
-	});
+		
 
 /*
 	app.configure(function () {
@@ -142,7 +129,10 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 		//core.makeCleanLog();
 		//var t = require('./modules/peer-annotations/peer-annotations');
 		var tt = require('./modules/video-perception/video-perception');
-		var t = new tt(22);
+		var t = new tt(app);
+		
+		var pattern = require('./modules/video-usage-patterns/video-usage-patterns');
+		var s = new pattern(app);
 
 		var selfa = require('./modules/self-assessment/self-assessment');
 		//var s = new selfa();
