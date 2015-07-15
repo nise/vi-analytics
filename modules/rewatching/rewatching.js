@@ -1,10 +1,7 @@
 /* 
-* @description estimates the whatched parts of a video
+* @description 
 * todo:
-* 	- highlight phases
-*   - forward/backward per phase
-*		- map annotation to effort and pattern
-* 	- calc number of breakpoints
+* 	- differentiate colors for different dates at c3.js
 */
 	
 (function() {

@@ -81,32 +81,11 @@ var
 //	app.use(users.passport.session());
 	//app.use(app.router);
 	app.set("jsonp callback", true); // ?????
+	
+	
+	// not working to prerender c3.js
+	//app.use(require('prerender-node'));
 		
-
-/*
-	app.configure(function () {
-    app.set('port', process.env.PORT || 3000);
-    app.use(express.logger('dev'));  // 'default', 'short', 'tiny', 'dev' 
-    app.use(express.bodyParser()),
-    app.use(express.static(path.join(__dirname, 'results')));
-    // Passport:
-		app.set('views', __dirname + '/views');
-		app.set('view engine', 'ejs');
-		app.engine('ejs', require('ejs-locals'));
-		app.use(express.logger());
-		app.use(express.cookieParser());
-		app.use(express.bodyParser());
-		app.use(express.methodOverride());
-		app.use(express.session({ secret: 'keyboard cat' }));
-		app.use(flash());
-		// Initialize Passport!  Also use passport.session() middleware, to support
-		// persistent login sessions (recommended).
-//		app.use(userMgmt.passport.initialize());
-//		app.use(userMgmt.passport.session());
-		app.use(app.router);
-		app.set("jsonp callback", true); // ?????
-	});
-*/	
 
 
 /**
@@ -123,25 +102,29 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 		//require('./modules/time-effort').init();
 		//require('./modules/feedback-analysis').init();
 
-		//require('./modules/effective-interactions').init();
 		
 	
 		//core.makeCleanLog();
+		
+		
 		//var t = require('./modules/peer-annotations/peer-annotations');
 		var tt = require('./modules/video-perception/video-perception');
-		//var t = new tt(app);
+		var t = new tt(app);
 		
 		var pattern = require('./modules/video-usage-patterns/video-usage-patterns');
-		//var s = new pattern(app);
+		var s = new pattern(app);
 
 		var usage = require('./modules/usage-times/usage-times');
-		//var u = new usage(app);
+		var u = new usage(app);
 
 		var rewatching = require('./modules/rewatching/rewatching');
 		var r = new rewatching(app);
 
 		var selfa = require('./modules/self-assessment/self-assessment');
-		//var s = new selfa();
+		var s = new selfa();
+		
+		//require('./modules/effective-interactions').init();
+		
 		
 		core.callHook( 'on-load' );
 

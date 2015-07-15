@@ -194,7 +194,7 @@ console.log('The more the values of the specific group expand towards the outsid
 console.log(x);
 
 
-
+}
 
 
 	/*
@@ -210,5 +210,5 @@ console.log(x);
 		//echo out;
 		this->util->write2file("interactions_per_video.tsv", out);	
 	*/	
-	}
+	
 
