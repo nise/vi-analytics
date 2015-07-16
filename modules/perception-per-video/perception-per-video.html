@@ -40,16 +40,15 @@ color:#555;
 
 </head>
 <body>
-<h1>Hits per playback time</h1>
+<h1>Perception per Video</h1>
+This diagram shows which part of an video has been watched how often and by how many people. 
 <div id="charts"></div>
-
-
 </body>
 
 <script>
 
 
-$.get('./data/video-heatmap.json', function(data){
+$.get('./data/perception-per-video.json', function(data){
 
 	for( var i in data){
 		if(data.hasOwnProperty(i)){ 

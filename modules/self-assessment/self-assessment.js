@@ -4,7 +4,8 @@
 * // convert the dump into json: $ bsondump collection.bson > collection.json
 * todo
 *  - Item-total correlation (Trennschärfe) and the Item Homogenity needs to be calculated. See https://de.wikipedia.org/wiki/Itemanalyse#Itemschwierigkeit
-* - rendering as tables, plots using c3.js
+*  - rendering as tables, plots using c3.js
+*  - define REST interfaces
 */
 	
 (function() {
@@ -51,7 +52,7 @@
 		//
     vc.extend({
     
-    	init : function (){
+    	init : function ( app ){
 				var assess = require("../../input/etuscript/mongodb/tests.json");
 				var assignments = require("../../input/etuscript/assessment.json");
 				var max_result = 35;

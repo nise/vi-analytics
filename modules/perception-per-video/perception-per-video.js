@@ -4,10 +4,11 @@
 * 	- render plots on server side to minimize execution time
 *		- add some metadata about the video
 * 	- define interfaces for filtered data for groups, single users, script phases, ... 
+*   - REST Interface for a heatmap that could become part of a video player timeline
 */
 	
 (function() {
-	var VideoPerception = function(app) {
+	var PerceptionPerVideo = function(app) {
   //"use strict";
 		
 		var 
@@ -18,11 +19,11 @@
 			;
 			// register some hooks
 			core.registerHook('on-load', vc, 'init');//log-data-loaded
-			console.log(__dirname)
+			
 			// define routes
 			app.get('/video-heatmap', function(req, res) { 
 						//res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
-				res.sendfile('./video-perception.html', {root: __dirname });
+				res.sendfile('./perception-per-video.html', {root: __dirname });
 			});
 			
 			var result = function(value, callback) {
@@ -126,13 +127,13 @@
 					video_perception_c3 = video_perception_c3.slice(0,-2) + '\n ]';
 					// save to file 
 					//console.log(video_perception_c3);
-					core.write2file('video-heatmap.json', video_perception_c3);
+					core.write2file('perception-per-video.json', video_perception_c3);
 				});
 			}	
 	});
 	return vc;
 };
 
-	exports = module.exports = VideoPerception;
+	exports = module.exports = PerceptionPerVideo;
 
 })();

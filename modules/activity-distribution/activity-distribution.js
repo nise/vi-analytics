@@ -1,14 +1,16 @@
 /* 
-* @description estimates the whatched parts of a video
+* @description Prepares data in order to plot activies over time and date
 * todo:
 * 	- highlight phases
 *   - forward/backward per phase
 *		- map annotation to effort and pattern
 * 	- calc number of breakpoints
+*		- add CORDTRA diagram
+*		- add diagram for german and foreign participants
 */
 	
 (function() {
-	var UsageTimes = function(app) {
+	var ActivityDistribution = function(app) {
   //"use strict";
 		
 		var 
@@ -106,7 +108,7 @@
 					usage_times_c3 +=  ']}';
 					
 					//console.log(usage_times_c3);
-					core.write2file('usage-times.json', usage_times_c3);
+					core.write2file('activities-per-daytime.json', usage_times_c3);
 					if(callback){
 						callback.sendfile('./activities-per-daytime.html', {root: __dirname });
 					}	
@@ -125,22 +127,28 @@
 					tmp = {}
 					;	
 				Log.find(  )
-						.select('utc')
+						.select('utc user')
 						.lean().exec(function (err, entries) { 
 					if(err){
 						console.log(err)
 					}
 					//
-					var 
+					var
+						users = [],
+						user_data = require("../../input/etuscript/users.json"), 
 						usage_times_c3 = '{\n',
 						time = Date,
 						c=[]
 						; 
-					
+					for(var o = 0; o < user_data.length;o++){
+						users[user_data[o].id] = user_data[o].culture;
+					}
 					usage_times_c3 += '"data": [["time","count"],\n'
-					for(var i = 0; i < entries.length; i++){  
-							time = moment.utc(entries[i].utc).format("YYYY-M-D");// * 60 + moment.utc(entries[i].utc).format("mm");
-							c[ time ] = c[ time ] ? c[ time ] + 1 : 1; 
+					for(var i = 0; i < entries.length; i++){
+						  if( users[ entries[i].user ] !== 'null'){ // x or ger
+								time = moment.utc(entries[i].utc).format("YYYY-M-D");// * 60 + moment.utc(entries[i].utc).format("mm");
+								c[ time ] = c[ time ] ? c[ time ] + 1 : 1;
+							}	 
 					} // end for entries
 					// further calculations
 					for(t in c){
@@ -152,7 +160,7 @@
 					usage_times_c3 +=  ']}';
 					
 					console.log(usage_times_c3);
-					core.write2file('usage-times.json', usage_times_c3);
+					core.write2file('activities-per-date.json', usage_times_c3);
 					if(callback){
 						callback.sendfile('./activities-per-date.html', {root: __dirname });
 					}	
@@ -162,6 +170,6 @@
 	return vc;
 };
 
-	exports = module.exports = UsageTimes;
+	exports = module.exports = ActivityDistribution;
 
 })();

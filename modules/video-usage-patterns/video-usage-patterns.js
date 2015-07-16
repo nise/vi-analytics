@@ -90,7 +90,6 @@
 						;
 					for(var o = 0; o < user_data.length;o++){
 						users.push( { id: Number( user_data[o].id ), culture: user_data[o].culture } );
-						
 					}
 					for(user in users){ 
 						if(users.hasOwnProperty(user)  ){ // && users[user] === users[57]

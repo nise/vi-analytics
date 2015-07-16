@@ -96,7 +96,33 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 	if(err){
 		console.log(err);
 	}else{
-		//
+		// database log loaded
+		
+
+
+		var perception = require('./modules/perception-per-video/perception-per-video');
+		//var p = new perception(app);
+		
+		var pattern = require('./modules/video-usage-patterns/video-usage-patterns');
+		//var s = new pattern(app);
+
+		var usage = require('./modules/activity-distribution/activity-distribution');
+		//var u = new usage(app);
+
+		var rewatching = require('./modules/rewatching/rewatching');
+		//var r = new rewatching(app);
+
+		var selfa = require('./modules/self-assessment/self-assessment');
+		var s = new selfa();
+		
+
+		var annotations = require('./modules/annotations/annotations');
+		//var a = new annotations();
+		
+		
+		
+		//require('./modules/effective-interactions').init();
+		
 		//require('./analysis');	
 		//require('./modules/distribution').init();
 		//require('./modules/time-effort').init();
@@ -107,27 +133,7 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 		//core.makeCleanLog();
 		
 		
-		//var t = require('./modules/peer-annotations/peer-annotations');
-		var tt = require('./modules/video-perception/video-perception');
-		var t = new tt(app);
 		
-		var pattern = require('./modules/video-usage-patterns/video-usage-patterns');
-		var s = new pattern(app);
-
-		var usage = require('./modules/usage-times/usage-times');
-		var u = new usage(app);
-
-		var rewatching = require('./modules/rewatching/rewatching');
-		var r = new rewatching(app);
-
-		var selfa = require('./modules/self-assessment/self-assessment');
-		var s = new selfa();
-		
-		//require('./modules/effective-interactions').init();
-		
-		
-		core.callHook( 'on-load' );
-
 		//var config = require("./input/etuscript/config.json");
 		//require('./modules/annotations').init(config);
 		//require('./modules/fill-in').init(config);
@@ -135,8 +141,9 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 		//require('./modules/etherpad').init(config);
 
 
-		//app.get('/analytics', core.init);
 
+
+		core.callHook( 'on-load' );
 	
 	}
 });	

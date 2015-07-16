@@ -40,27 +40,27 @@ color:#555;
 
 </head>
 <body>
-<h1>Activities during the day time</h1>
-This charts shows how the student activies are distributed over the day time. Therefore, the activities of all days the study was running have been cumulated.
+<h1>Activities per date</h1>
+This charts shows how the student activies changed over the whole periode of the study. 
 <div id="charts"></div>
 </body>
 
 <script>
-$.get('./data/usage-times.json', function(data){
+$.get('./data/activities-per-date.json', function(data){
 $('<div></div>').attr('id', 'chart').addClass('chart').appendTo('#charts');
 		  
 		  var chart = c3.generate({
 		      bindto:'#chart',
 		      size: {
-		          width: 500,
+		          width: 1000,
 		          height: 500
 		      },
 		     	axis: {
 						  x: {
-						      label: 'day time [hour]',
+						      label: 'date',
+						      type: 'timeseries',
 						      tick: {
-						          values : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-						         
+						          format: '%Y-%m-%d'
 						      }
 						  },
 						  y: {
@@ -77,7 +77,7 @@ $('<div></div>').attr('id', 'chart').addClass('chart').appendTo('#charts');
 						  rows: data.data,
 						  x: 'time', // it's possible to specify 'x' when category axis
       				y: 'count',
-							type: 'bar'
+							type: 'area-spline'
 					},
 		      oninit: function () {
 						//var head = $('<h4></h4>').text( 'User '+data[i].meta.user ).prependTo('#chart'+i); 
