@@ -23,6 +23,10 @@ intro: http://flowingdata.com/2011/09/21/quick-time-series-visualization-with-cu
 Web Analyse
 http://piwik.org/docs/installation-maintenance/
 
+
+edX analytics API
+http://edx.readthedocs.org/projects/edx-data-analytics-api/en/latest/videos.html
+
 */
 
 
@@ -98,43 +102,42 @@ var conn = mongoose.connect( 'mongodb://localhost/vi-analytics' , function(err, 
 	}else{
 		// database log loaded
 		
-
+		//core.makeCleanLog();
 
 		var perception = require('./modules/perception-per-video/perception-per-video');
-		//var p = new perception(app);
+		var p = new perception(app);
 		
+		
+		/*
 		var pattern = require('./modules/video-usage-patterns/video-usage-patterns');
-		//var s = new pattern(app);
+		var s = new pattern(app);
 
 		var usage = require('./modules/activity-distribution/activity-distribution');
-		//var u = new usage(app);
+		var u = new usage(app);
 
 		var rewatching = require('./modules/rewatching/rewatching');
-		//var r = new rewatching(app);
+		var r = new rewatching(app);
 
 		var selfa = require('./modules/self-assessment/self-assessment');
 		var s = new selfa();
 		
 
 		var annotations = require('./modules/annotations/annotations');
-		//var a = new annotations();
+		var a = new annotations();
+		*/
 		
+		require('./modules/effective-interactions/analysis');	
 		
+		/*   OLD STUFF */
 		
 		//require('./modules/effective-interactions').init();
 		
-		//require('./analysis');	
+		
 		//require('./modules/distribution').init();
 		//require('./modules/time-effort').init();
 		//require('./modules/feedback-analysis').init();
 
 		
-	
-		//core.makeCleanLog();
-		
-		
-		
-		//var config = require("./input/etuscript/config.json");
 		//require('./modules/annotations').init(config);
 		//require('./modules/fill-in').init(config);
 		//require('./modules/ondemandtasks').init(config);

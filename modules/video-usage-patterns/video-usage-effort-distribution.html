@@ -40,8 +40,8 @@ color:#555;
 
 </head>
 <body>
-<h1>Perception Patterns per user and video</h1>
-In this view 
+<h1>Perception Patterns .. Effort distribution</h1>
+ 
 <div id="charts"></div>
 </body>
 
@@ -49,19 +49,19 @@ In this view
 
 
 
-$.get('./data/video-perception-forward-backward.json', function(data){
-for( var i in data){
-		if(data.hasOwnProperty(i) && data[i].meta.effort !== 0){ 
-			$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
+$.get('./data/video-perception-effort-back.json', function(data){
+//for( var i in data){
+	//	if(data.hasOwnProperty(i) && data[i].meta.effort !== 0){ 
+//			$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
 		  
 		  var chart = c3.generate({
-		      bindto:'#chart'+i,
+		      bindto:'#charts',
 		      size: {
 		          width: 300,
 		          height: 300
 		      },
 		      point: {
-						r: 2
+						r: 3
 					},
 		     	axis: {
 						  x: {
@@ -82,39 +82,25 @@ for( var i in data){
 					},
 		      legend: {  hide: true },
 		       data: {
-						  rows: data[i].data,
-						  x: 'forward', // it's possible to specify 'x' when category axis
-      				y: 'backward',
-      				y2:null,
-      				x2: null,
-							type: 'line',
-							//colors: { pattern: ['#ff0000','#00ff00','#0000ff','#336600','#ccc'] },
-							
-							color: function (color, d) {
-      					var colors = ['#ff0000','#00ff00','#0000ff','#336600','#ccc'];
-      					
-								
-      					if( d.id === 'action' ){ 
-      						return colors[d.value]
-      					}  
-      					return colors[4];
-				    	}
-							
+						  rows: data.data,
+						  x: 'play', // it's possible to specify 'x' when category axis
+      				y: 'back',
+							type: 'scatter'
 					},
 		      oninit: function () {
-						var head = $('<h4></h4>').text( 'User '+data[i].meta.user ).prependTo('#chart'+i); 
+						//var head = $('<h4></h4>').text( 'User '+data[i].meta.user ).prependTo('#chart'+i); 
 						       
 		        var span = $('<span></span>')
 		            //.append('n = '+ data[i].set[7] + '<br>')
-		          .append('effort = '+  data[i].meta.effort  + 'Minutes <br>')
-							.append('culture = '+  data[i].meta.culture  + '<br>')
+		        //  .append('effort = '+  data[i].meta.effort  + 'Minutes <br>')
+						//	.append('culture = '+  data[i].meta.culture  + '<br>')
 		         //.append('stdev = '+ (data[i].set[10] ).toFixed(2) + '<br>');
 		        //$('#chart'+i).append(span);
 		          
 		      }
 		  });
-		}
-	}
+	//	}
+//	}
 });	
 
 </script>

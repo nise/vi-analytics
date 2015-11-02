@@ -25,6 +25,11 @@
 				res.sendfile('./video-usage-patterns.html', {root: __dirname });
 			});
 			
+			app.get('/video-usage-effort', function(req, res) { 
+				res.sendfile('./video-usage-effort-distribution.html', {root: __dirname });
+			});
+			
+			
 			var result = function(value, callback) {
 				if (callback) {
 				  return callback(value);
@@ -62,7 +67,29 @@
 				//this.usagePattern( {video_file: 'e2script_lecture2.webm'} );
 				//this.usagePattern( {video_file: 'e2script_lecture3.webm'} );
 				//this.usagePattern( {video_file: 'e2script_lecture4.webm'} );
-				this.usagePattern( {video_file: 'e2script_lecture5.webm'} );
+				this.usagePattern( {video_file: 'e2script_lecture1.webm'} );
+			},
+			
+			action_arr : [
+				['seek_end','seek_start','timeline_link_seek','videopaused','videoplayed'], // actionsOnTimeline = 
+				['save_WrittenAssessment','save_WrittenAssessment','saveannotation comments','save','saveannotation tags', 'save-fill-in'], // actionsOnAnnotation
+				['change_speed'], // actionsSpeed
+				['clickcommentfromlist','clicktocfromlist'], // actionsNav
+				['loadvideo', 'videoended'], // actionsOthers
+			],
+			
+			/*
+			* Helper function
+			**/
+			getActionType : function(action){
+				for(var type in this.action_arr){
+					if( this.action_arr.hasOwnProperty(type) ){
+						if(  this.action_arr[type].indexOf(action) !== -1 ){
+							return type;
+						}	
+					}
+				}
+				return 4; // others
 			},
 			
 			usagePattern : function ( filter ){ 
@@ -75,7 +102,7 @@
 			
 
 				Log.find( filter )
-						.select('video_file user utc playback_time action action_details')
+						.select('video_file user utc playback_time action')
 						.lean().exec(function (err, entries) { 
 					if(err){
 						console.log(err)
@@ -84,7 +111,7 @@
 					var 
 						users = [],
 						user_data = require("../../input/etuscript/users.json"),
-						forward_backward = 'forward\tbackward\tuser\n',
+						//forward_backward = 'forward\tbackward\tuser\n',
 						forward_backward_c3 = '{\n',
 						user_patterns = {}
 						;
@@ -96,7 +123,7 @@
 							tmp = { time:0 };
 							var t_last_time = 0, last_time = 0;
 							var x=0,y=0; 
-							forward_backward_c3 += '"'+users[user].id+'": { "data": [\n ["forward","backward"],\n';
+							forward_backward_c3 += '"'+users[user].id+'": { "data": [\n ["forward","backward","action"],\n';
 							for(var i = 0; i < entries.length; i++){  
 								if( entries[i].user === Number(users[user].id) && entries[i].playback_time !== undefined ){ 
 									// determine forward backward distribution
@@ -112,8 +139,8 @@
 										y += Math.abs( diff_playback); 
 									}
 									
-									forward_backward += x+'\t'+y+'\t'+ users[user].id +'\n';
-									forward_backward_c3 += '['+Math.floor(x)+','+Math.floor(y)+'],\n';
+									//forward_backward += x+'\t'+y+'\t'+ users[user].id +'\n';
+									forward_backward_c3 += '['+Math.floor(x)+','+Math.floor(y)+','+ vc.getActionType( entries[i].action) +'],\n';
 									tmp = {utc: entries[i].utc, time: entries[i].playback_time };
 								}
 								
@@ -138,7 +165,7 @@
 					core.write2file('video-perception-forward-backward.json', forward_backward_c3);
 					
 					
-					var all=[], german = [], foreign = [];
+					var all=[], german = [], foreign = [], play_back = '{ "data": [\n ["play","back"],\n';
 					for( var p in user_patterns){
 						if( user_patterns.hasOwnProperty(p) ){ 
 							if( user_patterns[p].culture === 'ger' ){
@@ -147,10 +174,16 @@
 								foreign.push( user_patterns[p].effort );
 							}
 							all.push( user_patterns[p].effort );
+							play_back += '['+user_patterns[p].effort+','+user_patterns[p].back+'],\n'
 						}	
 					}// end for
+					play_back = play_back.slice(0,-2) + '\n]}';
+					
 					console.log(filter);
-					console.log( core.resultSet(all,2).mean, core.resultSet(german,2).mean, core.resultSet(foreign,2).mean );
+					console.log( core.resultSet(all,2).mean, core.resultSet(german,2).mean, core.resultSet(foreign,2).mean);
+					// write 
+					core.write2file('video-perception-effort-back.json', play_back);
+					
 					
 				});
 			}	

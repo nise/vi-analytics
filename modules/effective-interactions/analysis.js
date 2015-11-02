@@ -1,11 +1,11 @@
 
 var 
-	core = require('./core'),
+	core = require('../../core'),
 	gauss = require('gauss'),
-	cleanlog = require('./input/scm2.json'),
-	videoMetaData = require('./input/scm2_videos.json'),
-	userData = require('./input/scm2-users.json'),
-	groupData = require('./input/scm2-groups.json')
+	cleanlog = require('../../input/scm2.json'),
+	videoMetaData = require('../../input/scm2_videos.json'),
+	userData = require('../../input/scm2-users.json'),
+	groupData = require('../../input/scm2-groups.json')
 	;
 
 var analysis = new init();
@@ -98,7 +98,7 @@ function init(){
 // alle deutsche + deutsche videos
 //if( core.getObjectOfUser(user, 'culture') == 'de' ){
 //if(core.getObjectOfVideo(cleanlog[i].video, 'language') == 'en'){	 		 
-		
+		{
 			
 				if(userData[cleanlog[i].user] != undefined){ 
 					group = userData[cleanlog[i].user]['GruppeP1']; 
