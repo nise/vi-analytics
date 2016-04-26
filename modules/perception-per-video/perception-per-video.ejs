@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='UTF-8'>
+<!-- Load c3.css -->
+<link href='<%= pathcss %>c3.min.css' rel='stylesheet' type='text/css'>
+
+<!-- Load d3.js and c3.js -->
+<script src='<%= path %>d3.min.js' charset='utf-8'></script>
+<script src='<%= path %>c3.min.js'></script>
+<script src='<%= path %>jquery-1.11.3.min.js'></script>
+
+<style>
+html {
+    font-family:Arial;
+}
+
+span {
+    font-size:10px;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.chart{
+	padding:10px;
+	display:block;
+	margin:50px 30px 30px 30px;
+	width:100%;
+}
+
+h4 {
+font-size:14px;
+color:#555;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+<h1>Perception per Video<%= title %></h1>
+This diagram shows which part of an video has been watched how often and by how many people. 
+<div id='charts'></div>
+</body>
+
+<script>
+
+$.get('./data/perception-per-video.json', function(data){
+
+//var data = '<%= data | replace:/\&quote\;/g,'' %>';
+
+	for( var i in data){
+		if(data.hasOwnProperty(i)){ 
+			$('<div></div>').attr('id', 'chart'+i).addClass('chart').appendTo('#charts');
+		  var chart = c3.generate({
+		      bindto:'#chart'+i,
+		      size: {
+		          width: 1000,
+		          height: 600
+		      },
+		     	axis: {
+						  x: {
+						      label: 'Videolänge/Minuten',
+						      tick: {
+						          count: 10,
+						         format: function (x) { return Math.floor(x/60); }
+						         
+						      },
+						      padding:0,
+						      max: 3600
+						  },
+						  y: {
+						      label: 'Aufrufe',
+						      tick: {
+      							values: [0,50, 100, 200, 300,400,500,600,700,800,900,1000,1100]
+    							},
+    							padding:0,
+    							max : 1200
+						  },
+						  y2: {
+						  		show: true,
+						      label: 'Teilnehmer',
+						      tick: {
+      							values: [0,10,20,30,40,50],
+      							outer: true
+    							},
+    							padding:0,
+    							max : 50
+						  }
+					},
+		      legend: {  hide: true },
+		       data: {
+						  rows: data[i].data,
+						  x: 'time', 
+      				y: 'hits',
+      				y2: 'userHits',
+      				x2: 'time',
+						  type: 'area-step'
+					},
+		      oninit: function () {
+						var head = $('<h4></h4>').text( 'Video '+data[i].id ).prependTo('#chart'+i); 
+						       
+		        var span = $('<span></span>')
+		            //.append('n = '+ data[i].set[7] + '<br>')
+		           // .append('effort = '+  data[i].user_data.effort  + '<br>')
+		        //.append('median = '+ (data[i].set[9] ).toFixed(2) + '<br>')
+		         //.append('stdev = '+ (data[i].set[10] ).toFixed(2) + '<br>');
+		        $('#chart'+i).append(span);
+		          
+		      }
+		  });
+		}
+	}	
+});	
+
+</script>
+</html>

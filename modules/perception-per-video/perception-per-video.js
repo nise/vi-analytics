@@ -1,6 +1,7 @@
 /* 
 * @description estimates the whatched parts of a video
-* todo:
+* method: estimates realistic playback time by considering all user events with respect to time between their occurance
+* @todo:
 * 	- render plots on server side to minimize execution time
 *		- add some metadata about the video
 * 	- define interfaces for filtered data for groups, single users, script phases, ... 
@@ -8,7 +9,7 @@
 */
 	
 (function() {
-	var PerceptionPerVideo = function(app) {
+	var PerceptionPerVideo = function() {
   //"use strict";
 		
 		var 
@@ -18,13 +19,8 @@
 			//logg = require( '../../input/' + core.project + '/' + core.projectConfiguration.cleanlog );
 			;
 			// register some hooks
-			core.registerHook('on-load', vc, 'init');//log-data-loaded
+			//core.registerHook('on-load', vc, 'init');//log-data-loaded
 			
-			// define routes
-			app.get('/video-heatmap', function(req, res) { 
-						//res.sendfile('./results/viz_perception-heatmap.html', {root: __dirname });
-				res.sendfile('./perception-per-video.html', {root: __dirname });
-			});
 			
 			var result = function(value, callback) {
 				if (callback) {
@@ -54,11 +50,23 @@
 		  });
 
 
+
+			// define routes
+			/*app.get('/video-heatmap', function(req, res) { 
+				res.sendfile('./perception-per-video.html', {root: __dirname });
+			});
+			
+			
+			app.get('/json/video-heatmap', function(req, res) { 
+				console.log( )
+				vc.init(req, res);
+			});
+*/
 		//
     vc.extend({
 			// videoReception_simple
 			
-			init : function (){ 
+			init : function (options, req, res){ 
 				var 
 					core = require('../../core'),
 					mongoose = require( 'mongoose' ),
@@ -80,7 +88,7 @@
 					}
 					//
 					for(var o = 0; o < user_data.length;o++){
-						users.push( Number( user_data[o].id ) );
+						users[o] = Number( user_data[o].id ) ;
 					} 
 					for(user in users){ 
 						if(users.hasOwnProperty(user)  ){ // && users[user] === users[57]	
@@ -128,6 +136,15 @@
 					// save to file 
 					//console.log(video_perception_c3);
 					core.write2file('perception-per-video.json', video_perception_c3);
+					// './perception-per-video.html', {root: __dirname }
+					
+					
+					// define routes
+					options.app.get( options.path, function(req, res) { 
+						res.sendfile('./perception-per-video.html', {root: __dirname });
+					});
+					res( "well done"  );
+					
 				});
 			}	
 	});

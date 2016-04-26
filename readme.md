@@ -1,3 +1,9 @@
+
+todo
+- dynamic data :: http://visjs.org/docs/data/index.html
+
+
+
 # vi-analytics #
 
 vi-analytics aims to understand how users behave when learning or working with interactive videos. Therefore I consider individual users as well group interactions. 

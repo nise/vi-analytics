@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <!-- Load c3.css -->
-<link href="c3.min.css" rel="stylesheet" type="text/css">
+<link href="/static/css/c3.min.css" rel="stylesheet" type="text/css">
 
 <!-- Load d3.js and c3.js -->
-<script src="d3.min.js" charset="utf-8"></script>
-<script src="c3.min.js"></script>
-<script src="jquery-1.11.3.min.js"></script>
+<script src="/static/lib/d3.min.js" charset="utf-8"></script>
+<script src="/static/lib/c3.min.js"></script>
+<script src="/static/lib/jquery-1.11.3.min.js"></script>
 
 <style>
 html {
@@ -47,7 +47,7 @@ This diagram shows which part of an video has been watched how often and by how 
 
 <script>
 
-$.get('./data/perception-per-video.json', function(data){
+$.get('/static/data/perception-per-video.json', function(data){
 
 	for( var i in data){
 		if(data.hasOwnProperty(i)){ 

@@ -23,13 +23,17 @@ var Log = new Schema({
 		video_length:  		String,
 		video_language:  	String,
 		
-		action:  					String,
-		action_details: 	[Schema.Types.Mixed],
+		action:						{
+			context: String,
+			action: String,
+			values: Array
+		},
+		
 		playback_time:		Number,
 		
-		user_agent:  			[Schema.Types.Mixed],
+		user_agent:  			String,
 		ip: 							String,
 		flag: 						Boolean
-}); 
+	}); 
 mongoose.model( 'Log', Log );		
  
