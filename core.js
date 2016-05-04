@@ -109,12 +109,47 @@ exports.makeCleanLog = function(req, result){
 };	
 
 
+/*
+**/
+assessment = function(){
+	var 
+		videos = JSON.parse( fs.readFileSync( projectConfiguration.videos ) )
+		lfn = 1,
+		out = 'number,video-id,video-file,author-id,question-type,question,correct,answer-option',
+		correct = false
+		;
+	
+	for(var i = 0; i < videos.length;i++){
+		for(var j=0; j < videos[i].assessment.length; j++){
+			out += lfn+','+videos[i].id+','+videos[i].video+','+videos[i].assessment[j].author+','+videos[i].assessment[j].title.answ[0].questiontype+',"'+videos[i].assessment[j].title.question +'"\n';
+			for(var answ=0; answ < videos[i].assessment[j].title.answ.length; answ++){
+				// mc-questions
+				if(videos[i].assessment[j].title.answ[0].questiontype === 'mc'){
+					correct = false
+					if(videos[i].assessment[j].title.correct.indexOf(videos[i].assessment[j].title.answ[answ].id) !== -1){ correct = true; }
+					out += lfn+',,,,,,'+correct+',"'+videos[i].assessment[j].title.answ[answ].answ + '"\n';
+				}else{
+					out += lfn+',,,,,,--,"'+videos[i].assessment[j].title.answ[answ].answ + '"\n';
+				}
+				//console.log(correct)
+				//console.log(videos[i].assessment[j].title)
+			}
+		lfn++;
+		}	
+	}
+//	console.log(out);
+	csv = fs.createWriteStream('./input/'+ project +'/peer-assessment-results.csv');
+	csv.write(out)
+}
+
+
+
 
 /*
  * Converts and completes JSON Log from Vi-Two considering further files with meta data about the videos, users, script phases, and groups.
  * @return Loads data into MongoDB and writes output csv-file for further processing in R.
  **/
-convertLogFromJSON = function(conf){ 
+convertLogFromJSON = function(conf){ assessment();
 	var 
 		JSONStream = require('JSONStream'),
 		crypto = require('crypto'),
@@ -126,7 +161,7 @@ convertLogFromJSON = function(conf){
 		session = [], 
 		out = 'utc,date,time,phase,group,group_name,user,user_name,user_culture,user_gender,user_session,video_file,video_id,video_language,video_length,playback_time,action_context,action_type,action_value,action_artefact,action_artefact_id,action_artefact_author,action_artefact_time,action_artefact_response,ip,ua_browser,ua_browser_engine,ua_browser_version,ua_device,ua_os,ua_os_version,\n'
 		;
-		
+	
 		
 	Log.remove({}, function(err) { 
 		fileStream = fs.createReadStream( conf.raw_logfile, {encoding: 'utf8'});
